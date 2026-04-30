@@ -77,7 +77,7 @@ git clone https://github.com/AymanSaikat/Mobile-Bottom-Tab-Bar.git
 
 Open:
 ```bash
-MobileBottomTabBar.html
+MobileBottomTabBarCode.txt
 ```
 
 ---
@@ -101,7 +101,7 @@ MobileBottomTabBar.html
 ## 🧱 Project Structure
 
 ```
-MobileBottomTabBar.html
+MobileBottomTabBarCode.txt
 │
 ├── HTML  → Structure
 ├── CSS   → Styling & Layout
