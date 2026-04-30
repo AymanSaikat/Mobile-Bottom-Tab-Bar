@@ -1,404 +1,404 @@
 /* ---- Hide on desktop, show only on mobile ---- */
 #bh-tab-bar-wrap { display: none; }
 @media (max-width: 768px) {
-  #bh-tab-bar-wrap { display: block; }
-  body { padding-bottom: 90px !important; }
+  #bh-tab-bar-wrap { display: block; }
+  body { padding-bottom: 90px !important; }
 }
-
+ 
 /* ---- Floating island wrapper ---- */
 #bh-tab-bar-wrap {
-  position: fixed;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99999;
-  width: calc(100% - 32px);
-  max-width: 480px;
-  pointer-events: none;
+  position: fixed;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  width: calc(100% - 32px);
+  max-width: 480px;
+  pointer-events: none;
 }
-
+ 
 /* ---- The floating island bar ---- */
 #bh-tab-bar {
-  background: rgba(251, 249, 245, 0.92); /* ISLAND BACKGROUND COLOR */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 28px;
-  border: 1px solid rgba(115, 92, 0, 0.10); /* ISLAND BORDER COLOR */
-  box-shadow: 0 4px 24px rgba(115, 92, 0, 0.10), 0 1px 4px rgba(115, 92, 0, 0.06); /* ISLAND SHADOW COLOR */
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px 8px 12px;
-  pointer-events: all;
-  position: relative;
+  background: rgba(251, 249, 245, 0.92); /* ISLAND BACKGROUND COLOR */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 28px;
+  border: 1px solid rgba(115, 92, 0, 0.10); /* ISLAND BORDER COLOR */
+  box-shadow: 0 4px 24px rgba(115, 92, 0, 0.10), 0 1px 4px rgba(115, 92, 0, 0.06); /* ISLAND SHADOW COLOR */
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 10px 8px 12px;
+  pointer-events: all;
+  position: relative;
 }
-
+ 
 /* ---- Tab buttons (all tabs) ---- */
 .bh-tab {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 14px;
-  -webkit-tap-highlight-color: transparent;
-  min-width: 52px;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.15s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px 12px;
+  border-radius: 14px;
+  -webkit-tap-highlight-color: transparent;
+  min-width: 52px;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.15s;
 }
 .bh-tab:active { transform: scale(0.88); }
-
+ 
 /* ---- Tab icon (inactive state) ---- */
 .bh-tab svg {
-  width: 22px;
-  height: 22px;
-  stroke: rgba(115, 92, 0, 0.38); /* INACTIVE TAB ICON COLOR */
-  fill: none;
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: stroke 0.2s, fill 0.2s, stroke-width 0.2s;
+  width: 22px;
+  height: 22px;
+  stroke: rgba(115, 92, 0, 0.38); /* INACTIVE TAB ICON COLOR */
+  fill: none;
+  stroke-width: 1.7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  transition: stroke 0.2s, fill 0.2s, stroke-width 0.2s;
 }
-
+ 
 /* ---- Tab label text (inactive state) ---- */
 .bh-tab .bh-label {
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(115, 92, 0, 0.38); /* INACTIVE TAB LABEL TEXT COLOR */
-  letter-spacing: 0.02em;
-  font-family: inherit;
-  transition: color 0.2s, font-weight 0.2s;
+  font-size: 10px;
+  font-weight: 500;
+  color: rgba(115, 92, 0, 0.38); /* INACTIVE TAB LABEL TEXT COLOR */
+  letter-spacing: 0.02em;
+  font-family: inherit;
+  transition: color 0.2s, font-weight 0.2s;
 }
-
+ 
 /* ---- ACTIVE tab — Style B soft pill ---- */
 .bh-tab.active {
-  background: rgba(115, 92, 0, 0.11); /* ACTIVE TAB PILL BACKGROUND COLOR */
+  background: rgba(115, 92, 0, 0.11); /* ACTIVE TAB PILL BACKGROUND COLOR */
 }
-
+ 
 /* ---- Tab icon (active state) ---- */
 .bh-tab.active svg {
-  stroke: #735C00; /* ACTIVE TAB ICON COLOR */
-  stroke-width: 2.1;
+  stroke: #735C00; /* ACTIVE TAB ICON COLOR */
+  stroke-width: 2.1;
 }
-
+ 
 /* ---- Tab label text (active state) ---- */
 .bh-tab.active .bh-label {
-  color: #735C00; /* ACTIVE TAB LABEL TEXT COLOR */
-  font-weight: 700;
+  color: #735C00; /* ACTIVE TAB LABEL TEXT COLOR */
+  font-weight: 700;
 }
-
+ 
 /* ============================================================
-   SEARCH POPUP STYLES
-   ============================================================ */
-
+   SEARCH POPUP STYLES
+   ============================================================ */
+ 
 /* ---- Dark overlay behind the search popup ---- */
 #bh-search-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 100000;
-  background: rgba(60, 45, 0, 0.35); /* SEARCH POPUP OVERLAY COLOR */
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  align-items: flex-end;
-  justify-content: center;
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  background: rgba(60, 45, 0, 0.35); /* SEARCH POPUP OVERLAY COLOR */
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: flex-end;
+  justify-content: center;
 }
 #bh-search-overlay.open {
-  display: flex;
-  animation: bhFadeIn 0.2s ease;
+  display: flex;
+  animation: bhFadeIn 0.2s ease;
 }
 @keyframes bhFadeIn { from { opacity: 0; } to { opacity: 1; } }
-
+ 
 /* ---- Slide-up search sheet ---- */
 #bh-search-sheet {
-  background: #FBF9F5; /* SEARCH POPUP BACKGROUND COLOR */
-  border-radius: 28px 28px 0 0;
-  padding: 20px 20px 36px;
-  width: 100%;
-  max-width: 540px;
-  box-shadow: 0 -8px 40px rgba(115, 92, 0, 0.14); /* SEARCH POPUP SHADOW COLOR */
-  animation: bhSlideUp 0.25s cubic-bezier(0.34, 1.26, 0.64, 1);
+  background: #FBF9F5; /* SEARCH POPUP BACKGROUND COLOR */
+  border-radius: 28px 28px 0 0;
+  padding: 20px 20px 36px;
+  width: 100%;
+  max-width: 540px;
+  box-shadow: 0 -8px 40px rgba(115, 92, 0, 0.14); /* SEARCH POPUP SHADOW COLOR */
+  animation: bhSlideUp 0.25s cubic-bezier(0.34, 1.26, 0.64, 1);
 }
 @keyframes bhSlideUp {
-  from { transform: translateY(100%); opacity: 0.5; }
-  to   { transform: translateY(0);    opacity: 1; }
+  from { transform: translateY(100%); opacity: 0.5; }
+  to   { transform: translateY(0);    opacity: 1; }
 }
-
+ 
 /* ---- Drag handle at top of sheet ---- */
 #bh-search-sheet::before {
-  content: '';
-  display: block;
-  width: 36px;
-  height: 4px;
-  background: rgba(115, 92, 0, 0.18); /* DRAG HANDLE BAR COLOR */
-  border-radius: 99px;
-  margin: 0 auto 18px;
+  content: '';
+  display: block;
+  width: 36px;
+  height: 4px;
+  background: rgba(115, 92, 0, 0.18); /* DRAG HANDLE BAR COLOR */
+  border-radius: 99px;
+  margin: 0 auto 18px;
 }
-
+ 
 /* ---- Search input box ---- */
 #bh-search-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #ffffff; /* SEARCH INPUT BACKGROUND COLOR */
-  border: 1.5px solid rgba(115, 92, 0, 0.18); /* SEARCH INPUT BORDER COLOR (not typing) */
-  border-radius: 14px;
-  padding: 0 14px;
-  margin-bottom: 14px;
-  transition: border-color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: #ffffff; /* SEARCH INPUT BACKGROUND COLOR */
+  border: 1.5px solid rgba(115, 92, 0, 0.18); /* SEARCH INPUT BORDER COLOR (not typing) */
+  border-radius: 14px;
+  padding: 0 14px;
+  margin-bottom: 14px;
+  transition: border-color 0.2s;
 }
 #bh-search-row:focus-within {
-  border-color: rgba(115, 92, 0, 0.50); /* SEARCH INPUT BORDER COLOR (while typing) */
+  border-color: rgba(115, 92, 0, 0.50); /* SEARCH INPUT BORDER COLOR (while typing) */
 }
-
+ 
 /* ---- Search icon inside input box ---- */
 #bh-search-row svg {
-  width: 18px;
-  height: 18px;
-  stroke: #735C00; /* SEARCH ICON COLOR INSIDE INPUT */
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  flex-shrink: 0;
+  width: 18px;
+  height: 18px;
+  stroke: #735C00; /* SEARCH ICON COLOR INSIDE INPUT */
+  fill: none;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  flex-shrink: 0;
 }
-
+ 
 /* ---- Typed text inside input ---- */
 #bh-search-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 15px;
-  color: #3a2e00; /* TYPED TEXT COLOR IN SEARCH INPUT */
-  padding: 13px 0;
-  font-family: inherit;
+  flex: 1;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 15px;
+  color: #3a2e00; /* TYPED TEXT COLOR IN SEARCH INPUT */
+  padding: 13px 0;
+  font-family: inherit;
 }
 #bh-search-input::placeholder {
-  color: rgba(115, 92, 0, 0.38); /* PLACEHOLDER TEXT COLOR IN SEARCH INPUT */
+  color: rgba(115, 92, 0, 0.38); /* PLACEHOLDER TEXT COLOR IN SEARCH INPUT */
 }
-
+ 
 /* ---- Clear (X) button inside input ---- */
 #bh-clear-btn {
-  background: rgba(115, 92, 0, 0.08); /* CLEAR BUTTON BACKGROUND COLOR */
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: none;
-  color: #735C00; /* CLEAR BUTTON X ICON COLOR */
-  font-size: 12px;
-  line-height: 1;
-  width: 20px;
-  height: 20px;
-  border-radius: 99px;
-  align-items: center;
-  justify-content: center;
+  background: rgba(115, 92, 0, 0.08); /* CLEAR BUTTON BACKGROUND COLOR */
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  display: none;
+  color: #735C00; /* CLEAR BUTTON X ICON COLOR */
+  font-size: 12px;
+  line-height: 1;
+  width: 20px;
+  height: 20px;
+  border-radius: 99px;
+  align-items: center;
+  justify-content: center;
 }
 #bh-clear-btn.show { display: flex; }
-
+ 
 /* ---- Section label (Recent / Trending / Suggestions) ---- */
 .bh-section-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(115, 92, 0, 0.45); /* SECTION LABEL TEXT COLOR */
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin: 10px 0 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgba(115, 92, 0, 0.45); /* SECTION LABEL TEXT COLOR */
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin: 10px 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 .bh-section-label button {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* CLEAR HISTORY BUTTON COLOR */
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font-family: inherit;
-  text-decoration: underline;
+  font-size: 11px;
+  color: rgba(115, 92, 0, 0.45); /* CLEAR HISTORY BUTTON COLOR */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+  text-decoration: underline;
 }
-
+ 
 /* ---- Recent search chips ---- */
 #bh-recents {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 6px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 .bh-recent-chip {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(115, 92, 0, 0.07); /* RECENT CHIP BACKGROUND COLOR */
-  border: 1px solid rgba(115, 92, 0, 0.12); /* RECENT CHIP BORDER COLOR */
-  border-radius: 99px;
-  padding: 5px 12px 5px 10px;
-  font-size: 12px;
-  color: #735C00; /* RECENT CHIP TEXT COLOR */
-  cursor: pointer;
-  font-family: inherit;
-  transition: background 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: rgba(115, 92, 0, 0.07); /* RECENT CHIP BACKGROUND COLOR */
+  border: 1px solid rgba(115, 92, 0, 0.12); /* RECENT CHIP BORDER COLOR */
+  border-radius: 99px;
+  padding: 5px 12px 5px 10px;
+  font-size: 12px;
+  color: #735C00; /* RECENT CHIP TEXT COLOR */
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
 }
 .bh-recent-chip:hover { background: rgba(115, 92, 0, 0.13); }
 .bh-recent-chip svg {
-  width: 12px; height: 12px;
-  stroke: rgba(115, 92, 0, 0.45); /* RECENT CHIP CLOCK ICON COLOR */
-  fill: none; stroke-width: 2;
-  stroke-linecap: round; stroke-linejoin: round;
-  flex-shrink: 0;
+  width: 12px; height: 12px;
+  stroke: rgba(115, 92, 0, 0.45); /* RECENT CHIP CLOCK ICON COLOR */
+  fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  flex-shrink: 0;
 }
-
+ 
 /* ---- Trending product cards ---- */
 #bh-trending {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 4px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 4px;
 }
 .bh-trending-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.14s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.14s;
 }
 .bh-trending-item:hover,
 .bh-trending-item:active {
-  background: rgba(115, 92, 0, 0.07); /* TRENDING ITEM HOVER COLOR */
+  background: rgba(115, 92, 0, 0.07); /* TRENDING ITEM HOVER COLOR */
 }
 .bh-trending-thumb {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  object-fit: cover;
-  background: rgba(115, 92, 0, 0.08); /* TRENDING THUMBNAIL BACKGROUND */
-  flex-shrink: 0;
+  width: 40px; height: 52px;
+  border-radius: 6px;
+  object-fit: cover;
+  background: rgba(115, 92, 0, 0.08); /* TRENDING THUMBNAIL BACKGROUND */
+  flex-shrink: 0;
 }
 .bh-trending-thumb-ph {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  background: rgba(115, 92, 0, 0.08); /* TRENDING PLACEHOLDER BACKGROUND */
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  width: 40px; height: 52px;
+  border-radius: 6px;
+  background: rgba(115, 92, 0, 0.08); /* TRENDING PLACEHOLDER BACKGROUND */
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
 .bh-trending-thumb-ph svg {
-  width: 18px; height: 18px;
-  stroke: rgba(115, 92, 0, 0.28); /* TRENDING PLACEHOLDER ICON COLOR */
-  fill: none; stroke-width: 1.5;
+  width: 18px; height: 18px;
+  stroke: rgba(115, 92, 0, 0.28); /* TRENDING PLACEHOLDER ICON COLOR */
+  fill: none; stroke-width: 1.5;
 }
 .bh-trending-info { flex: 1; min-width: 0; }
 .bh-trending-name {
-  font-size: 14px; font-weight: 500;
-  color: #3a2e00; /* TRENDING PRODUCT NAME COLOR */
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  display: block;
+  font-size: 14px; font-weight: 500;
+  color: #3a2e00; /* TRENDING PRODUCT NAME COLOR */
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: block;
 }
 .bh-trending-price {
-  font-size: 12px;
-  color: #735C00; /* TRENDING PRODUCT PRICE COLOR */
-  font-weight: 600;
-  margin-top: 2px; display: block;
+  font-size: 12px;
+  color: #735C00; /* TRENDING PRODUCT PRICE COLOR */
+  font-weight: 600;
+  margin-top: 2px; display: block;
 }
 .bh-trending-cat {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* TRENDING PRODUCT CATEGORY COLOR */
-  display: block; margin-top: 1px;
+  font-size: 11px;
+  color: rgba(115, 92, 0, 0.45); /* TRENDING PRODUCT CATEGORY COLOR */
+  display: block; margin-top: 1px;
 }
 .bh-trending-rank {
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(115, 92, 0, 0.25); /* TRENDING RANK NUMBER COLOR */
-  min-width: 16px;
-  text-align: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: rgba(115, 92, 0, 0.25); /* TRENDING RANK NUMBER COLOR */
+  min-width: 16px;
+  text-align: center;
 }
-
+ 
 /* ---- Suggestions list ---- */
 #bh-suggestions {
-  list-style: none;
-  margin: 0; padding: 0;
-  max-height: 300px;
-  overflow-y: auto;
+  list-style: none;
+  margin: 0; padding: 0;
+  max-height: 300px;
+  overflow-y: auto;
 }
 #bh-suggestions li { margin: 0; padding: 0; }
 #bh-suggestions a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.14s;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: background 0.14s;
 }
 #bh-suggestions a:hover,
 #bh-suggestions a:active {
-  background: rgba(115, 92, 0, 0.07); /* SUGGESTION ROW HOVER COLOR */
+  background: rgba(115, 92, 0, 0.07); /* SUGGESTION ROW HOVER COLOR */
 }
 .bh-sug-thumb {
-  width: 40px; height: 52px;
-  border-radius: 6px; object-fit: cover;
-  background: rgba(115, 92, 0, 0.08); /* SUGGESTION THUMBNAIL BACKGROUND */
-  flex-shrink: 0;
+  width: 40px; height: 52px;
+  border-radius: 6px; object-fit: cover;
+  background: rgba(115, 92, 0, 0.08); /* SUGGESTION THUMBNAIL BACKGROUND */
+  flex-shrink: 0;
 }
 .bh-sug-thumb-placeholder {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  background: rgba(115, 92, 0, 0.08); /* SUGGESTION PLACEHOLDER BACKGROUND */
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
+  width: 40px; height: 52px;
+  border-radius: 6px;
+  background: rgba(115, 92, 0, 0.08); /* SUGGESTION PLACEHOLDER BACKGROUND */
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
 }
 .bh-sug-thumb-placeholder svg {
-  width: 18px; height: 18px;
-  stroke: rgba(115, 92, 0, 0.28); /* SUGGESTION PLACEHOLDER ICON COLOR */
-  fill: none; stroke-width: 1.5;
+  width: 18px; height: 18px;
+  stroke: rgba(115, 92, 0, 0.28); /* SUGGESTION PLACEHOLDER ICON COLOR */
+  fill: none; stroke-width: 1.5;
 }
 .bh-sug-info { flex: 1; min-width: 0; }
 .bh-sug-name {
-  font-size: 14px; font-weight: 500;
-  color: #3a2e00; /* SUGGESTION PRODUCT NAME COLOR */
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  display: block;
+  font-size: 14px; font-weight: 500;
+  color: #3a2e00; /* SUGGESTION PRODUCT NAME COLOR */
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: block;
 }
 .bh-sug-price {
-  font-size: 12px;
-  color: #735C00; /* SUGGESTION PRODUCT PRICE COLOR */
-  font-weight: 600; margin-top: 2px; display: block;
+  font-size: 12px;
+  color: #735C00; /* SUGGESTION PRODUCT PRICE COLOR */
+  font-weight: 600; margin-top: 2px; display: block;
 }
 .bh-sug-cat {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* SUGGESTION PRODUCT CATEGORY COLOR */
-  display: block; margin-top: 1px;
+  font-size: 11px;
+  color: rgba(115, 92, 0, 0.45); /* SUGGESTION PRODUCT CATEGORY COLOR */
+  display: block; margin-top: 1px;
 }
-
+ 
 /* ---- Status text: "Searching…" or "No results" ---- */
 #bh-search-status {
-  text-align: center; font-size: 13px;
-  color: rgba(115, 92, 0, 0.45); /* STATUS MESSAGE TEXT COLOR */
-  padding: 20px 0; display: none;
+  text-align: center; font-size: 13px;
+  color: rgba(115, 92, 0, 0.45); /* STATUS MESSAGE TEXT COLOR */
+  padding: 20px 0; display: none;
 }
 #bh-search-status.show { display: block; }
-
+ 
 /* ---- "View all results" button ---- */
 #bh-view-all {
-  display: none;
-  width: 100%; margin-top: 12px; padding: 12px;
-  background: #735C00; /* VIEW ALL BUTTON BACKGROUND COLOR */
-  color: #FBF9F5;      /* VIEW ALL BUTTON TEXT COLOR */
-  border: none; border-radius: 12px;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer; text-align: center;
-  text-decoration: none; transition: opacity 0.15s;
-  box-sizing: border-box;
+  display: none;
+  width: 100%; margin-top: 12px; padding: 12px;
+  background: #735C00; /* VIEW ALL BUTTON BACKGROUND COLOR */
+  color: #FBF9F5;      /* VIEW ALL BUTTON TEXT COLOR */
+  border: none; border-radius: 12px;
+  font-size: 14px; font-weight: 500;
+  cursor: pointer; text-align: center;
+  text-decoration: none; transition: opacity 0.15s;
+  box-sizing: border-box;
 }
 #bh-view-all.show { display: block; }
 #bh-view-all:hover { opacity: 0.85; }
-
+ 
 /* ---- Sections wrapper ---- */
 #bh-default-view { display: block; }
 #bh-results-view { display: none; }
