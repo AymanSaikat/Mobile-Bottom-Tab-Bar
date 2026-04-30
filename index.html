@@ -8,908 +8,107 @@
   Place in: FOOTER section
    ============================================================ -->
 <h1 style="text-align:center;">THIS MOBILE BOTTIM TAB BAR ONLY SHOWS IN MOBILE</h1>
-<style>
 
-/* ---- Hide on desktop, show only on mobile ---- */
-#bh-tab-bar-wrap { display: none; }
-@media (max-width: 768px) {
-  #bh-tab-bar-wrap { display: block; }
-  body { padding-bottom: 90px !important; }
-}
-
-/* ---- Floating island wrapper ---- */
-#bh-tab-bar-wrap {
-  position: fixed;
-  bottom: 18px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 99999;
-  width: calc(100% - 32px);
-  max-width: 480px;
-  pointer-events: none;
-}
-
-/* ---- The floating island bar ---- */
-#bh-tab-bar {
-  background: rgba(251, 249, 245, 0.92); /* ISLAND BACKGROUND COLOR */
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-radius: 28px;
-  border: 1px solid rgba(115, 92, 0, 0.10); /* ISLAND BORDER COLOR */
-  box-shadow: 0 4px 24px rgba(115, 92, 0, 0.10), 0 1px 4px rgba(115, 92, 0, 0.06); /* ISLAND SHADOW COLOR */
-  display: flex;
-  align-items: center;
-  justify-content: space-around;
-  padding: 10px 8px 12px;
-  pointer-events: all;
-  position: relative;
-}
-
-/* ---- Tab buttons (all tabs) ---- */
-.bh-tab {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 4px;
-  text-decoration: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 14px;
-  -webkit-tap-highlight-color: transparent;
-  min-width: 52px;
-  position: relative;
-  z-index: 1;
-  transition: transform 0.15s;
-}
-.bh-tab:active { transform: scale(0.88); }
-
-/* ---- Tab icon (inactive state) ---- */
-.bh-tab svg {
-  width: 22px;
-  height: 22px;
-  stroke: rgba(115, 92, 0, 0.38); /* INACTIVE TAB ICON COLOR */
-  fill: none;
-  stroke-width: 1.7;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  transition: stroke 0.2s, fill 0.2s, stroke-width 0.2s;
-}
-
-/* ---- Tab label text (inactive state) ---- */
-.bh-tab .bh-label {
-  font-size: 10px;
-  font-weight: 500;
-  color: rgba(115, 92, 0, 0.38); /* INACTIVE TAB LABEL TEXT COLOR */
-  letter-spacing: 0.02em;
-  font-family: inherit;
-  transition: color 0.2s, font-weight 0.2s;
-}
-
-/* ---- ACTIVE tab — Style B soft pill ---- */
-.bh-tab.active {
-  background: rgba(115, 92, 0, 0.11); /* ACTIVE TAB PILL BACKGROUND COLOR */
-}
-
-/* ---- Tab icon (active state) ---- */
-.bh-tab.active svg {
-  stroke: #735C00; /* ACTIVE TAB ICON COLOR */
-  stroke-width: 2.1;
-}
-
-/* ---- Tab label text (active state) ---- */
-.bh-tab.active .bh-label {
-  color: #735C00; /* ACTIVE TAB LABEL TEXT COLOR */
-  font-weight: 700;
-}
-
-/* ============================================================
-   SEARCH POPUP STYLES
-   ============================================================ */
-
-/* ---- Dark overlay behind the search popup ---- */
-#bh-search-overlay {
-  display: none;
-  position: fixed;
-  inset: 0;
-  z-index: 100000;
-  background: rgba(60, 45, 0, 0.35); /* SEARCH POPUP OVERLAY COLOR */
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  align-items: flex-end;
-  justify-content: center;
-}
-#bh-search-overlay.open {
-  display: flex;
-  animation: bhFadeIn 0.2s ease;
-}
-@keyframes bhFadeIn { from { opacity: 0; } to { opacity: 1; } }
-
-/* ---- Slide-up search sheet ---- */
-#bh-search-sheet {
-  background: #FBF9F5; /* SEARCH POPUP BACKGROUND COLOR */
-  border-radius: 28px 28px 0 0;
-  padding: 20px 20px 36px;
-  width: 100%;
-  max-width: 540px;
-  box-shadow: 0 -8px 40px rgba(115, 92, 0, 0.14); /* SEARCH POPUP SHADOW COLOR */
-  animation: bhSlideUp 0.25s cubic-bezier(0.34, 1.26, 0.64, 1);
-}
-@keyframes bhSlideUp {
-  from { transform: translateY(100%); opacity: 0.5; }
-  to   { transform: translateY(0);    opacity: 1; }
-}
-
-/* ---- Drag handle at top of sheet ---- */
-#bh-search-sheet::before {
-  content: '';
-  display: block;
-  width: 36px;
-  height: 4px;
-  background: rgba(115, 92, 0, 0.18); /* DRAG HANDLE BAR COLOR */
-  border-radius: 99px;
-  margin: 0 auto 18px;
-}
-
-/* ---- Search input box ---- */
-#bh-search-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #ffffff; /* SEARCH INPUT BACKGROUND COLOR */
-  border: 1.5px solid rgba(115, 92, 0, 0.18); /* SEARCH INPUT BORDER COLOR (not typing) */
-  border-radius: 14px;
-  padding: 0 14px;
-  margin-bottom: 14px;
-  transition: border-color 0.2s;
-}
-#bh-search-row:focus-within {
-  border-color: rgba(115, 92, 0, 0.50); /* SEARCH INPUT BORDER COLOR (while typing) */
-}
-
-/* ---- Search icon inside input box ---- */
-#bh-search-row svg {
-  width: 18px;
-  height: 18px;
-  stroke: #735C00; /* SEARCH ICON COLOR INSIDE INPUT */
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  flex-shrink: 0;
-}
-
-/* ---- Typed text inside input ---- */
-#bh-search-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 15px;
-  color: #3a2e00; /* TYPED TEXT COLOR IN SEARCH INPUT */
-  padding: 13px 0;
-  font-family: inherit;
-}
-#bh-search-input::placeholder {
-  color: rgba(115, 92, 0, 0.38); /* PLACEHOLDER TEXT COLOR IN SEARCH INPUT */
-}
-
-/* ---- Clear (X) button inside input ---- */
-#bh-clear-btn {
-  background: rgba(115, 92, 0, 0.08); /* CLEAR BUTTON BACKGROUND COLOR */
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: none;
-  color: #735C00; /* CLEAR BUTTON X ICON COLOR */
-  font-size: 12px;
-  line-height: 1;
-  width: 20px;
-  height: 20px;
-  border-radius: 99px;
-  align-items: center;
-  justify-content: center;
-}
-#bh-clear-btn.show { display: flex; }
-
-/* ---- Section label (Recent / Trending / Suggestions) ---- */
-.bh-section-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(115, 92, 0, 0.45); /* SECTION LABEL TEXT COLOR */
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin: 10px 0 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.bh-section-label button {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* CLEAR HISTORY BUTTON COLOR */
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font-family: inherit;
-  text-decoration: underline;
-}
-
-/* ---- Recent search chips ---- */
-#bh-recents {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-.bh-recent-chip {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(115, 92, 0, 0.07); /* RECENT CHIP BACKGROUND COLOR */
-  border: 1px solid rgba(115, 92, 0, 0.12); /* RECENT CHIP BORDER COLOR */
-  border-radius: 99px;
-  padding: 5px 12px 5px 10px;
-  font-size: 12px;
-  color: #735C00; /* RECENT CHIP TEXT COLOR */
-  cursor: pointer;
-  font-family: inherit;
-  transition: background 0.15s;
-}
-.bh-recent-chip:hover { background: rgba(115, 92, 0, 0.13); }
-.bh-recent-chip svg {
-  width: 12px; height: 12px;
-  stroke: rgba(115, 92, 0, 0.45); /* RECENT CHIP CLOCK ICON COLOR */
-  fill: none; stroke-width: 2;
-  stroke-linecap: round; stroke-linejoin: round;
-  flex-shrink: 0;
-}
-
-/* ---- Trending product cards ---- */
-#bh-trending {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 4px;
-}
-.bh-trending-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.14s;
-}
-.bh-trending-item:hover,
-.bh-trending-item:active {
-  background: rgba(115, 92, 0, 0.07); /* TRENDING ITEM HOVER COLOR */
-}
-.bh-trending-thumb {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  object-fit: cover;
-  background: rgba(115, 92, 0, 0.08); /* TRENDING THUMBNAIL BACKGROUND */
-  flex-shrink: 0;
-}
-.bh-trending-thumb-ph {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  background: rgba(115, 92, 0, 0.08); /* TRENDING PLACEHOLDER BACKGROUND */
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.bh-trending-thumb-ph svg {
-  width: 18px; height: 18px;
-  stroke: rgba(115, 92, 0, 0.28); /* TRENDING PLACEHOLDER ICON COLOR */
-  fill: none; stroke-width: 1.5;
-}
-.bh-trending-info { flex: 1; min-width: 0; }
-.bh-trending-name {
-  font-size: 14px; font-weight: 500;
-  color: #3a2e00; /* TRENDING PRODUCT NAME COLOR */
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  display: block;
-}
-.bh-trending-price {
-  font-size: 12px;
-  color: #735C00; /* TRENDING PRODUCT PRICE COLOR */
-  font-weight: 600;
-  margin-top: 2px; display: block;
-}
-.bh-trending-cat {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* TRENDING PRODUCT CATEGORY COLOR */
-  display: block; margin-top: 1px;
-}
-.bh-trending-rank {
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(115, 92, 0, 0.25); /* TRENDING RANK NUMBER COLOR */
-  min-width: 16px;
-  text-align: center;
-}
-
-/* ---- Suggestions list ---- */
-#bh-suggestions {
-  list-style: none;
-  margin: 0; padding: 0;
-  max-height: 300px;
-  overflow-y: auto;
-}
-#bh-suggestions li { margin: 0; padding: 0; }
-#bh-suggestions a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.14s;
-}
-#bh-suggestions a:hover,
-#bh-suggestions a:active {
-  background: rgba(115, 92, 0, 0.07); /* SUGGESTION ROW HOVER COLOR */
-}
-.bh-sug-thumb {
-  width: 40px; height: 52px;
-  border-radius: 6px; object-fit: cover;
-  background: rgba(115, 92, 0, 0.08); /* SUGGESTION THUMBNAIL BACKGROUND */
-  flex-shrink: 0;
-}
-.bh-sug-thumb-placeholder {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  background: rgba(115, 92, 0, 0.08); /* SUGGESTION PLACEHOLDER BACKGROUND */
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.bh-sug-thumb-placeholder svg {
-  width: 18px; height: 18px;
-  stroke: rgba(115, 92, 0, 0.28); /* SUGGESTION PLACEHOLDER ICON COLOR */
-  fill: none; stroke-width: 1.5;
-}
-.bh-sug-info { flex: 1; min-width: 0; }
-.bh-sug-name {
-  font-size: 14px; font-weight: 500;
-  color: #3a2e00; /* SUGGESTION PRODUCT NAME COLOR */
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  display: block;
-}
-.bh-sug-price {
-  font-size: 12px;
-  color: #735C00; /* SUGGESTION PRODUCT PRICE COLOR */
-  font-weight: 600; margin-top: 2px; display: block;
-}
-.bh-sug-cat {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* SUGGESTION PRODUCT CATEGORY COLOR */
-  display: block; margin-top: 1px;
-}
-
-/* ---- Status text: "Searching…" or "No results" ---- */
-#bh-search-status {
-  text-align: center; font-size: 13px;
-  color: rgba(115, 92, 0, 0.45); /* STATUS MESSAGE TEXT COLOR */
-  padding: 20px 0; display: none;
-}
-#bh-search-status.show { display: block; }
-
-/* ---- "View all results" button ---- */
-#bh-view-all {
-  display: none;
-  width: 100%; margin-top: 12px; padding: 12px;
-  background: #735C00; /* VIEW ALL BUTTON BACKGROUND COLOR */
-  color: #FBF9F5;      /* VIEW ALL BUTTON TEXT COLOR */
-  border: none; border-radius: 12px;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer; text-align: center;
-  text-decoration: none; transition: opacity 0.15s;
-  box-sizing: border-box;
-}
-#bh-view-all.show { display: block; }
-#bh-view-all:hover { opacity: 0.85; }
-
-/* ---- Sections wrapper ---- */
-#bh-default-view { display: block; }
-#bh-results-view { display: none; }
-#bh-default-view.hide { display: none; }
-#bh-results-view.show { display: block; }
-
-</style>
-
-<!-- ============================================================
-   HTML: Floating island tab bar
-   ============================================================ -->
 <div id="bh-tab-bar-wrap">
-  <nav id="bh-tab-bar" role="navigation" aria-label="Main navigation">
+  <nav id="bh-tab-bar" role="navigation" aria-label="Main navigation">
 
-    <!-- HOME tab -->
-    <a class="bh-tab" href="Your Website Name/" aria-label="Home">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 12L12 3l9 9"/>
-        <path d="M9 21V12h6v9"/>
-        <path d="M3 12v9h6M15 21v-9h6V21"/>
-      </svg>
-      <span class="bh-label">Home</span>
-    </a>
+    <!-- HOME tab -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/" aria-label="Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 12L12 3l9 9"/>
+        <path d="M9 21V12h6v9"/>
+        <path d="M3 12v9h6M15 21v-9h6V21"/>
+      </svg>
+      <span class="bh-label">Home</span>
+    </a>
 
-    <!-- SHOP tab — cart with wheels icon -->
-    <a class="bh-tab" href="Your Website Name/shop/" aria-label="Shop">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="9" cy="21" r="1"/>
-        <circle cx="20" cy="21" r="1"/>
-        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
-      </svg>
-      <span class="bh-label">Shop</span>
-    </a>
+    <!-- SHOP tab — cart with wheels icon -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/shop/" aria-label="Shop">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/>
+        <circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+      </svg>
+      <span class="bh-label">Shop</span>
+    </a>
 
-    <!-- SEARCH tab — opens popup -->
-    <button class="bh-tab" id="bh-search-trigger" aria-label="Search" aria-haspopup="dialog">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <span class="bh-label">Search</span>
-    </button>
+    <!-- SEARCH tab — opens popup -->
+    <button class="bh-tab" id="bh-search-trigger" aria-label="Search" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <span class="bh-label">Search</span>
+    </button>
 
-    <!-- FAVOURITE tab -->
-    <a class="bh-tab" href="Your Website Name/saved/" aria-label="Favourites">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/>
-      </svg>
-      <span class="bh-label">Favourite</span>
-    </a>
+    <!-- FAVOURITE tab -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/saved/" aria-label="Favourites">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/>
+      </svg>
+      <span class="bh-label">Favourite</span>
+    </a>
 
-    <!-- ACCOUNT tab -->
-    <a class="bh-tab" href="Your Website Name/my-account/" aria-label="Account">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-        <circle cx="12" cy="7" r="4"/>
-      </svg>
-      <span class="bh-label">Account</span>
-    </a>
+    <!-- ACCOUNT tab -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/my-account/" aria-label="Account">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span class="bh-label">Account</span>
+    </a>
 
-  </nav>
+  </nav>
 </div>
 
 <!-- ============================================================
-   HTML: Search popup
-   ============================================================ -->
+   HTML: Search popup
+   ============================================================ -->
 <div id="bh-search-overlay" role="dialog" aria-modal="true" aria-label="Search books">
-  <div id="bh-search-sheet">
+  <div id="bh-search-sheet">
 
-    <!-- Input row -->
-    <div id="bh-search-row">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <input
-        type="search"
-        id="bh-search-input"
-        placeholder="Search books, authors…"
-        autocomplete="off"
-        autocorrect="off"
-        spellcheck="false"
-        aria-label="Search books"
-      />
-      <button id="bh-clear-btn" aria-label="Clear search">✕</button>
-    </div>
+    <!-- Input row -->
+    <div id="bh-search-row">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input
+        type="search"
+        id="bh-search-input"
+        placeholder="Search books, authors…"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        aria-label="Search books"
+      />
+      <button id="bh-clear-btn" aria-label="Clear search">✕</button>
+    </div>
 
-    <!-- Default view: recent searches + trending -->
-    <div id="bh-default-view">
-      <div id="bh-recents-wrap" style="display:none">
-        <div class="bh-section-label">
-          Recent
-          <button id="bh-clear-recents">Clear</button>
-        </div>
-        <div id="bh-recents"></div>
-      </div>
-      <div id="bh-trending-wrap">
-        <div class="bh-section-label">Trending Now</div>
-        <div id="bh-trending"></div>
-      </div>
-    </div>
+    <!-- Default view: recent searches + trending -->
+    <div id="bh-default-view">
+      <div id="bh-recents-wrap" style="display:none">
+        <div class="bh-section-label">
+          Recent
+          <button id="bh-clear-recents">Clear</button>
+        </div>
+        <div id="bh-recents"></div>
+      </div>
+      <div id="bh-trending-wrap">
+        <div class="bh-section-label">Trending Now</div>
+        <div id="bh-trending"></div>
+      </div>
+    </div>
 
-    <!-- Results view: suggestions -->
-    <div id="bh-results-view">
-      <div id="bh-suggestions-label" class="bh-section-label" style="display:none">Suggestions</div>
-      <div id="bh-search-status"></div>
-      <ul id="bh-suggestions" role="listbox" aria-label="Search suggestions"></ul>
-      <a id="bh-view-all" href="#" role="button">View all results</a>
-    </div>
+    <!-- Results view: suggestions -->
+    <div id="bh-results-view">
+      <div id="bh-suggestions-label" class="bh-section-label" style="display:none">Suggestions</div>
+      <div id="bh-search-status"></div>
+      <ul id="bh-suggestions" role="listbox" aria-label="Search suggestions"></ul>
+      <a id="bh-view-all" href="#" role="button">View all results</a>
+    </div>
 
-  </div>
+  </div>
 </div>
-
-<!-- ============================================================
-   JAVASCRIPT
-   ============================================================ -->
-<script>
-(function() {
-  var siteUrl   = 'Your Website Name';
-  var shopUrl   = siteUrl + '/shop/';
-  var wcApi     = siteUrl + '/wp-json/wc/store/v1/products';
-  var RECENTS_KEY = 'bh_recent_searches'; /* localStorage key for recent searches */
-  var MAX_RECENTS = 5; /* maximum number of recent searches to remember */
-
-  var overlay      = document.getElementById('bh-search-overlay');
-  var input        = document.getElementById('bh-search-input');
-  var clearBtn     = document.getElementById('bh-clear-btn');
-  var sugg         = document.getElementById('bh-suggestions');
-  var status       = document.getElementById('bh-search-status');
-  var suggLabel    = document.getElementById('bh-suggestions-label');
-  var viewAll      = document.getElementById('bh-view-all');
-  var trigger      = document.getElementById('bh-search-trigger');
-  var tabs         = document.querySelectorAll('.bh-tab');
-  var defaultView  = document.getElementById('bh-default-view');
-  var resultsView  = document.getElementById('bh-results-view');
-  var recentsWrap  = document.getElementById('bh-recents-wrap');
-  var recentsEl    = document.getElementById('bh-recents');
-  var trendingEl   = document.getElementById('bh-trending');
-  var clearRecents = document.getElementById('bh-clear-recents');
-  var timer        = null;
-  var lastQ        = '';
-
-  /* ---- Highlight active tab based on current page URL ---- */
-  var path = window.location.pathname;
-  tabs.forEach(function(t) {
-    var h = t.getAttribute('href');
-    if (h && new URL(h, location.origin).pathname === path) {
-      t.classList.add('active');
-    }
-  });
-
-  /* ---- Haptic feedback + active tab on click ---- */
-  tabs.forEach(function(t) {
-    t.addEventListener('click', function() {
-      /* Haptic feedback — vibrates phone briefly on tap */
-      if (navigator.vibrate) navigator.vibrate(8);
-      tabs.forEach(function(x) { x.classList.remove('active'); });
-      t.classList.add('active');
-    });
-  });
-
-  /* ============================================================
-     RECENT SEARCHES — stored in localStorage
-     ============================================================ */
-  function getRecents() {
-    try {
-      return JSON.parse(localStorage.getItem(RECENTS_KEY)) || [];
-    } catch(e) { return []; }
-  }
-
-  function saveRecent(q) {
-    if (!q) return;
-    var list = getRecents().filter(function(r) { return r !== q; });
-    list.unshift(q); /* add to top */
-    list = list.slice(0, MAX_RECENTS); /* keep only latest 5 */
-    try { localStorage.setItem(RECENTS_KEY, JSON.stringify(list)); } catch(e) {}
-  }
-
-  function renderRecents() {
-    var list = getRecents();
-    if (!list.length) { recentsWrap.style.display = 'none'; return; }
-    recentsWrap.style.display = 'block';
-    recentsEl.innerHTML = '';
-    list.forEach(function(q) {
-      var chip = document.createElement('button');
-      chip.className = 'bh-recent-chip';
-      chip.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' + q;
-      chip.addEventListener('click', function() {
-        input.value = q;
-        clearBtn.className = 'show';
-        showResults();
-        search(q);
-      });
-      recentsEl.appendChild(chip);
-    });
-  }
-
-  /* ---- Clear all recent searches ---- */
-  clearRecents.addEventListener('click', function() {
-    try { localStorage.removeItem(RECENTS_KEY); } catch(e) {}
-    recentsWrap.style.display = 'none';
-  });
-
-  /* ============================================================
-     TRENDING PRODUCTS — loads latest 4 products on popup open
-     ============================================================ */
-  function loadTrending() {
-    trendingEl.innerHTML = '<div style="text-align:center;padding:16px 0;font-size:13px;color:rgba(115,92,0,0.4)">Loading\u2026</div>';
-    /* Fetches newest 4 products as "trending" */
-    fetch(wcApi + '?per_page=4&orderby=date&order=desc')
-      .then(function(r) { return r.json(); })
-      .then(function(data) {
-        trendingEl.innerHTML = '';
-        if (!data || !data.length) {
-          trendingEl.innerHTML = '<div style="text-align:center;padding:16px 0;font-size:13px;color:rgba(115,92,0,0.4)">Nothing to show yet</div>';
-          return;
-        }
-        data.forEach(function(item, i) {
-          trendingEl.appendChild(makeTrendingItem(item, i + 1));
-        });
-      })
-      .catch(function() {
-        trendingEl.innerHTML = '';
-      });
-  }
-
-  function makeTrendingItem(item, rank) {
-    var a = document.createElement('a');
-    a.className = 'bh-trending-item';
-    a.href = item.permalink || '#';
-
-    /* Rank number */
-    var rankEl = document.createElement('span');
-    rankEl.className = 'bh-trending-rank';
-    rankEl.textContent = rank;
-    a.appendChild(rankEl);
-
-    /* Thumbnail */
-    var thumbUrl = null;
-    try {
-      if (item.images && item.images.length > 0) {
-        thumbUrl = item.images[0].thumbnail || item.images[0].src;
-      }
-    } catch(e) {}
-
-    if (thumbUrl) {
-      var img = document.createElement('img');
-      img.className = 'bh-trending-thumb';
-      img.src = thumbUrl; img.alt = ''; img.loading = 'lazy';
-      a.appendChild(img);
-    } else {
-      var ph = document.createElement('div');
-      ph.className = 'bh-trending-thumb-ph';
-      ph.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>';
-      a.appendChild(ph);
-    }
-
-    /* Info */
-    var info = document.createElement('div');
-    info.className = 'bh-trending-info';
-
-    var nameEl = document.createElement('span');
-    nameEl.className = 'bh-trending-name';
-    nameEl.textContent = decode(item.name || '');
-    info.appendChild(nameEl);
-
-    var priceText = getPrice(item);
-    if (priceText) {
-      var priceEl = document.createElement('span');
-      priceEl.className = 'bh-trending-price';
-      priceEl.textContent = priceText;
-      info.appendChild(priceEl);
-    }
-
-    var catText = getCat(item);
-    if (catText) {
-      var catEl = document.createElement('span');
-      catEl.className = 'bh-trending-cat';
-      catEl.textContent = catText;
-      info.appendChild(catEl);
-    }
-
-    a.appendChild(info);
-
-    var arr = document.createElement('span');
-    arr.style.cssText = 'color:rgba(115,92,0,0.25);font-size:14px;flex-shrink:0'; /* ARROW ICON COLOR */
-    arr.textContent = '\u2192';
-    a.appendChild(arr);
-
-    return a;
-  }
-
-  /* ============================================================
-     SEARCH POPUP — open / close
-     ============================================================ */
-  trigger.addEventListener('click', function() {
-    overlay.classList.add('open');
-    renderRecents();
-    loadTrending();
-    showDefault();
-    setTimeout(function() { input.focus(); }, 280);
-  });
-
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) closeSearch();
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeSearch();
-  });
-
-  function closeSearch() {
-    overlay.classList.remove('open');
-    input.value = '';
-    reset();
-  }
-
-  function showDefault() {
-    defaultView.classList.remove('hide');
-    resultsView.classList.remove('show');
-  }
-
-  function showResults() {
-    defaultView.classList.add('hide');
-    resultsView.classList.add('show');
-  }
-
-  function reset() {
-    sugg.innerHTML = '';
-    status.className = '';
-    suggLabel.style.display = 'none';
-    viewAll.className = '';
-    clearBtn.className = '';
-    lastQ = '';
-    showDefault();
-  }
-
-  /* ---- Clear button ---- */
-  clearBtn.addEventListener('click', function() {
-    input.value = '';
-    reset();
-    input.focus();
-  });
-
-  /* ---- Enter key: save recent + go to shop search ---- */
-  input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      var q = input.value.trim();
-      if (q) {
-        saveRecent(q);
-        window.location.href = shopUrl + '?s=' + encodeURIComponent(q);
-      }
-    }
-  });
-
-  /* ---- Typing: debounced search ---- */
-  input.addEventListener('input', function() {
-    var q = input.value.trim();
-    clearBtn.className = q ? 'show' : '';
-    clearTimeout(timer);
-    if (!q) { reset(); return; }
-    showResults();
-    timer = setTimeout(function() { search(q); }, 350);
-  });
-
-  /* ============================================================
-     SEARCH
-     ============================================================ */
-  function search(q) {
-    if (q === lastQ) return;
-    lastQ = q;
-    sugg.innerHTML = '';
-    suggLabel.style.display = 'none';
-    viewAll.className = '';
-    status.textContent = 'Searching\u2026';
-    status.className = 'show';
-
-    fetch(wcApi + '?search=' + encodeURIComponent(q) + '&per_page=8')
-      .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function(data) {
-        status.className = '';
-        if (!data || data.length === 0) { empty(q); return; }
-        suggLabel.style.display = 'flex';
-        data.forEach(function(item) { sugg.appendChild(makeSuggItem(item)); });
-        setViewAll(q);
-        /* Save to recent searches when results found */
-        saveRecent(q);
-      })
-      .catch(function() { empty(q); });
-  }
-
-  function empty(q) {
-    status.textContent = 'No results for \u201c' + q + '\u201d';
-    status.className = 'show';
-    setViewAll(q);
-  }
-
-  function setViewAll(q) {
-    viewAll.href = shopUrl + '?s=' + encodeURIComponent(q);
-    viewAll.textContent = 'View all results for \u201c' + q + '\u201d';
-    viewAll.className = 'show';
-  }
-
-  /* ---- Build one suggestion row ---- */
-  function makeSuggItem(item) {
-    var li = document.createElement('li');
-    li.setAttribute('role', 'option');
-    var a = document.createElement('a');
-    a.href = item.permalink || '#';
-
-    var thumbUrl = null;
-    try {
-      if (item.images && item.images.length > 0) {
-        thumbUrl = item.images[0].thumbnail || item.images[0].src;
-      }
-    } catch(e) {}
-
-    if (thumbUrl) {
-      var img = document.createElement('img');
-      img.className = 'bh-sug-thumb';
-      img.src = thumbUrl; img.alt = ''; img.loading = 'lazy';
-      a.appendChild(img);
-    } else {
-      var ph = document.createElement('div');
-      ph.className = 'bh-sug-thumb-placeholder';
-      ph.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>';
-      a.appendChild(ph);
-    }
-
-    var info = document.createElement('div');
-    info.className = 'bh-sug-info';
-
-    var nameEl = document.createElement('span');
-    nameEl.className = 'bh-sug-name';
-    nameEl.textContent = decode(item.name || '');
-    info.appendChild(nameEl);
-
-    var priceText = getPrice(item);
-    if (priceText) {
-      var priceEl = document.createElement('span');
-      priceEl.className = 'bh-sug-price';
-      priceEl.textContent = priceText;
-      info.appendChild(priceEl);
-    }
-
-    var catText = getCat(item);
-    if (catText) {
-      var catEl = document.createElement('span');
-      catEl.className = 'bh-sug-cat';
-      catEl.textContent = catText;
-      info.appendChild(catEl);
-    }
-
-    a.appendChild(info);
-
-    var arr = document.createElement('span');
-    arr.style.cssText = 'color:rgba(115,92,0,0.25);font-size:14px;flex-shrink:0'; /* ARROW ICON COLOR */
-    arr.textContent = '\u2192';
-    a.appendChild(arr);
-
-    li.appendChild(a);
-    return li;
-  }
-
-  /* ---- Helper: extract price from item ---- */
-  function getPrice(item) {
-    try {
-      if (item.prices) {
-        var raw = item.prices.price;
-        var saleRaw = item.prices.sale_price;
-        var curr = item.prices.currency_symbol || '';
-        var decimals = item.prices.currency_minor_unit || 2;
-        var divisor = Math.pow(10, decimals);
-        return (saleRaw && saleRaw !== raw)
-          ? curr + parseFloat(parseInt(saleRaw) / divisor).toFixed(decimals)
-          : curr + parseFloat(parseInt(raw) / divisor).toFixed(decimals);
-      }
-    } catch(e) {}
-    return '';
-  }
-
-  /* ---- Helper: extract category from item ---- */
-  function getCat(item) {
-    try {
-      if (item.categories && item.categories.length > 0) {
-        return item.categories.map(function(c) { return c.name; }).join(', ');
-      }
-    } catch(e) {}
-    return '';
-  }
-
-  /* ---- Helper: decode HTML entities ---- */
-  function decode(html) {
-    var t = document.createElement('textarea');
-    t.innerHTML = html || '';
-    return t.value;
-  }
-
-})();
-</script>
 </html>
 
