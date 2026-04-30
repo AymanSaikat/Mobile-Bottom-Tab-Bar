@@ -6,105 +6,105 @@
 <h1 style="text-align:center;">THIS MOBILE BOTTIM TAB BAR ONLY SHOWS IN MOBILE</h1>
 
 <div id="bh-tab-bar-wrap">
-  <nav id="bh-tab-bar" role="navigation" aria-label="Main navigation">
-
-    <!-- HOME tab -->
-    <a class="bh-tab" href="Your Website Name/" aria-label="Home">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 12L12 3l9 9"/>
-        <path d="M9 21V12h6v9"/>
-        <path d="M3 12v9h6M15 21v-9h6V21"/>
-      </svg>
-      <span class="bh-label">Home</span>
-    </a>
-
-    <!-- SHOP tab — cart with wheels icon -->
-    <a class="bh-tab" href="Your Website Name/shop/" aria-label="Shop">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="9" cy="21" r="1"/>
-        <circle cx="20" cy="21" r="1"/>
-        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
-      </svg>
-      <span class="bh-label">Shop</span>
-    </a>
-
-    <!-- SEARCH tab — opens popup -->
-    <button class="bh-tab" id="bh-search-trigger" aria-label="Search" aria-haspopup="dialog">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <span class="bh-label">Search</span>
-    </button>
-
-    <!-- FAVOURITE tab -->
-    <a class="bh-tab" href="Your Website Name/saved/" aria-label="Favourites">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/>
-      </svg>
-      <span class="bh-label">Favourite</span>
-    </a>
-
-    <!-- ACCOUNT tab -->
-    <a class="bh-tab" href="Your Website Name/my-account/" aria-label="Account">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-        <circle cx="12" cy="7" r="4"/>
-      </svg>
-      <span class="bh-label">Account</span>
-    </a>
-
-  </nav>
+  <nav id="bh-tab-bar" role="navigation" aria-label="Main navigation">
+ 
+    <!-- HOME tab -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/" aria-label="Home">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M3 12L12 3l9 9"/>
+        <path d="M9 21V12h6v9"/>
+        <path d="M3 12v9h6M15 21v-9h6V21"/>
+      </svg>
+      <span class="bh-label">Home</span>
+    </a>
+ 
+    <!-- SHOP tab — cart with wheels icon -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/shop/" aria-label="Shop">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="9" cy="21" r="1"/>
+        <circle cx="20" cy="21" r="1"/>
+        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
+      </svg>
+      <span class="bh-label">Shop</span>
+    </a>
+ 
+    <!-- SEARCH tab — opens popup -->
+    <button class="bh-tab" id="bh-search-trigger" aria-label="Search" aria-haspopup="dialog">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <span class="bh-label">Search</span>
+    </button>
+ 
+    <!-- FAVOURITE tab -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/saved/" aria-label="Favourites">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/>
+      </svg>
+      <span class="bh-label">Favourite</span>
+    </a>
+ 
+    <!-- ACCOUNT tab -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/my-account/" aria-label="Account">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
+        <circle cx="12" cy="7" r="4"/>
+      </svg>
+      <span class="bh-label">Account</span>
+    </a>
+ 
+  </nav>
 </div>
-
+ 
 <!-- ============================================================
-   HTML: Search popup
-   ============================================================ -->
+   HTML: Search popup
+   ============================================================ -->
 <div id="bh-search-overlay" role="dialog" aria-modal="true" aria-label="Search books">
-  <div id="bh-search-sheet">
-
-    <!-- Input row -->
-    <div id="bh-search-row">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <input
-        type="search"
-        id="bh-search-input"
-        placeholder="Search books, authors…"
-        autocomplete="off"
-        autocorrect="off"
-        spellcheck="false"
-        aria-label="Search books"
-      />
-      <button id="bh-clear-btn" aria-label="Clear search">✕</button>
-    </div>
-
-    <!-- Default view: recent searches + trending -->
-    <div id="bh-default-view">
-      <div id="bh-recents-wrap" style="display:none">
-        <div class="bh-section-label">
-          Recent
-          <button id="bh-clear-recents">Clear</button>
-        </div>
-        <div id="bh-recents"></div>
-      </div>
-      <div id="bh-trending-wrap">
-        <div class="bh-section-label">Trending Now</div>
-        <div id="bh-trending"></div>
-      </div>
-    </div>
-
-    <!-- Results view: suggestions -->
-    <div id="bh-results-view">
-      <div id="bh-suggestions-label" class="bh-section-label" style="display:none">Suggestions</div>
-      <div id="bh-search-status"></div>
-      <ul id="bh-suggestions" role="listbox" aria-label="Search suggestions"></ul>
-      <a id="bh-view-all" href="#" role="button">View all results</a>
-    </div>
-
-  </div>
+  <div id="bh-search-sheet">
+ 
+    <!-- Input row -->
+    <div id="bh-search-row">
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="11" cy="11" r="8"/>
+        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+      </svg>
+      <input
+        type="search"
+        id="bh-search-input"
+        placeholder="Search books, authors…"
+        autocomplete="off"
+        autocorrect="off"
+        spellcheck="false"
+        aria-label="Search books"
+      />
+      <button id="bh-clear-btn" aria-label="Clear search">✕</button>
+    </div>
+ 
+    <!-- Default view: recent searches + trending -->
+    <div id="bh-default-view">
+      <div id="bh-recents-wrap" style="display:none">
+        <div class="bh-section-label">
+          Recent
+          <button id="bh-clear-recents">Clear</button>
+        </div>
+        <div id="bh-recents"></div>
+      </div>
+      <div id="bh-trending-wrap">
+        <div class="bh-section-label">Trending Now</div>
+        <div id="bh-trending"></div>
+      </div>
+    </div>
+ 
+    <!-- Results view: suggestions -->
+    <div id="bh-results-view">
+      <div id="bh-suggestions-label" class="bh-section-label" style="display:none">Suggestions</div>
+      <div id="bh-search-status"></div>
+      <ul id="bh-suggestions" role="listbox" aria-label="Search suggestions"></ul>
+      <a id="bh-view-all" href="#" role="button">View all results</a>
+    </div>
+ 
+  </div>
 </div>
 </html>
 
