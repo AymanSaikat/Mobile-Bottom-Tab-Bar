@@ -118,11 +118,16 @@ MobileBottomTabBarCode.txt
 ### Example:
 
 ```css
-stroke: rgba(115, 92, 0, 0.38); /* INACTIVE TAB ICON COLOR */
-color: rgba(115, 92, 0, 0.38);  /* INACTIVE TAB LABEL TEXT COLOR */
-stroke: #735C00;                 /* ACTIVE TAB ICON COLOR */
-color: #735C00;                  /* ACTIVE TAB LABEL TEXT COLOR */
-background: #735C00;             /* VIEW ALL BUTTON BACKGROUND COLOR */
+:root {
+  --bh-island-bg        : rgba(251, 249, 245, 0.92); /* ISLAND BACKGROUND COLOR */
+  --bh-island-border    : rgba(115, 92, 0, 0.10);    /* ISLAND BORDER COLOR */
+  --bh-icon-inactive    : rgba(115, 92, 0, 0.38);    /* INACTIVE TAB ICON + LABEL COLOR */
+  --bh-icon-active      : #735C00;                   /* ACTIVE TAB ICON + LABEL COLOR */
+  --bh-pill-bg          : rgba(115, 92, 0, 0.11);    /* ACTIVE TAB PILL BACKGROUND */
+  --bh-badge-bg         : #735C00;                   /* BADGE BACKGROUND COLOR */
+  --bh-sale-bg          : #C0392B;                   /* SALE BADGE / PRICE COLOR */
+  /* ... and many more */
+}
 ```
 
 ---
