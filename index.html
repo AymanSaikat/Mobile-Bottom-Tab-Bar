@@ -3,8 +3,6 @@
  <!-- ============================================================
   Author: Ayman Saikat - Mobile Bottom Tab Bar
    ============================================================ -->
-
- <h3 style="text-align:center;">THIS MOBILE BOTTIM TAB BAR ONLY SHOWS IN MOBILE</h3>
 <style>
 
 /* ---- Hide on desktop, show only on mobile ---- */
@@ -14,457 +12,919 @@
   body { padding-bottom: 90px !important; }
 }
 
+/* ============================================================
+   LIGHT MODE COLORS
+   ============================================================ */
+:root {
+  --bh-island-bg        : rgba(251, 249, 245, 0.92);
+  --bh-island-border    : rgba(115, 92, 0, 0.10);
+  --bh-island-shadow    : rgba(115, 92, 0, 0.10);
+  --bh-icon-inactive    : rgba(115, 92, 0, 0.38); /* INACTIVE TAB ICON + LABEL COLOR */
+  --bh-icon-active      : #735C00;                /* ACTIVE TAB ICON + LABEL COLOR */
+  --bh-pill-bg          : rgba(115, 92, 0, 0.11); /* ACTIVE TAB PILL BACKGROUND */
+  --bh-badge-bg         : #735C00;                /* BADGE BACKGROUND COLOR */
+  --bh-badge-text       : #FBF9F5;                /* BADGE TEXT COLOR */
+  --bh-badge-border     : rgba(251, 249, 245, 0.92);
+  --bh-overlay          : rgba(60, 45, 0, 0.35);
+  --bh-sheet-bg         : #FBF9F5;                /* SEARCH POPUP BACKGROUND */
+  --bh-sheet-shadow     : rgba(115, 92, 0, 0.14);
+  --bh-handle           : rgba(115, 92, 0, 0.18);
+  --bh-input-bg         : #ffffff;                /* SEARCH INPUT BACKGROUND */
+  --bh-input-border     : rgba(115, 92, 0, 0.18); /* SEARCH INPUT BORDER (idle) */
+  --bh-input-border-on  : rgba(115, 92, 0, 0.50); /* SEARCH INPUT BORDER (typing) */
+  --bh-input-icon       : #735C00;                /* SEARCH ICON COLOR */
+  --bh-input-text       : #3a2e00;                /* TYPED TEXT COLOR */
+  --bh-placeholder      : rgba(115, 92, 0, 0.38); /* PLACEHOLDER TEXT COLOR */
+  --bh-clear-bg         : rgba(115, 92, 0, 0.08);
+  --bh-clear-icon       : #735C00;
+  --bh-section-label    : rgba(115, 92, 0, 0.45); /* SECTION LABEL COLOR */
+  --bh-chip-bg          : rgba(115, 92, 0, 0.07);
+  --bh-chip-border      : rgba(115, 92, 0, 0.12);
+  --bh-chip-text        : #735C00;
+  --bh-chip-icon        : rgba(115, 92, 0, 0.45);
+  --bh-hover-bg         : rgba(115, 92, 0, 0.07);
+  --bh-thumb-bg         : rgba(115, 92, 0, 0.08);
+  --bh-thumb-icon       : rgba(115, 92, 0, 0.28);
+  --bh-product-name     : #3a2e00;                /* PRODUCT NAME COLOR */
+  --bh-product-price    : #735C00;                /* PRODUCT PRICE COLOR */
+  --bh-product-cat      : rgba(115, 92, 0, 0.45); /* PRODUCT CATEGORY COLOR */
+  --bh-rank-color       : rgba(115, 92, 0, 0.25);
+  --bh-arrow-color      : rgba(115, 92, 0, 0.25);
+  --bh-status-text      : rgba(115, 92, 0, 0.45);
+  --bh-btn-bg           : #735C00;                /* VIEW ALL BUTTON BACKGROUND */
+  --bh-btn-text         : #FBF9F5;                /* VIEW ALL BUTTON TEXT */
+  --bh-sale-bg          : #C0392B;                /* SALE BADGE BACKGROUND */
+  --bh-sale-text        : #ffffff;                /* SALE BADGE TEXT */
+  --bh-transition-color : #FBF9F5;
+  --bh-mic-color        : #735C00;                /* MIC BUTTON COLOR */
+  --bh-mic-active       : #C0392B;                /* MIC BUTTON COLOR WHILE LISTENING */
+}
+
+/* ============================================================
+   DARK MODE COLORS
+   ============================================================ */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bh-island-bg        : rgba(30, 24, 10, 0.95);
+    --bh-island-border    : rgba(200, 165, 60, 0.15);
+    --bh-island-shadow    : rgba(0, 0, 0, 0.35);
+    --bh-icon-inactive    : rgba(200, 165, 60, 0.40);
+    --bh-icon-active      : #D4A832;
+    --bh-pill-bg          : rgba(200, 165, 60, 0.15);
+    --bh-badge-bg         : #D4A832;
+    --bh-badge-text       : #1a1208;
+    --bh-badge-border     : rgba(30, 24, 10, 0.95);
+    --bh-overlay          : rgba(0, 0, 0, 0.60);
+    --bh-sheet-bg         : #1e1810;
+    --bh-sheet-shadow     : rgba(0, 0, 0, 0.40);
+    --bh-handle           : rgba(200, 165, 60, 0.20);
+    --bh-input-bg         : #2a2010;
+    --bh-input-border     : rgba(200, 165, 60, 0.18);
+    --bh-input-border-on  : rgba(200, 165, 60, 0.50);
+    --bh-input-icon       : #D4A832;
+    --bh-input-text       : #f0e0b0;
+    --bh-placeholder      : rgba(200, 165, 60, 0.35);
+    --bh-clear-bg         : rgba(200, 165, 60, 0.12);
+    --bh-clear-icon       : #D4A832;
+    --bh-section-label    : rgba(200, 165, 60, 0.45);
+    --bh-chip-bg          : rgba(200, 165, 60, 0.10);
+    --bh-chip-border      : rgba(200, 165, 60, 0.15);
+    --bh-chip-text        : #D4A832;
+    --bh-chip-icon        : rgba(200, 165, 60, 0.45);
+    --bh-hover-bg         : rgba(200, 165, 60, 0.08);
+    --bh-thumb-bg         : rgba(200, 165, 60, 0.10);
+    --bh-thumb-icon       : rgba(200, 165, 60, 0.28);
+    --bh-product-name     : #f0e0b0;
+    --bh-product-price    : #D4A832;
+    --bh-product-cat      : rgba(200, 165, 60, 0.45);
+    --bh-rank-color       : rgba(200, 165, 60, 0.25);
+    --bh-arrow-color      : rgba(200, 165, 60, 0.25);
+    --bh-status-text      : rgba(200, 165, 60, 0.45);
+    --bh-btn-bg           : #D4A832;
+    --bh-btn-text         : #1a1208;
+    --bh-sale-bg          : #e05252;
+    --bh-sale-text        : #ffffff;
+    --bh-transition-color : #1e1810;
+    --bh-mic-color        : #D4A832;
+    --bh-mic-active       : #e05252;
+  }
+}
+
 /* ---- Floating island wrapper ---- */
 #bh-tab-bar-wrap {
   position: fixed;
   bottom: 18px;
   left: 50%;
-  transform: translateX(-50%);
+  transform: translateX(-50%) translateY(120%); /* starts off screen */
   z-index: 99999;
   width: calc(100% - 32px);
   max-width: 480px;
   pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
-/* ---- The floating island bar ---- */
+/* ---- Bounce in on load ---- */
+#bh-tab-bar-wrap.bh-visible {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+  pointer-events: all;
+}
+
+/* ---- Hide when scrolling down ---- */
+#bh-tab-bar-wrap.bh-hidden {
+  opacity: 0;
+  transform: translateX(-50%) translateY(120%);
+  pointer-events: none;
+}
+
+/* ---- The floating island ---- */
 #bh-tab-bar {
-  background: rgba(251, 249, 245, 0.92); /* ISLAND BACKGROUND COLOR */
+  background: var(--bh-island-bg);
   backdrop-filter: blur(16px);
   -webkit-backdrop-filter: blur(16px);
   border-radius: 28px;
-  border: 1px solid rgba(115, 92, 0, 0.10); /* ISLAND BORDER COLOR */
-  box-shadow: 0 4px 24px rgba(115, 92, 0, 0.10), 0 1px 4px rgba(115, 92, 0, 0.06); /* ISLAND SHADOW COLOR */
+  border: 1px solid var(--bh-island-border);
+  box-shadow: 0 4px 24px var(--bh-island-shadow), 0 1px 4px var(--bh-island-shadow);
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  padding: 10px 8px 12px;
+  justify-content: space-between;
+  padding: 10px 10px 10px; /* ISLAND INNER PADDING -- keeps edge tabs away from border */
   pointer-events: all;
   position: relative;
+  overflow: hidden; /* FIX: clips pill so it never bleeds outside island */
 }
 
-/* ---- Tab buttons (all tabs) ---- */
+/* ---- Tab buttons -- ICON ALIGNMENT FIX ---- */
 .bh-tab {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 4px;
+  align-items: center;     /* center icon + label horizontally */
+  justify-content: center; /* center vertically */
+  gap: 3px;
   text-decoration: none;
   background: none;
   border: none;
   cursor: pointer;
-  padding: 6px 12px;
-  border-radius: 14px;
+  padding: 6px 8px;        /* FIX: equal horizontal padding on all tabs */
+  min-width: 0;            /* FIX: prevents flex overflow */
+  flex: 1;                 /* FIX: each tab takes equal share of bar width */
+  border-radius: 12px;     /* FIX: slightly smaller radius so it fits without touching border */
   -webkit-tap-highlight-color: transparent;
-  min-width: 52px;
   position: relative;
   z-index: 1;
   transition: transform 0.15s;
+  user-select: none;
+  -webkit-user-select: none;
+  box-sizing: border-box;
 }
 .bh-tab:active { transform: scale(0.88); }
 
-/* ---- Tab icon (inactive state) ---- */
+/* ---- Tab SVG icon -- perfectly centered ---- */
 .bh-tab svg {
   width: 22px;
   height: 22px;
-  stroke: rgba(115, 92, 0, 0.38); /* INACTIVE TAB ICON COLOR */
+  stroke: var(--bh-icon-inactive);
   fill: none;
   stroke-width: 1.7;
   stroke-linecap: round;
   stroke-linejoin: round;
+  display: block;          /* FIX: block removes inline baseline gap */
+  margin: 0 auto;          /* FIX: force center */
   transition: stroke 0.2s, fill 0.2s, stroke-width 0.2s;
 }
 
-/* ---- Tab label text (inactive state) ---- */
+/* ---- Tab label ---- */
 .bh-tab .bh-label {
   font-size: 10px;
   font-weight: 500;
-  color: rgba(115, 92, 0, 0.38); /* INACTIVE TAB LABEL TEXT COLOR */
+  color: var(--bh-icon-inactive);
   letter-spacing: 0.02em;
   font-family: inherit;
+  text-align: center;      /* FIX: center label text */
+  display: block;
+  width: 100%;
   transition: color 0.2s, font-weight 0.2s;
 }
 
-/* ---- ACTIVE tab — Style B soft pill ---- */
-.bh-tab.active {
-  background: rgba(115, 92, 0, 0.11); /* ACTIVE TAB PILL BACKGROUND COLOR */
-}
+/* ---- Active tab ---- */
+.bh-tab.active { background: var(--bh-pill-bg); }
+.bh-tab.active svg { stroke: var(--bh-icon-active); stroke-width: 2.1; }
+.bh-tab.active .bh-label { color: var(--bh-icon-active); font-weight: 700; }
 
-/* ---- Tab icon (active state) ---- */
-.bh-tab.active svg {
-  stroke: #735C00; /* ACTIVE TAB ICON COLOR */
-  stroke-width: 2.1;
-}
+/* ---- Long press style ---- */
+.bh-tab.bh-longpress { background: var(--bh-pill-bg); }
 
-/* ---- Tab label text (active state) ---- */
-.bh-tab.active .bh-label {
-  color: #735C00; /* ACTIVE TAB LABEL TEXT COLOR */
+/* ---- Badges (cart + favourite) ---- */
+.bh-badge {
+  position: absolute;
+  top: 2px;
+  right: 8px;              /* FIX: adjusted for new layout */
+  background: var(--bh-badge-bg);
+  color: var(--bh-badge-text);
+  font-size: 9px;
   font-weight: 700;
+  min-width: 16px;
+  height: 16px;
+  border-radius: 99px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--bh-badge-border);
+  line-height: 1;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s, transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1);
+  pointer-events: none;
 }
+.bh-badge.show { opacity: 1; transform: scale(1); }
+
+/* ---- Cart badge bounce when count increases ---- */
+@keyframes bhBadgeBounce {
+  0%   { transform: scale(1); }
+  30%  { transform: scale(1.55); }
+  55%  { transform: scale(0.88); }
+  75%  { transform: scale(1.15); }
+  100% { transform: scale(1); }
+}
+.bh-badge.bounce { animation: bhBadgeBounce 0.45s cubic-bezier(0.34,1.56,0.64,1); }
+
+/* ---- Cart badge shake when item added ---- */
+@keyframes bhBadgeShake {
+  0%   { transform: scale(1) rotate(0deg); }
+  15%  { transform: scale(1.2) rotate(-12deg); }
+  30%  { transform: scale(1.2) rotate(12deg); }
+  45%  { transform: scale(1.1) rotate(-8deg); }
+  60%  { transform: scale(1.1) rotate(8deg); }
+  75%  { transform: scale(1.05) rotate(-4deg); }
+  90%  { transform: scale(1.05) rotate(4deg); }
+  100% { transform: scale(1) rotate(0deg); }
+}
+.bh-badge.shake { animation: bhBadgeShake 0.55s ease; }
+
+/* ---- Toast notification ---- */
+#bh-toast {
+  position: fixed;
+  bottom: 100px;        /* TOAST POSITION -- above the tab bar */
+  left: 50%;
+  transform: translateX(-50%) translateY(20px);
+  z-index: 100001;
+  background: #3a2e00; /* TOAST BACKGROUND COLOR */
+  color: #FBF9F5;      /* TOAST TEXT COLOR */
+  font-size: 13px; font-weight: 500;
+  padding: 10px 20px; border-radius: 99px;
+  white-space: nowrap; pointer-events: none; opacity: 0;
+  transition: opacity 0.2s ease, transform 0.25s cubic-bezier(0.34,1.26,0.64,1);
+  font-family: inherit;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.15);
+  max-width: calc(100vw - 40px);
+  text-align: center;
+}
+#bh-toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+
+/* ---- SVG chevron arrow used in suggestion + trending rows ---- */
+.bh-chevron {
+  flex-shrink: 0;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.35;                /* CHEVRON OPACITY -- increase for stronger arrow */
+}
+.bh-chevron svg {
+  width: 16px;
+  height: 16px;
+  stroke: var(--bh-icon-active); /* CHEVRON COLOR */
+  fill: none;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+/* ---- Search keyword highlight ---- */
+.bh-highlight {
+  font-weight: 700;
+  color: var(--bh-icon-active); /* HIGHLIGHTED MATCH TEXT COLOR */
+  background: none;
+}
+
+/* ---- Pull to refresh indicator ---- */
+#bh-ptr {
+  position: fixed;
+  top: 0; left: 50%;
+  transform: translateX(-50%) translateY(-60px);
+  z-index: 99996;
+  background: var(--bh-island-bg);
+  border: 1px solid var(--bh-island-border);
+  border-radius: 99px;
+  padding: 8px 18px;
+  font-size: 13px;
+  color: var(--bh-icon-active);     /* PULL TO REFRESH TEXT COLOR */
+  font-family: inherit;
+  font-weight: 500;
+  box-shadow: 0 4px 16px var(--bh-island-shadow);
+  transition: transform 0.25s cubic-bezier(0.34,1.26,0.64,1);
+  pointer-events: none;
+  white-space: nowrap;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+#bh-ptr.visible { transform: translateX(-50%) translateY(12px); }
+
+/* ---- NEW badge on Shop tab ---- */
+.bh-new-badge {
+  position: absolute;
+  top: 2px; right: 4px;
+  background: #2ecc71;    /* NEW BADGE BACKGROUND COLOR */
+  color: #fff;            /* NEW BADGE TEXT COLOR */
+  font-size: 8px;
+  font-weight: 800;
+  padding: 2px 5px;
+  border-radius: 99px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 2px solid var(--bh-badge-border);
+  pointer-events: none;
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.2s, transform 0.2s cubic-bezier(0.34,1.56,0.64,1);
+}
+.bh-new-badge.show { opacity: 1; transform: scale(1); }
+
+/* ---- Mini cart drawer ---- */
+#bh-cart-overlay {
+  display: none;
+  position: fixed; inset: 0; z-index: 100000;
+  background: var(--bh-overlay);
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+  align-items: flex-end; justify-content: center;
+}
+#bh-cart-overlay.open { display: flex; animation: bhFadeIn 0.2s ease; }
+
+#bh-cart-sheet {
+  background: var(--bh-sheet-bg);
+  border-radius: 28px 28px 0 0;
+  padding: 20px 20px 36px;
+  width: 100%; max-width: 540px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 -8px 40px var(--bh-sheet-shadow);
+  animation: bhSlideUp 0.25s cubic-bezier(0.34,1.26,0.64,1);
+  touch-action: pan-y;
+}
+#bh-cart-sheet::before {
+  content: ''; display: block; width: 36px; height: 4px;
+  background: var(--bh-handle); border-radius: 99px; margin: 0 auto 16px;
+}
+#bh-cart-title {
+  font-size: 16px; font-weight: 700;
+  color: var(--bh-product-name);   /* CART DRAWER TITLE COLOR */
+  margin-bottom: 14px;
+}
+#bh-cart-items { display: flex; flex-direction: column; gap: 12px; }
+
+/* ---- Swipe-to-remove wrapper ---- */
+.bh-cart-item-wrap {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* ---- Swipe delete background revealed on swipe left ---- */
+.bh-cart-swipe-bg {
+  position: absolute;
+  top: 0; right: 0; bottom: 0;
+  width: 80px;
+  background: #C0392B;              /* SWIPE DELETE BACKGROUND COLOR */
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 12px;
+  z-index: 0;
+}
+.bh-cart-swipe-bg svg {
+  width: 22px; height: 22px;
+  stroke: #fff;                     /* SWIPE DELETE ICON COLOR */
+  fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+}
+
+.bh-cart-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px; border-radius: 12px;
+  background: var(--bh-thumb-bg);
+  position: relative; z-index: 1;
+  transition: transform 0.2s ease;
+  will-change: transform;
+  touch-action: pan-y; /* allow vertical scroll, detect horizontal swipe */
+}
+
+/* ---- Savings badge ---- */
+.bh-cart-savings {
+  display: inline-block;
+  background: rgba(192, 57, 43, 0.10); /* SAVINGS BADGE BACKGROUND */
+  color: #C0392B;                       /* SAVINGS BADGE TEXT COLOR */
+  font-size: 10px; font-weight: 700;
+  padding: 2px 7px; border-radius: 99px;
+  margin-top: 3px;
+  letter-spacing: 0.02em;
+}
+.bh-cart-item-img {
+  width: 52px; height: 68px; border-radius: 8px;
+  object-fit: cover; flex-shrink: 0;
+  background: var(--bh-hover-bg);
+}
+.bh-cart-item-img-ph {
+  width: 52px; height: 68px; border-radius: 8px;
+  background: var(--bh-hover-bg);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.bh-cart-item-img-ph svg {
+  width: 20px; height: 20px;
+  stroke: var(--bh-thumb-icon); fill: none; stroke-width: 1.5;
+}
+.bh-cart-item-info { flex: 1; min-width: 0; }
+.bh-cart-item-name {
+  font-size: 14px; font-weight: 500;
+  color: var(--bh-product-name);   /* CART ITEM NAME COLOR */
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
+}
+.bh-cart-item-qty {
+  font-size: 12px;
+  color: var(--bh-product-cat);    /* CART ITEM QTY COLOR */
+  margin-top: 3px; display: block;
+}
+.bh-cart-item-price {
+  font-size: 14px; font-weight: 700;
+  color: var(--bh-product-price);  /* CART ITEM PRICE COLOR */
+  flex-shrink: 0;
+}
+#bh-cart-total-row {
+  display: flex; justify-content: space-between; align-items: center;
+  margin-top: 16px; padding-top: 14px;
+  border-top: 1px solid var(--bh-input-border);
+}
+#bh-cart-total-label {
+  font-size: 15px; font-weight: 700;
+  color: var(--bh-product-name);   /* CART TOTAL LABEL COLOR */
+}
+#bh-cart-total-price {
+  font-size: 16px; font-weight: 800;
+  color: var(--bh-icon-active);    /* CART TOTAL PRICE COLOR */
+}
+#bh-cart-checkout-btn {
+  display: block; width: 100%; margin-top: 14px; padding: 14px;
+  background: var(--bh-btn-bg);    /* CHECKOUT BUTTON BACKGROUND */
+  color: var(--bh-btn-text);       /* CHECKOUT BUTTON TEXT COLOR */
+  border: none; border-radius: 14px;
+  font-size: 15px; font-weight: 600;
+  text-align: center; text-decoration: none;
+  cursor: pointer; box-sizing: border-box;
+  transition: opacity 0.15s;
+}
+#bh-cart-checkout-btn:hover { opacity: 0.85; }
+#bh-cart-empty {
+  text-align: center; padding: 20px 0 10px;
+  color: var(--bh-status-text);
+  font-size: 14px;
+}
+
+/* ---- Recommended products in empty cart ---- */
+#bh-cart-recommended { margin-top: 4px; }
+#bh-cart-rec-label {
+  font-size: 11px; font-weight: 600;
+  color: var(--bh-section-label);
+  letter-spacing: 0.08em; text-transform: uppercase;
+  margin-bottom: 10px;
+}
+.bh-cart-rec-item {
+  display: flex; align-items: center; gap: 12px;
+  padding: 8px 10px; border-radius: 10px;
+  background: var(--bh-thumb-bg);
+  margin-bottom: 8px;
+}
+.bh-cart-rec-thumb {
+  width: 44px; height: 56px; border-radius: 6px;
+  object-fit: cover; flex-shrink: 0;
+  background: var(--bh-hover-bg);
+}
+.bh-cart-rec-thumb-ph {
+  width: 44px; height: 56px; border-radius: 6px;
+  background: var(--bh-hover-bg);
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.bh-cart-rec-thumb-ph svg {
+  width: 18px; height: 18px;
+  stroke: var(--bh-thumb-icon); fill: none; stroke-width: 1.5;
+}
+.bh-cart-rec-info { flex: 1; min-width: 0; }
+.bh-cart-rec-name {
+  font-size: 13px; font-weight: 500;
+  color: var(--bh-product-name);
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block;
+}
+.bh-cart-rec-price {
+  font-size: 11px; color: var(--bh-product-price);
+  font-weight: 600; margin-top: 2px; display: block;
+}
+
+/* ---- Add to Cart button on recommended items ---- */
+.bh-cart-add-btn {
+  background: var(--bh-btn-bg);     /* ADD TO CART BUTTON BACKGROUND */
+  color: var(--bh-btn-text);        /* ADD TO CART BUTTON TEXT COLOR */
+  border: none; border-radius: 8px;
+  font-size: 11px; font-weight: 600;
+  padding: 6px 10px; cursor: pointer;
+  white-space: nowrap; flex-shrink: 0;
+  font-family: inherit;
+  transition: opacity 0.15s;
+}
+.bh-cart-add-btn:hover { opacity: 0.85; }
+.bh-cart-add-btn:active { transform: scale(0.94); }
+.bh-cart-add-btn.adding {
+  opacity: 0.6; pointer-events: none;
+}
+
+/* ---- Cart skeleton loader ---- */
+.bh-cart-skeleton {
+  display: flex; align-items: center; gap: 12px;
+  padding: 10px; border-radius: 12px;
+  background: var(--bh-thumb-bg);
+  margin-bottom: 12px;
+  animation: bhShimmer 1.2s infinite linear;
+}
+.bh-cart-skeleton-img {
+  width: 52px; height: 68px; border-radius: 8px;
+  background: var(--bh-hover-bg); flex-shrink: 0;
+}
+.bh-cart-skeleton-lines { flex: 1; display: flex; flex-direction: column; gap: 8px; }
+.bh-cart-skeleton-line {
+  height: 12px; border-radius: 6px;
+  background: var(--bh-hover-bg);
+}
+.bh-cart-skeleton-line.short { width: 55%; }
+.bh-cart-skeleton-line.shorter { width: 35%; }
+@keyframes bhShimmer {
+  0%   { opacity: 1; }
+  50%  { opacity: 0.45; }
+  100% { opacity: 1; }
+}
+.bh-cart-qty-row {
+  display: flex; align-items: center; gap: 8px; margin-top: 6px;
+}
+.bh-cart-qty-btn {
+  width: 28px; height: 28px; border-radius: 99px;
+  background: var(--bh-hover-bg);   /* QTY BUTTON BACKGROUND */
+  border: 1px solid var(--bh-input-border);
+  color: var(--bh-icon-active);     /* QTY BUTTON ICON COLOR */
+  font-size: 16px; font-weight: 700;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0;
+  transition: background 0.15s, transform 0.1s, opacity 0.15s;
+  font-family: inherit; line-height: 1;
+  position: relative; overflow: hidden;
+}
+.bh-cart-qty-btn:active { transform: scale(0.88); background: var(--bh-pill-bg); }
+.bh-cart-qty-btn:disabled { opacity: 0.32; cursor: not-allowed; transform: none; }
+.bh-cart-qty-btn.loading {
+  opacity: 0.6;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+/* ---- Spinner inside qty button ---- */
+.bh-qty-spinner {
+  width: 12px; height: 12px;
+  border: 2px solid rgba(115, 92, 0, 0.2); /* SPINNER TRACK COLOR */
+  border-top-color: var(--bh-icon-active);  /* SPINNER COLOR */
+  border-radius: 50%;
+  animation: bhSpin 0.6s linear infinite;
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+@keyframes bhSpin { to { transform: translate(-50%, -50%) rotate(360deg); } }
+.bh-cart-qty-num {
+  font-size: 14px; font-weight: 700;
+  color: var(--bh-product-name);    /* QTY NUMBER COLOR */
+  min-width: 20px; text-align: center;
+}
+.bh-cart-remove-btn {
+  margin-left: 2px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+  display: flex; align-items: center; justify-content: center;
+  border-radius: 99px; transition: background 0.15s;
+}
+.bh-cart-remove-btn svg {
+  width: 15px; height: 15px;
+  stroke: rgba(192,57,43,0.6);      /* REMOVE BUTTON ICON COLOR */
+  fill: none; stroke-width: 2;
+  stroke-linecap: round; stroke-linejoin: round;
+  transition: stroke 0.15s;
+}
+.bh-cart-remove-btn:active svg { stroke: #C0392B; }
+.bh-cart-remove-btn:hover svg  { stroke: #C0392B; }
+#bh-cat-chips {
+  display: flex; flex-wrap: nowrap;
+  gap: 8px; overflow-x: auto;
+  padding-bottom: 4px; margin-bottom: 10px;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+#bh-cat-chips::-webkit-scrollbar { display: none; }
+.bh-cat-chip {
+  display: inline-flex; align-items: center;
+  background: var(--bh-chip-bg);       /* CATEGORY CHIP BACKGROUND */
+  border: 1.5px solid var(--bh-chip-border); /* CATEGORY CHIP BORDER */
+  border-radius: 99px; padding: 5px 14px;
+  font-size: 12px; font-weight: 500;
+  color: var(--bh-chip-text);           /* CATEGORY CHIP TEXT COLOR */
+  cursor: pointer; white-space: nowrap;
+  font-family: inherit;
+  transition: background 0.15s, border-color 0.15s, color 0.15s;
+  flex-shrink: 0;
+}
+.bh-cat-chip.active {
+  background: var(--bh-icon-active);    /* ACTIVE CATEGORY CHIP BACKGROUND */
+  border-color: var(--bh-icon-active);
+  color: #FBF9F5;                       /* ACTIVE CATEGORY CHIP TEXT COLOR */
+}
+
+/* ---- Page transition overlay ---- */
+#bh-page-transition {
+  position: fixed; inset: 0;
+  background: var(--bh-transition-color);
+  z-index: 99998; opacity: 0; pointer-events: none;
+  transition: opacity 0.18s ease;
+}
+#bh-page-transition.fade-out { opacity: 0.7; pointer-events: all; }
+
+/* ---- Confetti canvas ---- */
+#bh-confetti {
+  position: fixed; inset: 0;
+  pointer-events: none;
+  z-index: 99997;
+  display: none;
+}
+#bh-confetti.show { display: block; }
 
 /* ============================================================
-   SEARCH POPUP STYLES
+   SEARCH POPUP
    ============================================================ */
-
-/* ---- Dark overlay behind the search popup ---- */
 #bh-search-overlay {
   display: none;
   position: fixed;
-  inset: 0;
+  /* Use visualViewport-based positioning via JS instead of inset:0 */
+  top: 0; left: 0; right: 0; bottom: 0;
   z-index: 100000;
-  background: rgba(60, 45, 0, 0.35); /* SEARCH POPUP OVERLAY COLOR */
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
-  align-items: flex-end;
-  justify-content: center;
+  background: var(--bh-overlay);
+  backdrop-filter: blur(4px); -webkit-backdrop-filter: blur(4px);
+  align-items: flex-end; justify-content: center;
+  box-sizing: border-box;
 }
-#bh-search-overlay.open {
-  display: flex;
-  animation: bhFadeIn 0.2s ease;
-}
+#bh-search-overlay.open { display: flex; animation: bhFadeIn 0.2s ease; }
 @keyframes bhFadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-/* ---- Slide-up search sheet ---- */
 #bh-search-sheet {
-  background: #FBF9F5; /* SEARCH POPUP BACKGROUND COLOR */
+  background: var(--bh-sheet-bg);
   border-radius: 28px 28px 0 0;
-  padding: 20px 20px 36px;
-  width: 100%;
-  max-width: 540px;
-  box-shadow: 0 -8px 40px rgba(115, 92, 0, 0.14); /* SEARCH POPUP SHADOW COLOR */
+  padding: 20px 20px 24px;
+  width: 100%; max-width: 540px;
+  box-shadow: 0 -8px 40px var(--bh-sheet-shadow);
   animation: bhSlideUp 0.25s cubic-bezier(0.34, 1.26, 0.64, 1);
+  touch-action: pan-y;
+  /* Fixed height — JS will resize this when keyboard opens */
+  height: 55vh;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  overflow: hidden;
+  flex-shrink: 0;
+  transition: height 0.15s ease;
 }
 @keyframes bhSlideUp {
   from { transform: translateY(100%); opacity: 0.5; }
   to   { transform: translateY(0);    opacity: 1; }
 }
-
-/* ---- Drag handle at top of sheet ---- */
 #bh-search-sheet::before {
-  content: '';
-  display: block;
-  width: 36px;
-  height: 4px;
-  background: rgba(115, 92, 0, 0.18); /* DRAG HANDLE BAR COLOR */
-  border-radius: 99px;
-  margin: 0 auto 18px;
+  content: ''; display: block; width: 36px; height: 4px;
+  background: var(--bh-handle); border-radius: 99px; margin: 0 auto 18px;
 }
 
-/* ---- Search input box ---- */
+/* ---- Input row ---- */
 #bh-search-row {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  background: #ffffff; /* SEARCH INPUT BACKGROUND COLOR */
-  border: 1.5px solid rgba(115, 92, 0, 0.18); /* SEARCH INPUT BORDER COLOR (not typing) */
-  border-radius: 14px;
-  padding: 0 14px;
-  margin-bottom: 14px;
+  display: flex; align-items: center; gap: 8px;
+  background: var(--bh-input-bg);
+  border: 1.5px solid var(--bh-input-border);
+  border-radius: 14px; padding: 0 12px; margin-bottom: 14px;
   transition: border-color 0.2s;
 }
-#bh-search-row:focus-within {
-  border-color: rgba(115, 92, 0, 0.50); /* SEARCH INPUT BORDER COLOR (while typing) */
+#bh-search-row:focus-within { border-color: var(--bh-input-border-on); }
+#bh-search-row > svg {
+  width: 18px; height: 18px; stroke: var(--bh-input-icon);
+  fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
 }
-
-/* ---- Search icon inside input box ---- */
-#bh-search-row svg {
-  width: 18px;
-  height: 18px;
-  stroke: #735C00; /* SEARCH ICON COLOR INSIDE INPUT */
-  fill: none;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  flex-shrink: 0;
-}
-
-/* ---- Typed text inside input ---- */
 #bh-search-input {
-  flex: 1;
-  border: none;
-  outline: none;
-  background: transparent;
-  font-size: 15px;
-  color: #3a2e00; /* TYPED TEXT COLOR IN SEARCH INPUT */
-  padding: 13px 0;
-  font-family: inherit;
+  flex: 1; border: none; outline: none; background: transparent;
+  font-size: 15px; color: var(--bh-input-text); padding: 13px 0; font-family: inherit;
 }
-#bh-search-input::placeholder {
-  color: rgba(115, 92, 0, 0.38); /* PLACEHOLDER TEXT COLOR IN SEARCH INPUT */
-}
+#bh-search-input::placeholder { color: var(--bh-placeholder); }
 
-/* ---- Clear (X) button inside input ---- */
+/* ---- Clear button ---- */
 #bh-clear-btn {
-  background: rgba(115, 92, 0, 0.08); /* CLEAR BUTTON BACKGROUND COLOR */
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  display: none;
-  color: #735C00; /* CLEAR BUTTON X ICON COLOR */
-  font-size: 12px;
-  line-height: 1;
-  width: 20px;
-  height: 20px;
-  border-radius: 99px;
-  align-items: center;
-  justify-content: center;
+  background: var(--bh-clear-bg); border: none; cursor: pointer; padding: 0;
+  display: none; color: var(--bh-clear-icon);
+  font-size: 11px; font-weight: 700; line-height: 1;
+  width: 20px; height: 20px;
+  border-radius: 99px; align-items: center; justify-content: center; flex-shrink: 0;
+  font-family: inherit; letter-spacing: 0;
 }
 #bh-clear-btn.show { display: flex; }
 
-/* ---- Section label (Recent / Trending / Suggestions) ---- */
-.bh-section-label {
-  font-size: 11px;
-  font-weight: 600;
-  color: rgba(115, 92, 0, 0.45); /* SECTION LABEL TEXT COLOR */
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  margin: 10px 0 8px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.bh-section-label button {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* CLEAR HISTORY BUTTON COLOR */
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  font-family: inherit;
-  text-decoration: underline;
-}
-
-/* ---- Recent search chips ---- */
-#bh-recents {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 8px;
-  margin-bottom: 6px;
-}
-.bh-recent-chip {
-  display: flex;
-  align-items: center;
-  gap: 5px;
-  background: rgba(115, 92, 0, 0.07); /* RECENT CHIP BACKGROUND COLOR */
-  border: 1px solid rgba(115, 92, 0, 0.12); /* RECENT CHIP BORDER COLOR */
-  border-radius: 99px;
-  padding: 5px 12px 5px 10px;
-  font-size: 12px;
-  color: #735C00; /* RECENT CHIP TEXT COLOR */
-  cursor: pointer;
-  font-family: inherit;
+/* ---- Mic (voice search) button ---- */
+#bh-mic-btn {
+  background: none; border: none; cursor: pointer; padding: 4px;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0; border-radius: 99px;
   transition: background 0.15s;
 }
-.bh-recent-chip:hover { background: rgba(115, 92, 0, 0.13); }
-.bh-recent-chip svg {
-  width: 12px; height: 12px;
-  stroke: rgba(115, 92, 0, 0.45); /* RECENT CHIP CLOCK ICON COLOR */
+#bh-mic-btn svg {
+  width: 18px; height: 18px;
+  stroke: var(--bh-mic-color); /* MIC BUTTON COLOR */
   fill: none; stroke-width: 2;
   stroke-linecap: round; stroke-linejoin: round;
-  flex-shrink: 0;
+  transition: stroke 0.2s;
+}
+#bh-mic-btn.listening svg { stroke: var(--bh-mic-active); /* MIC COLOR WHILE LISTENING */ }
+#bh-mic-btn.listening { animation: bhPulse 1s infinite; }
+@keyframes bhPulse {
+  0%, 100% { background: transparent; }
+  50% { background: rgba(192, 57, 43, 0.10); }
 }
 
-/* ---- Trending product cards ---- */
-#bh-trending {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  margin-bottom: 4px;
+/* ---- Section labels ---- */
+.bh-section-label {
+  font-size: 11px; font-weight: 600; color: var(--bh-section-label);
+  letter-spacing: 0.08em; text-transform: uppercase; margin: 10px 0 8px;
+  display: flex; align-items: center; justify-content: space-between;
 }
+.bh-section-label button {
+  font-size: 11px; color: var(--bh-section-label);
+  background: none; border: none; cursor: pointer;
+  padding: 0; font-family: inherit; text-decoration: underline;
+}
+
+/* ---- Recent chips ---- */
+#bh-recents { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 6px; }
+.bh-recent-chip {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--bh-chip-bg); border: 1px solid var(--bh-chip-border);
+  border-radius: 99px; padding: 5px 12px 5px 10px;
+  font-size: 12px; color: var(--bh-chip-text);
+  cursor: pointer; font-family: inherit; transition: background 0.15s;
+}
+.bh-recent-chip:hover { background: var(--bh-pill-bg); }
+.bh-recent-chip svg {
+  width: 12px; height: 12px; stroke: var(--bh-chip-icon);
+  fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; flex-shrink: 0;
+}
+
+/* ---- Trending ---- */
+#bh-trending { display: flex; flex-direction: column; gap: 4px; margin-bottom: 4px; }
 .bh-trending-item {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.14s;
+  display: flex; align-items: center; gap: 12px; padding: 8px 10px;
+  border-radius: 10px; text-decoration: none; transition: background 0.14s;
 }
-.bh-trending-item:hover,
-.bh-trending-item:active {
-  background: rgba(115, 92, 0, 0.07); /* TRENDING ITEM HOVER COLOR */
-}
-.bh-trending-thumb {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  object-fit: cover;
-  background: rgba(115, 92, 0, 0.08); /* TRENDING THUMBNAIL BACKGROUND */
-  flex-shrink: 0;
-}
-.bh-trending-thumb-ph {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  background: rgba(115, 92, 0, 0.08); /* TRENDING PLACEHOLDER BACKGROUND */
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.bh-trending-thumb-ph svg {
-  width: 18px; height: 18px;
-  stroke: rgba(115, 92, 0, 0.28); /* TRENDING PLACEHOLDER ICON COLOR */
-  fill: none; stroke-width: 1.5;
+.bh-trending-item:hover, .bh-trending-item:active { background: var(--bh-hover-bg); }
+.bh-trending-thumb { width: 40px; height: 52px; border-radius: 6px; object-fit: cover; background: var(--bh-thumb-bg); flex-shrink: 0; }
+.bh-trending-thumb-ph { width: 40px; height: 52px; border-radius: 6px; background: var(--bh-thumb-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; position: relative; }
+.bh-trending-thumb-ph svg { width: 18px; height: 18px; stroke: var(--bh-thumb-icon); fill: none; stroke-width: 1.5; }
+.bh-thumb-wrap { position: relative; flex-shrink: 0; }
+.bh-sale-badge {
+  position: absolute; bottom: 2px; left: 0; right: 0;
+  background: var(--bh-sale-bg); color: var(--bh-sale-text);
+  font-size: 8px; font-weight: 800; text-align: center;
+  letter-spacing: 0.05em; padding: 2px 0;
+  border-radius: 0 0 6px 6px; text-transform: uppercase;
 }
 .bh-trending-info { flex: 1; min-width: 0; }
-.bh-trending-name {
-  font-size: 14px; font-weight: 500;
-  color: #3a2e00; /* TRENDING PRODUCT NAME COLOR */
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  display: block;
-}
-.bh-trending-price {
-  font-size: 12px;
-  color: #735C00; /* TRENDING PRODUCT PRICE COLOR */
-  font-weight: 600;
-  margin-top: 2px; display: block;
-}
-.bh-trending-cat {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* TRENDING PRODUCT CATEGORY COLOR */
-  display: block; margin-top: 1px;
-}
-.bh-trending-rank {
-  font-size: 11px;
-  font-weight: 700;
-  color: rgba(115, 92, 0, 0.25); /* TRENDING RANK NUMBER COLOR */
-  min-width: 16px;
-  text-align: center;
-}
+.bh-trending-name { font-size: 14px; font-weight: 500; color: var(--bh-product-name); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.bh-trending-cat { font-size: 11px; color: var(--bh-product-cat); display: block; margin-top: 1px; }
+.bh-trending-rank { font-size: 11px; font-weight: 700; color: var(--bh-rank-color); min-width: 16px; text-align: center; }
 
-/* ---- Suggestions list ---- */
+/* ---- Suggestions ---- */
 #bh-suggestions {
-  list-style: none;
-  margin: 0; padding: 0;
-  max-height: 300px;
+  list-style: none; margin: 0; padding: 0;
   overflow-y: auto;
+  flex: 1; /* fill remaining space in results view */
+  -webkit-overflow-scrolling: touch;
 }
 #bh-suggestions li { margin: 0; padding: 0; }
-#bh-suggestions a {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: 8px 10px;
-  border-radius: 10px;
-  text-decoration: none;
-  transition: background 0.14s;
-}
-#bh-suggestions a:hover,
-#bh-suggestions a:active {
-  background: rgba(115, 92, 0, 0.07); /* SUGGESTION ROW HOVER COLOR */
-}
-.bh-sug-thumb {
-  width: 40px; height: 52px;
-  border-radius: 6px; object-fit: cover;
-  background: rgba(115, 92, 0, 0.08); /* SUGGESTION THUMBNAIL BACKGROUND */
-  flex-shrink: 0;
-}
-.bh-sug-thumb-placeholder {
-  width: 40px; height: 52px;
-  border-radius: 6px;
-  background: rgba(115, 92, 0, 0.08); /* SUGGESTION PLACEHOLDER BACKGROUND */
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-}
-.bh-sug-thumb-placeholder svg {
-  width: 18px; height: 18px;
-  stroke: rgba(115, 92, 0, 0.28); /* SUGGESTION PLACEHOLDER ICON COLOR */
-  fill: none; stroke-width: 1.5;
-}
+#bh-suggestions a { display: flex; align-items: center; gap: 12px; padding: 8px 10px; border-radius: 10px; text-decoration: none; transition: background 0.14s; }
+#bh-suggestions a:hover, #bh-suggestions a:active { background: var(--bh-hover-bg); }
+.bh-sug-thumb { width: 40px; height: 52px; border-radius: 6px; object-fit: cover; background: var(--bh-thumb-bg); flex-shrink: 0; }
+.bh-sug-thumb-placeholder { width: 40px; height: 52px; border-radius: 6px; background: var(--bh-thumb-bg); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.bh-sug-thumb-placeholder svg { width: 18px; height: 18px; stroke: var(--bh-thumb-icon); fill: none; stroke-width: 1.5; }
 .bh-sug-info { flex: 1; min-width: 0; }
-.bh-sug-name {
-  font-size: 14px; font-weight: 500;
-  color: #3a2e00; /* SUGGESTION PRODUCT NAME COLOR */
-  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
-  display: block;
-}
-.bh-sug-price {
-  font-size: 12px;
-  color: #735C00; /* SUGGESTION PRODUCT PRICE COLOR */
-  font-weight: 600; margin-top: 2px; display: block;
-}
-.bh-sug-cat {
-  font-size: 11px;
-  color: rgba(115, 92, 0, 0.45); /* SUGGESTION PRODUCT CATEGORY COLOR */
-  display: block; margin-top: 1px;
-}
+.bh-sug-name { font-size: 14px; font-weight: 500; color: var(--bh-product-name); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; display: block; }
+.bh-sug-price { font-size: 12px; color: var(--bh-product-price); font-weight: 600; margin-top: 2px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.bh-sug-price .bh-regular { text-decoration: line-through; opacity: 0.5; font-weight: 400; color: var(--bh-product-name); } /* ORIGINAL PRICE -- strikethrough */
+.bh-sug-price .bh-sale { color: var(--bh-sale-bg); font-weight: 700; } /* SALE PRICE -- red */
+.bh-trending-price { font-size: 12px; color: var(--bh-product-price); font-weight: 600; margin-top: 2px; display: flex; align-items: center; gap: 5px; flex-wrap: wrap; }
+.bh-trending-price .bh-regular { text-decoration: line-through; opacity: 0.5; font-weight: 400; color: var(--bh-product-name); } /* ORIGINAL PRICE -- strikethrough */
+.bh-trending-price .bh-sale { color: var(--bh-sale-bg); font-weight: 700; } /* SALE PRICE -- red */
+.bh-sug-cat { font-size: 11px; color: var(--bh-product-cat); display: block; margin-top: 1px; }
 
-/* ---- Status text: "Searching…" or "No results" ---- */
-#bh-search-status {
-  text-align: center; font-size: 13px;
-  color: rgba(115, 92, 0, 0.45); /* STATUS MESSAGE TEXT COLOR */
-  padding: 20px 0; display: none;
-}
+#bh-search-status { text-align: center; font-size: 13px; color: var(--bh-status-text); padding: 20px 0; display: none; }
 #bh-search-status.show { display: block; }
 
-/* ---- "View all results" button ---- */
 #bh-view-all {
-  display: none;
-  width: 100%; margin-top: 12px; padding: 12px;
-  background: #735C00; /* VIEW ALL BUTTON BACKGROUND COLOR */
-  color: #FBF9F5;      /* VIEW ALL BUTTON TEXT COLOR */
-  border: none; border-radius: 12px;
-  font-size: 14px; font-weight: 500;
-  cursor: pointer; text-align: center;
-  text-decoration: none; transition: opacity 0.15s;
-  box-sizing: border-box;
+  display: none; width: 100%; margin-top: 12px; padding: 12px;
+  background: var(--bh-btn-bg); color: var(--bh-btn-text);
+  border: none; border-radius: 12px; font-size: 14px; font-weight: 500;
+  cursor: pointer; text-align: center; text-decoration: none;
+  transition: opacity 0.15s; box-sizing: border-box;
 }
 #bh-view-all.show { display: block; }
 #bh-view-all:hover { opacity: 0.85; }
 
-/* ---- Sections wrapper ---- */
-#bh-default-view { display: block; }
-#bh-results-view { display: none; }
+#bh-default-view { display: block; overflow-y: auto; flex: 1; }
+#bh-results-view { display: none; overflow-y: auto; flex: 1; }
 #bh-default-view.hide { display: none; }
-#bh-results-view.show { display: block; }
+#bh-results-view.show { display: flex; flex-direction: column; }
 
 </style>
 
+<!-- WC Store API nonce -- needed for cart update/remove -->
+<?php if (function_exists('wp_create_nonce')) { ?>
+<meta name="wc-store-api-nonce" content="<?php echo esc_attr(wp_create_nonce('wc_store_api')); ?>">
+<?php } ?>
+
+<!-- Confetti canvas -->
+<canvas id="bh-confetti"></canvas>
+<!-- Page transition overlay -->
+<div id="bh-page-transition"></div>
+<!-- Toast notification -->
+<div id="bh-toast"></div>
+<!-- Pull to refresh indicator -->
+<div id="bh-ptr">Pull down to refresh</div>
+
+<!-- Mini cart drawer -->
+<div id="bh-cart-overlay">
+  <div id="bh-cart-sheet">
+    <div id="bh-cart-title">Your Cart</div>
+    <div id="bh-cart-items"></div>
+    <div id="bh-cart-empty" style="display:none">Your cart is empty</div>
+    <div id="bh-cart-recommended" style="display:none">
+      <div id="bh-cart-rec-label">You might like</div>
+      <div id="bh-cart-rec-list"></div>
+    </div>
+    <div id="bh-cart-total-row" style="display:none">
+      <span id="bh-cart-total-label">Total</span>
+      <span id="bh-cart-total-price"></span>
+    </div>
+    <a id="bh-cart-checkout-btn" href="https://www.ryreu.cyou/ayman/checkout/">Proceed to Checkout</a>
+  </div>
+</div>
+
 <!-- ============================================================
-   HTML: Floating island tab bar
+   HTML: Tab bar
    ============================================================ -->
 <div id="bh-tab-bar-wrap">
   <nav id="bh-tab-bar" role="navigation" aria-label="Main navigation">
 
-    <!-- HOME tab -->
-    <a class="bh-tab" href="Your Website Name/" aria-label="Home">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M3 12L12 3l9 9"/>
-        <path d="M9 21V12h6v9"/>
-        <path d="M3 12v9h6M15 21v-9h6V21"/>
-      </svg>
+    <!-- HOME -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/" aria-label="Home">
+      <svg viewBox="0 0 24 24"><path d="M3 12L12 3l9 9"/><path d="M9 21V12h6v9"/><path d="M3 12v9h6M15 21v-9h6V21"/></svg>
       <span class="bh-label">Home</span>
     </a>
 
-    <!-- SHOP tab — cart with wheels icon -->
-    <a class="bh-tab" href="Your Website Name/shop/" aria-label="Shop">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="9" cy="21" r="1"/>
-        <circle cx="20" cy="21" r="1"/>
-        <path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/>
-      </svg>
+    <!-- SHOP -- cart icon, long press opens mini cart drawer -->
+    <a class="bh-tab" id="bh-tab-shop" href="https://www.ryreu.cyou/ayman/shop/" aria-label="Shop">
+      <svg viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"/><circle cx="20" cy="21" r="1"/><path d="M1 1h4l2.68 13.39a2 2 0 002 1.61h9.72a2 2 0 002-1.61L23 6H6"/></svg>
       <span class="bh-label">Shop</span>
+      <span class="bh-badge" id="bh-cart-badge"></span>
+      <span class="bh-new-badge" id="bh-new-badge">NEW</span>
     </a>
 
-    <!-- SEARCH tab — opens popup -->
+    <!-- SEARCH -->
     <button class="bh-tab" id="bh-search-trigger" aria-label="Search" aria-haspopup="dialog">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
       <span class="bh-label">Search</span>
     </button>
 
-    <!-- FAVOURITE tab -->
-    <a class="bh-tab" href="Your Website Name/saved/" aria-label="Favourites">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/>
-      </svg>
+    <!-- FAVOURITE -->
+    <a class="bh-tab" id="bh-tab-fav" href="https://www.ryreu.cyou/ayman/saved/" aria-label="Favourites">
+      <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 000-7.78z"/></svg>
       <span class="bh-label">Favourite</span>
+      <span class="bh-badge" id="bh-fav-badge"></span>
     </a>
 
-    <!-- ACCOUNT tab -->
-    <a class="bh-tab" href="Your Website Name/my-account/" aria-label="Account">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/>
-        <circle cx="12" cy="7" r="4"/>
-      </svg>
+    <!-- ACCOUNT -->
+    <a class="bh-tab" href="https://www.ryreu.cyou/ayman/my-account/" aria-label="Account">
+      <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
       <span class="bh-label">Account</span>
     </a>
 
@@ -474,50 +934,37 @@
 <!-- ============================================================
    HTML: Search popup
    ============================================================ -->
-<div id="bh-search-overlay" role="dialog" aria-modal="true" aria-label="Search books">
+<div id="bh-search-overlay" role="dialog" aria-modal="true">
   <div id="bh-search-sheet">
-
-    <!-- Input row -->
     <div id="bh-search-row">
-      <svg viewBox="0 0 24 24" aria-hidden="true">
-        <circle cx="11" cy="11" r="8"/>
-        <line x1="21" y1="21" x2="16.65" y2="16.65"/>
-      </svg>
-      <input
-        type="search"
-        id="bh-search-input"
-        placeholder="Search books, authors…"
-        autocomplete="off"
-        autocorrect="off"
-        spellcheck="false"
-        aria-label="Search books"
-      />
-      <button id="bh-clear-btn" aria-label="Clear search">✕</button>
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+      <input type="search" id="bh-search-input" placeholder="Search books, authors..."
+        autocomplete="off" autocorrect="off" spellcheck="false" aria-label="Search books"/>
+      <button id="bh-clear-btn" aria-label="Clear">x</button>
+      <!-- Mic voice search button -->
+      <button id="bh-mic-btn" aria-label="Voice search">
+        <svg viewBox="0 0 24 24"><rect x="9" y="2" width="6" height="11" rx="3"/><path d="M19 10v2a7 7 0 01-14 0v-2"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+      </button>
     </div>
 
-    <!-- Default view: recent searches + trending -->
     <div id="bh-default-view">
       <div id="bh-recents-wrap" style="display:none">
-        <div class="bh-section-label">
-          Recent
-          <button id="bh-clear-recents">Clear</button>
-        </div>
+        <div class="bh-section-label">Recent <button id="bh-clear-recents">Clear</button></div>
         <div id="bh-recents"></div>
       </div>
-      <div id="bh-trending-wrap">
+      <div>
         <div class="bh-section-label">Trending Now</div>
         <div id="bh-trending"></div>
       </div>
     </div>
 
-    <!-- Results view: suggestions -->
     <div id="bh-results-view">
+      <div id="bh-cat-chips"></div>
       <div id="bh-suggestions-label" class="bh-section-label" style="display:none">Suggestions</div>
       <div id="bh-search-status"></div>
-      <ul id="bh-suggestions" role="listbox" aria-label="Search suggestions"></ul>
+      <ul id="bh-suggestions" role="listbox"></ul>
       <a id="bh-view-all" href="#" role="button">View all results</a>
     </div>
-
   </div>
 </div>
 
@@ -526,15 +973,20 @@
    ============================================================ -->
 <script>
 (function() {
-  var siteUrl   = 'Your Website Name';
-  var shopUrl   = siteUrl + '/shop/';
-  var wcApi     = siteUrl + '/wp-json/wc/store/v1/products';
-  var RECENTS_KEY = 'bh_recent_searches'; /* localStorage key for recent searches */
-  var MAX_RECENTS = 5; /* maximum number of recent searches to remember */
+  var siteUrl     = 'https://www.ryreu.cyou/ayman';
+  var shopUrl     = siteUrl + '/shop/';
+  var wcApi       = siteUrl + '/wp-json/wc/store/v1/products';
+  var cartApi     = siteUrl + '/wp-json/wc/store/v1/cart';
+  var RECENTS_KEY = 'bh_recent_searches';
+  var FAV_KEY     = 'bh_favourites';     /* localStorage key for saved favourites */
+  var MAX_RECENTS = 5;
 
+  var wrap         = document.getElementById('bh-tab-bar-wrap');
   var overlay      = document.getElementById('bh-search-overlay');
+  var sheet        = document.getElementById('bh-search-sheet');
   var input        = document.getElementById('bh-search-input');
   var clearBtn     = document.getElementById('bh-clear-btn');
+  var micBtn       = document.getElementById('bh-mic-btn');
   var sugg         = document.getElementById('bh-suggestions');
   var status       = document.getElementById('bh-search-status');
   var suggLabel    = document.getElementById('bh-suggestions-label');
@@ -547,45 +999,1272 @@
   var recentsEl    = document.getElementById('bh-recents');
   var trendingEl   = document.getElementById('bh-trending');
   var clearRecents = document.getElementById('bh-clear-recents');
+  var cartBadge    = document.getElementById('bh-cart-badge');
+  var favBadge     = document.getElementById('bh-fav-badge');
+  var newBadge     = document.getElementById('bh-new-badge');
+  var transition   = document.getElementById('bh-page-transition');
+  var confettiCvs  = document.getElementById('bh-confetti');
+  var toastEl      = document.getElementById('bh-toast');
+  var catChips     = document.getElementById('bh-cat-chips');
+  var ptrEl        = document.getElementById('bh-ptr');
+  var cartOverlay  = document.getElementById('bh-cart-overlay');
+  var cartSheet    = document.getElementById('bh-cart-sheet');
+  var cartItems    = document.getElementById('bh-cart-items');
+  var cartEmpty    = document.getElementById('bh-cart-empty');
+  var cartTotalRow = document.getElementById('bh-cart-total-row');
+  var cartTotalPr  = document.getElementById('bh-cart-total-price');
   var timer        = null;
   var lastQ        = '';
+  var lastCartCount   = 0;
+  var activeCategory  = '';
+  var toastTimer      = null;
+  var doubleTapTimer  = null;
+  var NEW_SEEN_KEY    = 'bh_last_seen_product'; /* localStorage key for new badge */
+  var allSuggestions  = [];
+  var recognition     = null;
+  var cachedCartData  = null; /* cached cart data for instant display */
 
-  /* ---- Highlight active tab based on current page URL ---- */
-  var path = window.location.pathname;
-  tabs.forEach(function(t) {
-    var h = t.getAttribute('href');
-    if (h && new URL(h, location.origin).pathname === path) {
-      t.classList.add('active');
+  /* ============================================================
+     KEYBOARD RESIZE FIX
+     On Android, when keyboard opens the visualViewport height shrinks.
+     We set the sheet height to exactly fit the space above the keyboard.
+     This is the most reliable cross-device approach.
+     ============================================================ */
+  function adjustSearchSheet() {
+    if (!overlay.classList.contains('open')) return;
+
+    if (window.visualViewport) {
+      /* Available height above keyboard */
+      var vpH      = window.visualViewport.height;
+      var vpTop    = window.visualViewport.offsetTop;
+      var vpLeft   = window.visualViewport.offsetLeft;
+
+      /* Position overlay to match the visual viewport exactly */
+      overlay.style.top    = vpTop  + 'px';
+      overlay.style.left   = vpLeft + 'px';
+      overlay.style.height = vpH    + 'px';
+      overlay.style.width  = window.visualViewport.width + 'px';
+
+      /* Sheet takes up 55% of visible space above keyboard */
+      /* This keeps enough room for trending/results to show */
+      var sheetH = Math.floor(vpH * 0.60);
+      sheet.style.height = sheetH + 'px';
+    } else {
+      /* Fallback for browsers without visualViewport */
+      sheet.style.height = Math.floor(window.innerHeight * 0.55) + 'px';
+    }
+  }
+
+  /* Listen for keyboard open/close */
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener('resize', adjustSearchSheet);
+    window.visualViewport.addEventListener('scroll', adjustSearchSheet);
+  }
+  window.addEventListener('resize', adjustSearchSheet);
+
+  /* ============================================================
+     ANIMATED SEARCH PLACEHOLDER
+     Cycles through hints every 2.5 seconds
+     ============================================================ */
+  var placeholders = [
+    'Search books, authors...',
+    'Try "Harry Potter"...',
+    'Try "Science Fiction"...',
+    'Try "Self Help"...',
+    'Try "Best Sellers"...',
+    'Search by title or author...'
+  ]; /* ADD MORE HINTS HERE */
+  var phIndex = 0;
+  var phTimer = null;
+
+  function startPlaceholderAnimation() {
+    phTimer = setInterval(function() {
+      if (document.activeElement !== input) {
+        phIndex = (phIndex + 1) % placeholders.length;
+        input.placeholder = placeholders[phIndex];
+      }
+    }, 2500); /* PLACEHOLDER CHANGE INTERVAL in ms */
+  }
+
+  function stopPlaceholderAnimation() {
+    clearInterval(phTimer);
+    input.placeholder = placeholders[0];
+    phIndex = 0;
+  }
+
+  /* ============================================================
+     PULL TO REFRESH
+     ============================================================ */
+  var ptrStartY   = 0;
+  var ptrActive   = false;
+  var ptrThreshold = 90; /* PULL DISTANCE in px before refresh triggers */
+
+  document.addEventListener('touchstart', function(e) {
+    if (window.scrollY === 0 && !overlay.classList.contains('open') && !cartOverlay.classList.contains('open')) {
+      ptrStartY  = e.touches[0].clientY;
+      ptrActive  = true;
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchmove', function(e) {
+    if (!ptrActive) return;
+    var diff = e.touches[0].clientY - ptrStartY;
+    if (diff > 10) {
+      ptrEl.textContent = diff > ptrThreshold ? 'Release to refresh' : 'Pull to refresh';
+      ptrEl.classList.add('visible');
+    }
+  }, { passive: true });
+
+  document.addEventListener('touchend', function(e) {
+    if (!ptrActive) return;
+    ptrActive = false;
+    var diff = e.changedTouches[0].clientY - ptrStartY;
+    ptrEl.classList.remove('visible');
+    if (diff > ptrThreshold) {
+      ptrEl.textContent = 'Refreshing...';
+      ptrEl.classList.add('visible');
+      setTimeout(function() { window.location.reload(); }, 300);
     }
   });
 
-  /* ---- Haptic feedback + active tab on click ---- */
+  /* ============================================================
+     NEW BADGE -- shows on Shop tab when a new product is added
+     Compares latest product ID to last seen ID in localStorage
+     ============================================================ */
+  function checkNewProducts() {
+    fetch(wcApi + '?per_page=1&orderby=date&order=desc')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (!data || !data.length) return;
+        var latestId = data[0].id;
+        var lastSeen = parseInt(localStorage.getItem(NEW_SEEN_KEY)) || 0;
+        if (latestId > lastSeen) {
+          newBadge.className = 'bh-new-badge show'; /* show NEW badge */
+        }
+      }).catch(function() {});
+  }
+
+  /* Dismiss NEW badge when user visits Shop tab */
+  var shopTab = document.getElementById('bh-tab-shop');
+  if (shopTab) {
+    shopTab.addEventListener('click', function() {
+      fetch(wcApi + '?per_page=1&orderby=date&order=desc')
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data && data.length) {
+            try { localStorage.setItem(NEW_SEEN_KEY, data[0].id); } catch(e) {}
+          }
+        }).catch(function() {});
+      newBadge.className = 'bh-new-badge'; /* hide badge */
+    });
+  }
+
+  checkNewProducts(); /* check on page load */
+
+  /* ============================================================
+     LONG PRESS SHOP TAB = OPEN MINI CART DRAWER
+     ============================================================ */
+  var shopLongPressTimer = null;
+  if (shopTab) {
+    shopTab.addEventListener('touchstart', function() {
+      shopLongPressTimer = setTimeout(function() {
+        if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+        openCartDrawer();
+      }, 500); /* 500ms long press */
+    }, { passive: true });
+    shopTab.addEventListener('touchend',  function() { clearTimeout(shopLongPressTimer); });
+    shopTab.addEventListener('touchmove', function() { clearTimeout(shopLongPressTimer); }, { passive: true });
+  }
+
+  /* ============================================================
+     MINI CART DRAWER -- fast with cache + skeleton loader
+     ============================================================ */
+  function showCartSkeleton() {
+    /* Show 3 skeleton rows instantly while data loads */
+    cartItems.innerHTML = [1,2,3].map(function() {
+      return '<div class="bh-cart-skeleton">' +
+        '<div class="bh-cart-skeleton-img"></div>' +
+        '<div class="bh-cart-skeleton-lines">' +
+          '<div class="bh-cart-skeleton-line"></div>' +
+          '<div class="bh-cart-skeleton-line short"></div>' +
+          '<div class="bh-cart-skeleton-line shorter"></div>' +
+        '</div></div>';
+    }).join('');
+    cartEmpty.style.display    = 'none';
+    cartTotalRow.style.display = 'none';
+  }
+
+  function openCartDrawer() {
+    cartOverlay.classList.add('open');
+    /* If we have cached data show it instantly, then refresh in background */
+    if (cachedCartData) {
+      renderCartData(cachedCartData);
+    } else {
+      showCartSkeleton();
+    }
+    /* Always fetch fresh data -- but skeleton/cache means no visible wait */
+    fetchAndRenderCart();
+  }
+
+  function refreshCartDrawer() {
+    showCartSkeleton();
+    fetchAndRenderCart();
+  }
+
+  function fetchAndRenderCart() {
+    fetch(cartApi, { credentials: 'include' })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        cachedCartData = data; /* cache for next open */
+        renderCartData(data);
+      })
+      .catch(function() {
+        cartItems.innerHTML = '<div style="text-align:center;padding:24px 0;color:var(--bh-status-text);font-size:13px">Could not load cart. Please try again.</div>';
+      });
+  }
+
+  function renderCartData(data) {
+    cartItems.innerHTML = '';
+    cartEmpty.style.display       = 'none';
+    cartTotalRow.style.display    = 'none';
+    var recSection = document.getElementById('bh-cart-recommended');
+    recSection.style.display = 'none';
+
+    if (!data || !data.items || data.items.length === 0) {
+      cartEmpty.style.display  = 'block';
+      cartBadge.className      = 'bh-badge';
+      lastCartCount            = 0;
+      /* Show recommended products when cart is empty */
+      loadCartRecommended();
+      return;
+    }
+
+    data.items.forEach(function(item) {
+      /* Wrap each item for swipe-to-delete */
+      var wrap = document.createElement('div');
+      wrap.className = 'bh-cart-item-wrap';
+
+      /* Delete background (revealed on swipe left) */
+      var swipeBg = document.createElement('div');
+      swipeBg.className = 'bh-cart-swipe-bg';
+      swipeBg.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>';
+      wrap.appendChild(swipeBg);
+
+      var div = document.createElement('div');
+      div.className = 'bh-cart-item';
+      div.setAttribute('data-key', item.key);
+
+      /* Thumbnail */
+      var imgUrl = item.images && item.images[0] ? (item.images[0].thumbnail || item.images[0].src) : null;
+      if (imgUrl) {
+        var img = document.createElement('img');
+        img.className = 'bh-cart-item-img'; img.src = imgUrl; img.alt = ''; img.loading = 'lazy';
+        div.appendChild(img);
+      } else {
+        var ph = document.createElement('div'); ph.className = 'bh-cart-item-img-ph';
+        ph.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>';
+        div.appendChild(ph);
+      }
+
+      /* Info */
+      var info = document.createElement('div');
+      info.className = 'bh-cart-item-info';
+      info.style.flex = '1';
+      info.style.minWidth = '0';
+
+      /* Product name */
+      var name = document.createElement('span');
+      name.className = 'bh-cart-item-name';
+      name.textContent = decode(item.name || '');
+      info.appendChild(name);
+
+      /* Product category */
+      try {
+        var cats = item.categories || [];
+        if (cats.length > 0) {
+          var catLabel = document.createElement('span');
+          catLabel.className = 'bh-cart-item-qty';
+          catLabel.style.color = 'var(--bh-product-cat)';
+          catLabel.textContent = cats.map(function(c) { return c.name; }).join(', ');
+          info.appendChild(catLabel);
+        }
+      } catch(e) {}
+
+      /* Price using getPrice/renderPrice */
+      var cartPriceData = null;
+      var lineTotal = 0, regularTotal = 0;
+      try {
+        var curr    = data.totals.currency_symbol || '';
+        var dec     = parseInt(data.totals.currency_minor_unit) || 2;
+        var divisor = Math.pow(10, dec);
+        lineTotal    = parseInt(item.totals.line_total    || 0);
+        regularTotal = parseInt(item.totals.line_subtotal || 0);
+        var fakePrices = {
+          currency_symbol     : curr,
+          currency_minor_unit : dec,
+          price               : String(lineTotal),
+          regular_price       : String(regularTotal),
+          sale_price          : lineTotal < regularTotal ? String(lineTotal) : ''
+        };
+        cartPriceData = getPrice({ prices: fakePrices });
+      } catch(e) {}
+
+      var priceEl = renderPrice(cartPriceData, 'bh-sug-price');
+      if (priceEl) { priceEl.style.marginTop = '3px'; info.appendChild(priceEl); }
+
+      /* Savings badge -- shown when item is on sale */
+      try {
+        if (lineTotal > 0 && regularTotal > lineTotal) {
+          var curr2   = data.totals.currency_symbol || '';
+          var dec2    = parseInt(data.totals.currency_minor_unit) || 2;
+          var saved   = (regularTotal - lineTotal) / Math.pow(10, dec2);
+          var savings = document.createElement('span');
+          savings.className   = 'bh-cart-savings';
+          savings.textContent = 'You save ' + curr2 + saved.toFixed(dec2); /* SAVINGS TEXT */
+          info.appendChild(savings);
+        }
+      } catch(e) {}
+
+      /* Qty controls */
+      var qtyRow = document.createElement('div');
+      qtyRow.className = 'bh-cart-qty-row';
+
+      var minusBtn = document.createElement('button');
+      minusBtn.className = 'bh-cart-qty-btn';
+      minusBtn.textContent = '-';
+      minusBtn.setAttribute('aria-label', 'Decrease quantity');
+      if (item.quantity <= 1) minusBtn.disabled = true;
+
+      var qtyNum = document.createElement('span');
+      qtyNum.className = 'bh-cart-qty-num';
+      qtyNum.textContent = item.quantity;
+
+      var plusBtn = document.createElement('button');
+      plusBtn.className = 'bh-cart-qty-btn';
+      plusBtn.textContent = '+';
+      plusBtn.setAttribute('aria-label', 'Increase quantity');
+
+      var removeBtn = document.createElement('button');
+      removeBtn.className = 'bh-cart-remove-btn';
+      removeBtn.setAttribute('aria-label', 'Remove item');
+      removeBtn.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="3 6 5 6 21 6"/><path d="M19 6l-1 14a2 2 0 01-2 2H8a2 2 0 01-2-2L5 6"/><path d="M10 11v6M14 11v6"/><path d="M9 6V4h6v2"/></svg>';
+
+      minusBtn.addEventListener('click', function() {
+        var newQty = parseInt(qtyNum.textContent) - 1;
+        if (newQty < 1) return;
+        /* Show spinner and lock both buttons */
+        setQtyLoading(minusBtn, plusBtn, true);
+        qtyNum.textContent = newQty; /* optimistic update */
+        minusBtn.disabled = newQty <= 1;
+        updateCartItem(item.key, newQty, div, function() {
+          setQtyLoading(minusBtn, plusBtn, false);
+        });
+      });
+
+      plusBtn.addEventListener('click', function() {
+        var newQty = parseInt(qtyNum.textContent) + 1;
+        /* Show spinner and lock both buttons */
+        setQtyLoading(minusBtn, plusBtn, true);
+        qtyNum.textContent = newQty; /* optimistic update */
+        minusBtn.disabled = false;
+        updateCartItem(item.key, newQty, div, function() {
+          setQtyLoading(minusBtn, plusBtn, false);
+        });
+      });
+
+      removeBtn.addEventListener('click', function() {
+        div.style.opacity = '0.4';
+        div.style.pointerEvents = 'none';
+        removeCartItem(item.key);
+      });
+
+      qtyRow.appendChild(minusBtn);
+      qtyRow.appendChild(qtyNum);
+      qtyRow.appendChild(plusBtn);
+      qtyRow.appendChild(removeBtn);
+      info.appendChild(qtyRow);
+      div.appendChild(info);
+      wrap.appendChild(div);
+      cartItems.appendChild(wrap);
+
+      /* Swipe left to reveal delete */
+      attachSwipeToDelete(div, wrap, item.key);
+    });
+
+    /* Total */
+    try {
+      var curr  = data.totals.currency_symbol || '';
+      var total = data.totals.total_price;
+      var dec   = parseInt(data.totals.currency_minor_unit) || 2;
+      cartTotalPr.textContent    = curr + (parseInt(total) / Math.pow(10, dec)).toFixed(dec);
+      cartTotalRow.style.display = 'flex';
+    } catch(e) {}
+  }
+
+  /* ---- Swipe left to reveal delete ---- */
+  function attachSwipeToDelete(itemEl, wrapEl, key) {
+    var startX   = 0;
+    var currentX = 0;
+    var swiping  = false;
+    var THRESHOLD = 70; /* px to swipe before delete triggers -- increase for harder swipe */
+
+    itemEl.addEventListener('touchstart', function(e) {
+      startX   = e.touches[0].clientX;
+      currentX = 0;
+      swiping  = true;
+    }, { passive: true });
+
+    itemEl.addEventListener('touchmove', function(e) {
+      if (!swiping) return;
+      var diffX = e.touches[0].clientX - startX;
+      if (diffX < 0) {
+        /* Swiping left -- translate the item */
+        currentX = Math.max(diffX, -90); /* max 90px reveal */
+        itemEl.style.transform  = 'translateX(' + currentX + 'px)';
+        itemEl.style.transition = 'none';
+      }
+    }, { passive: true });
+
+    itemEl.addEventListener('touchend', function() {
+      swiping = false;
+      itemEl.style.transition = 'transform 0.2s ease';
+      if (currentX < -THRESHOLD) {
+        /* Swiped far enough -- delete */
+        itemEl.style.transform = 'translateX(-100%)';
+        wrapEl.style.maxHeight = wrapEl.offsetHeight + 'px';
+        wrapEl.style.overflow  = 'hidden';
+        wrapEl.style.transition = 'max-height 0.25s ease, opacity 0.2s ease';
+        wrapEl.style.opacity   = '0';
+        setTimeout(function() {
+          wrapEl.style.maxHeight = '0';
+          setTimeout(function() {
+            removeCartItem(key);
+          }, 250);
+        }, 100);
+      } else {
+        /* Snap back */
+        itemEl.style.transform = 'translateX(0)';
+      }
+    });
+  }
+
+  /* ---- Load recommended products when cart is empty ---- */
+  function loadCartRecommended() {
+    var recSection = document.getElementById('bh-cart-recommended');
+    var recList    = document.getElementById('bh-cart-rec-list');
+    recSection.style.display = 'block';
+    recList.innerHTML = '<div style="text-align:center;padding:12px 0;color:var(--bh-status-text);font-size:13px">Loading recommendations...</div>';
+
+    fetch(wcApi + '?per_page=4&orderby=popularity&order=desc')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        recList.innerHTML = '';
+        if (!data || !data.length) {
+          /* Fallback to newest if popularity not available */
+          return fetch(wcApi + '?per_page=4&orderby=date&order=desc')
+            .then(function(r) { return r.json(); })
+            .then(function(d) { renderRecommended(d, recList); });
+        }
+        renderRecommended(data, recList);
+      })
+      .catch(function() { recList.innerHTML = ''; recSection.style.display = 'none'; });
+  }
+
+  function renderRecommended(items, container) {
+    container.innerHTML = '';
+    items.forEach(function(item) {
+      var row = document.createElement('div');
+      row.className = 'bh-cart-rec-item';
+
+      /* Thumbnail */
+      var thumbUrl = null;
+      try { if (item.images && item.images.length) thumbUrl = item.images[0].thumbnail || item.images[0].src; } catch(e) {}
+      if (thumbUrl) {
+        var img = document.createElement('img');
+        img.className = 'bh-cart-rec-thumb'; img.src = thumbUrl; img.alt = ''; img.loading = 'lazy';
+        row.appendChild(img);
+      } else {
+        var ph = document.createElement('div'); ph.className = 'bh-cart-rec-thumb-ph';
+        ph.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>';
+        row.appendChild(ph);
+      }
+
+      /* Info */
+      var info = document.createElement('div'); info.className = 'bh-cart-rec-info';
+      var nameEl = document.createElement('span'); nameEl.className = 'bh-cart-rec-name'; nameEl.textContent = decode(item.name || ''); info.appendChild(nameEl);
+      var pd = getPrice(item);
+      if (pd) {
+        var priceEl = document.createElement('span'); priceEl.className = 'bh-cart-rec-price';
+        priceEl.textContent = pd.regular ? (pd.regular + '  ' + pd.sale) : pd.sale;
+        info.appendChild(priceEl);
+      }
+      row.appendChild(info);
+
+      /* Add to Cart button */
+      var addBtn = document.createElement('button');
+      addBtn.className = 'bh-cart-add-btn';
+      addBtn.textContent = 'Add';
+      addBtn.setAttribute('data-id', item.id);
+      addBtn.addEventListener('click', function() {
+        addBtn.classList.add('adding');
+        addBtn.textContent = '...';
+        addToCart(item.id, 1, addBtn);
+      });
+      row.appendChild(addBtn);
+      container.appendChild(row);
+    });
+  }
+
+  /* ---- Add to Cart via WC Store API ---- */
+  function addToCart(productId, qty, btnEl) {
+    var nonce = getCartNonce();
+    fetch(cartApi + '/add-item', {
+      method: 'POST',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-WC-Store-API-Nonce': nonce,
+        'Nonce': nonce
+      },
+      body: JSON.stringify({ id: productId, quantity: qty })
+    })
+    .then(function(r) {
+      var newNonce = r.headers.get('X-WC-Store-API-Nonce') || '';
+      if (newNonce) cartNonce = newNonce;
+      return r.json();
+    })
+    .then(function() {
+      if (btnEl) { btnEl.textContent = 'Added'; btnEl.style.background = '#2ecc71'; }
+      cachedCartData = null;
+      showToast('Added to cart');
+      /* Refresh cart -- will now show the item */
+      fetchAndCacheCart(function(fresh) {
+        updateCartBadgeFromData(fresh);
+        if (cartOverlay.classList.contains('open')) renderCartData(fresh);
+      });
+    })
+    .catch(function() {
+      if (btnEl) { btnEl.classList.remove('adding'); btnEl.textContent = 'Add'; }
+      showToast('Could not add item. Please try again.');
+    });
+  }
+
+  /* ---- Core cart fetch + cache ---- */
+  var cartNonce = ''; /* store nonce from API response */
+
+  function fetchAndCacheCart(callback) {
+    fetch(cartApi, { credentials: 'include' })
+      .then(function(r) {
+        /* WC Store API returns nonce in response header */
+        var nonce = r.headers.get('X-WC-Store-API-Nonce') ||
+                    r.headers.get('Nonce') ||
+                    r.headers.get('x-wc-store-api-nonce') || '';
+        if (nonce) cartNonce = nonce;
+        return r.json();
+      })
+      .then(function(data) {
+        /* Also try to get nonce from response body */
+        if (data && data.nonce) cartNonce = data.nonce;
+        cachedCartData = data;
+        if (callback) callback(data);
+      })
+      .catch(function() {
+        if (callback) callback(cachedCartData || { items: [], totals: {}, items_count: 0 });
+      });
+  }
+
+  /* ---- Update badge from data (no extra fetch needed) ---- */
+  function updateCartBadgeFromData(data) {
+    var count = (data && data.items_count) ? data.items_count : 0;
+    if (count > 0) {
+      if (count !== lastCartCount) animateCount(cartBadge, lastCartCount, count);
+      else cartBadge.textContent = count > 99 ? '99+' : count;
+      if (count > lastCartCount) {
+        cartBadge.classList.remove('bounce');
+        void cartBadge.offsetWidth;
+        cartBadge.classList.add('show', 'bounce');
+      } else {
+        cartBadge.classList.add('show');
+      }
+    } else {
+      cartBadge.className = 'bh-badge';
+    }
+    lastCartCount = count;
+  }
+
+  /* ---- Get best available nonce ---- */
+  function getCartNonce() {
+    /* Priority 1: nonce captured from last cart API response header */
+    if (cartNonce) return cartNonce;
+    /* Priority 2: meta tag output by PHP */
+    try { var m = document.querySelector('meta[name="wc-store-api-nonce"]'); if (m && m.content) return m.content; } catch(e) {}
+    /* Priority 3: WC global JS objects */
+    try { if (window.wc && window.wc.store_api_nonce) return window.wc.store_api_nonce; } catch(e) {}
+    try { if (window.wcSettings && window.wcSettings.storeApiNonce) return window.wcSettings.storeApiNonce; } catch(e) {}
+    /* Priority 4: scan inline scripts for nonce value */
+    try {
+      var scripts = document.querySelectorAll('script');
+      for (var i = 0; i < scripts.length; i++) {
+        var t = scripts[i].textContent || '';
+        var m1 = t.match(/"nonce"\s*:\s*"([a-f0-9]{10,})"/);
+        if (m1) return m1[1];
+        var m2 = t.match(/storeApiNonce['":\s]+['"]([a-f0-9]{10,})['"]/);
+        if (m2) return m2[1];
+      }
+    } catch(e) {}
+    return '';
+  }
+
+  /* ---- Show/hide spinner on qty buttons ---- */
+  function setQtyLoading(minusBtn, plusBtn, isLoading) {
+    if (isLoading) {
+      /* Replace button text with spinner */
+      minusBtn.classList.add('loading');
+      plusBtn.classList.add('loading');
+      minusBtn.dataset.label = minusBtn.textContent;
+      plusBtn.dataset.label  = plusBtn.textContent;
+      minusBtn.textContent = '';
+      plusBtn.textContent  = '';
+      var spinMinus = document.createElement('span');
+      spinMinus.className = 'bh-qty-spinner';
+      minusBtn.appendChild(spinMinus);
+      var spinPlus = document.createElement('span');
+      spinPlus.className = 'bh-qty-spinner';
+      plusBtn.appendChild(spinPlus);
+    } else {
+      /* Restore button text, remove spinner */
+      minusBtn.classList.remove('loading');
+      plusBtn.classList.remove('loading');
+      var sminus = minusBtn.querySelector('.bh-qty-spinner');
+      var splus  = plusBtn.querySelector('.bh-qty-spinner');
+      if (sminus) sminus.remove();
+      if (splus)  splus.remove();
+      minusBtn.textContent = minusBtn.dataset.label || '-';
+      plusBtn.textContent  = plusBtn.dataset.label  || '+';
+    }
+  }
+
+  /* ---- Update cart item quantity ---- */
+  function updateCartItem(key, qty, rowEl, onDone) {
+    var nonce = getCartNonce();
+
+    /* WC Store API v1: PUT /cart/items/{key} with quantity */
+    fetch(cartApi + '/items/' + key, {
+      method: 'PUT',
+      credentials: 'include',
+      headers: {
+        'Content-Type': 'application/json',
+        'X-WC-Store-API-Nonce': nonce,
+        'Nonce': nonce
+      },
+      body: JSON.stringify({ quantity: qty })
+    })
+    .then(function(r) {
+      /* Capture updated nonce from response */
+      var newNonce = r.headers.get('X-WC-Store-API-Nonce') || r.headers.get('Nonce') || '';
+      if (newNonce) cartNonce = newNonce;
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(function(updatedItem) {
+      /* Update nonce from response body if available */
+      if (updatedItem && updatedItem.nonce) cartNonce = updatedItem.nonce;
+      cachedCartData = null;
+      fetchAndCacheCart(function(fresh) {
+        updateCartBadgeFromData(fresh);
+        if (cartOverlay.classList.contains('open')) renderCartData(fresh);
+      });
+    })
+    .catch(function(err) {
+      /* Nonce may have expired -- try fetching fresh nonce then retry once */
+      fetchAndCacheCart(function(fresh) {
+        var freshNonce = getCartNonce();
+        updateCartBadgeFromData(fresh);
+        if (cartOverlay.classList.contains('open')) renderCartData(fresh);
+        /* Retry the update with fresh nonce */
+        if (freshNonce && freshNonce !== nonce) {
+          fetch(cartApi + '/items/' + key, {
+            method: 'PUT',
+            credentials: 'include',
+            headers: { 'Content-Type': 'application/json', 'X-WC-Store-API-Nonce': freshNonce, 'Nonce': freshNonce },
+            body: JSON.stringify({ quantity: qty })
+          })
+          .then(function(r) { return r.json(); })
+          .then(function() {
+            cachedCartData = null;
+            fetchAndCacheCart(function(d) {
+              updateCartBadgeFromData(d);
+              if (cartOverlay.classList.contains('open')) renderCartData(d);
+            });
+          })
+          .catch(function() {
+            if (rowEl) { rowEl.style.opacity = '1'; rowEl.style.pointerEvents = ''; }
+          });
+        } else {
+          if (rowEl) { rowEl.style.opacity = '1'; rowEl.style.pointerEvents = ''; }
+        }
+      });
+    });
+  }
+
+  /* ---- Remove cart item ---- */
+  function removeCartItem(key) {
+    var nonce = getCartNonce();
+    fetch(cartApi + '/items/' + key, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'X-WC-Store-API-Nonce': nonce,
+        'Nonce': nonce
+      }
+    })
+    .then(function(r) {
+      var newNonce = r.headers.get('X-WC-Store-API-Nonce') || r.headers.get('Nonce') || '';
+      if (newNonce) cartNonce = newNonce;
+      if (!r.ok) throw new Error(r.status);
+      return r.json();
+    })
+    .then(function() {
+      cachedCartData = null;
+      showToast('Item removed from cart');
+      fetchAndCacheCart(function(fresh) {
+        updateCartBadgeFromData(fresh);
+        if (cartOverlay.classList.contains('open')) renderCartData(fresh);
+      });
+    })
+    .catch(function() {
+      /* Retry with fresh nonce */
+      fetchAndCacheCart(function(fresh) {
+        var freshNonce = getCartNonce();
+        updateCartBadgeFromData(fresh);
+        if (cartOverlay.classList.contains('open')) renderCartData(fresh);
+        if (freshNonce && freshNonce !== nonce) {
+          fetch(cartApi + '/items/' + key, {
+            method: 'DELETE',
+            credentials: 'include',
+            headers: { 'X-WC-Store-API-Nonce': freshNonce, 'Nonce': freshNonce }
+          })
+          .then(function() {
+            cachedCartData = null;
+            showToast('Item removed from cart');
+            fetchAndCacheCart(function(d) {
+              updateCartBadgeFromData(d);
+              if (cartOverlay.classList.contains('open')) renderCartData(d);
+            });
+          })
+          .catch(function() {});
+        }
+      });
+    });
+  }
+
+  /* ---- Refresh cart totals ---- */
+  function refreshCartTotals() {
+    fetchAndCacheCart(function(data) {
+      updateCartBadgeFromData(data);
+      try {
+        var curr  = data.totals.currency_symbol || '';
+        var total = data.totals.total_price;
+        var dec   = parseInt(data.totals.currency_minor_unit) || 2;
+        cartTotalPr.textContent    = curr + (parseInt(total) / Math.pow(10, dec)).toFixed(dec);
+        cartTotalRow.style.display = 'flex';
+      } catch(e) {}
+    });
+  }
+
+  /* ============================================================
+     CART PRELOAD + AUTO-UPDATE EVERY 500ms
+     Preloads on page load so drawer opens instantly.
+     Auto-updates cart in background every 500ms.
+     ============================================================ */
+  /* Preload immediately on page load */
+  window.addEventListener('load', function() {
+    fetchAndCacheCart(function(data) {
+      updateCartBadgeFromData(data);
+    });
+  });
+
+  /* Auto-refresh every 500ms -- keeps badge + open drawer in sync */
+  setInterval(function() {
+    fetchAndCacheCart(function(data) {
+      updateCartBadgeFromData(data);
+      /* Silently update open cart drawer without resetting scroll */
+      if (cartOverlay.classList.contains('open')) {
+        renderCartData(data);
+      }
+    });
+  }, 500); /* CART REFRESH INTERVAL -- 500ms */
+
+  /* Also refresh when returning to page */
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) {
+      cachedCartData = null;
+      fetchAndCacheCart(function(data) {
+        updateCartBadgeFromData(data);
+      });
+    }
+  });
+
+  /* Close cart drawer on backdrop */
+  cartOverlay.addEventListener('click', function(e) {
+    if (e.target === cartOverlay) cartOverlay.classList.remove('open');
+  });
+
+  /* Swipe down cart drawer to close */
+  var cartSwipeStartY = 0, cartSwipeStarted = false;
+  cartSheet.addEventListener('touchstart', function(e) { cartSwipeStartY = e.touches[0].clientY; cartSwipeStarted = true; }, { passive: true });
+  cartSheet.addEventListener('touchmove',  function(e) {
+    if (!cartSwipeStarted) return;
+    var diff = e.touches[0].clientY - cartSwipeStartY;
+    if (diff > 0) { cartSheet.style.transform = 'translateY(' + diff + 'px)'; cartSheet.style.transition = 'none'; }
+  }, { passive: true });
+  cartSheet.addEventListener('touchend', function(e) {
+    if (!cartSwipeStarted) return; cartSwipeStarted = false;
+    var diff = e.changedTouches[0].clientY - cartSwipeStartY;
+    cartSheet.style.transition = '';
+    if (diff > 80) { cartSheet.style.transform = 'translateY(100%)'; setTimeout(function() { cartSheet.style.transform = ''; cartOverlay.classList.remove('open'); }, 200); }
+    else { cartSheet.style.transform = ''; }
+  });
+
+  /* ============================================================
+     HIDE ON SCROLL DOWN / SHOW ON SCROLL UP
+     ============================================================ */
+  var lastScrollY = window.scrollY;
+  var scrollTimer = null;
+  window.addEventListener('scroll', function() {
+    if (overlay.classList.contains('open')) return;
+    var diff = window.scrollY - lastScrollY;
+    if (diff > 6) { wrap.classList.add('bh-hidden'); wrap.classList.remove('bh-visible'); }
+    else if (diff < -6) { wrap.classList.remove('bh-hidden'); wrap.classList.add('bh-visible'); }
+    lastScrollY = window.scrollY;
+    clearTimeout(scrollTimer);
+    scrollTimer = setTimeout(function() {
+      var nearBottom = (window.innerHeight + window.scrollY) >= document.body.offsetHeight - 60;
+      if (nearBottom) { wrap.classList.remove('bh-hidden'); wrap.classList.add('bh-visible'); }
+    }, 150);
+  }, { passive: true });
+
+  /* ============================================================
+     ACTIVE TAB HIGHLIGHT ON LOAD
+     ============================================================ */
+  var path = window.location.pathname;
   tabs.forEach(function(t) {
-    t.addEventListener('click', function() {
-      /* Haptic feedback — vibrates phone briefly on tap */
+    var h = t.getAttribute('href');
+    if (h && new URL(h, location.origin).pathname === path) t.classList.add('active');
+  });
+
+  /* ============================================================
+     HAPTIC + PAGE TRANSITION + DOUBLE TAP HOME + SMART SHOP TAB
+     ============================================================ */
+  var shopUrl2 = new URL(siteUrl + '/shop/', location.origin).pathname;
+
+  tabs.forEach(function(t) {
+    t.addEventListener('click', function(e) {
       if (navigator.vibrate) navigator.vibrate(8);
       tabs.forEach(function(x) { x.classList.remove('active'); });
       t.classList.add('active');
+
+      var href = t.getAttribute('href');
+      if (!href) return;
+
+      var tabPath = new URL(href, location.origin).pathname;
+      var curPath = window.location.pathname;
+
+      /* SMART SHOP TAB -- if already on shop page, open cart drawer instead */
+      if (tabPath === shopUrl2 && curPath === shopUrl2) {
+        e.preventDefault();
+        if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+        openCartDrawer();
+        return;
+      }
+
+      /* DOUBLE TAP HOME -- scroll to top */
+      var homeUrl = new URL(siteUrl + '/', location.origin).pathname;
+      if (tabPath === homeUrl && curPath === homeUrl) {
+        if (doubleTapTimer) {
+          clearTimeout(doubleTapTimer);
+          doubleTapTimer = null;
+          e.preventDefault();
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+          showToast('Back to top');
+          return;
+        } else {
+          doubleTapTimer = setTimeout(function() { doubleTapTimer = null; }, 350);
+        }
+      }
+
+      /* Normal navigation with page transition */
+      if (href !== '#' && href !== window.location.href) {
+        e.preventDefault();
+        transition.classList.add('fade-out');
+        setTimeout(function() { window.location.href = href; }, 180);
+      }
     });
   });
 
   /* ============================================================
-     RECENT SEARCHES — stored in localStorage
+     CATEGORY FILTER CHIPS -- loads WC categories, filters results
      ============================================================ */
-  function getRecents() {
-    try {
-      return JSON.parse(localStorage.getItem(RECENTS_KEY)) || [];
-    } catch(e) { return []; }
+  var allSuggestions = []; /* stores full result set for filtering */
+
+  function loadCategories() {
+    fetch(siteUrl + '/wp-json/wc/store/v1/products/categories?per_page=10')
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        if (!data || !data.length) return;
+        catChips.innerHTML = '';
+        activeCategory = '';
+
+        /* "All" chip */
+        var allChip = document.createElement('button');
+        allChip.className = 'bh-cat-chip active';
+        allChip.textContent = 'All';
+        allChip.addEventListener('click', function() {
+          setActiveChip(allChip);
+          activeCategory = '';
+          renderFiltered();
+        });
+        catChips.appendChild(allChip);
+
+        data.forEach(function(cat) {
+          if (!cat.name || cat.name === 'Uncategorized') return;
+          var chip = document.createElement('button');
+          chip.className = 'bh-cat-chip';
+          chip.textContent = cat.name;
+          chip.addEventListener('click', function() {
+            setActiveChip(chip);
+            activeCategory = cat.name;
+            renderFiltered();
+          });
+          catChips.appendChild(chip);
+        });
+      })
+      .catch(function() {});
   }
 
+  function setActiveChip(activeChip) {
+    catChips.querySelectorAll('.bh-cat-chip').forEach(function(c) { c.classList.remove('active'); });
+    activeChip.classList.add('active');
+  }
+
+  function renderFiltered() {
+    sugg.innerHTML = '';
+    var filtered = activeCategory
+      ? allSuggestions.filter(function(item) {
+          return item.categories && item.categories.some(function(c) { return c.name === activeCategory; });
+        })
+      : allSuggestions;
+
+    if (filtered.length === 0) {
+      status.textContent = 'No results in "' + (activeCategory || 'All') + '"';
+      status.className = 'show';
+    } else {
+      status.className = '';
+      filtered.slice(0, 10).forEach(function(item) { sugg.appendChild(makeSuggItem(item, lastQ)); });
+    }
+  }
+
+  loadCategories();
+
+  /* ============================================================
+     LONG PRESS SEARCH TAB
+     ============================================================ */
+  var longPressTimer = null;
+  trigger.addEventListener('touchstart', function() {
+    longPressTimer = setTimeout(function() {
+      trigger.classList.add('bh-longpress');
+      openSearch(true);
+      if (navigator.vibrate) navigator.vibrate([10, 30, 10]);
+    }, 500);
+  }, { passive: true });
+  trigger.addEventListener('touchend', function() {
+    clearTimeout(longPressTimer);
+    setTimeout(function() { trigger.classList.remove('bh-longpress'); }, 200);
+  });
+  trigger.addEventListener('touchmove', function() { clearTimeout(longPressTimer); }, { passive: true });
+  trigger.addEventListener('click', function() { openSearch(false); });
+
+  /* ============================================================
+     SWIPE DOWN TO CLOSE
+     ============================================================ */
+  var swipeStartY = 0, swipeStarted = false;
+  sheet.addEventListener('touchstart', function(e) {
+    swipeStartY = e.touches[0].clientY; swipeStarted = true;
+  }, { passive: true });
+  sheet.addEventListener('touchmove', function(e) {
+    if (!swipeStarted) return;
+    var diff = e.touches[0].clientY - swipeStartY;
+    if (diff > 0) { sheet.style.transform = 'translateY(' + diff + 'px)'; sheet.style.transition = 'none'; }
+  }, { passive: true });
+  sheet.addEventListener('touchend', function(e) {
+    if (!swipeStarted) return;
+    swipeStarted = false;
+    var diff = e.changedTouches[0].clientY - swipeStartY;
+    sheet.style.transition = '';
+    if (diff > 80) {
+      sheet.style.transform = 'translateY(100%)';
+      setTimeout(function() { sheet.style.transform = ''; closeSearch(); }, 200);
+    } else { sheet.style.transform = ''; }
+  });
+
+  /* ============================================================
+     TOAST NOTIFICATION
+     ============================================================ */
+  function showToast(msg, duration) {
+    duration = duration || 2500; /* TOAST DURATION in ms */
+    toastEl.textContent = msg;
+    toastEl.classList.add('show');
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(function() {
+      toastEl.classList.remove('show');
+    }, duration);
+  }
+
+  /* ============================================================
+     CART BADGE -- count-up animation + shake on add
+     ============================================================ */
+  function animateCount(el, from, to) {
+    /* Smooth count-up number animation */
+    if (from === to) return;
+    var duration = 400; /* COUNT-UP DURATION in ms */
+    var start    = null;
+    function step(ts) {
+      if (!start) start = ts;
+      var progress = Math.min((ts - start) / duration, 1);
+      var current  = Math.round(from + (to - from) * progress);
+      el.textContent = current > 99 ? '99+' : current;
+      if (progress < 1) requestAnimationFrame(step);
+    }
+    requestAnimationFrame(step);
+  }
+
+  function updateCartBadge() {
+    fetch(cartApi, { credentials: 'include' })
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
+        var count = (data && data.items_count) ? data.items_count : 0;
+        if (count > 0) {
+          /* Count-up animation when increasing */
+          if (count !== lastCartCount) {
+            animateCount(cartBadge, lastCartCount, count);
+          } else {
+            cartBadge.textContent = count > 99 ? '99+' : count;
+          }
+          /* Bounce when increasing */
+          if (count > lastCartCount) {
+            cartBadge.classList.remove('bounce', 'shake');
+            void cartBadge.offsetWidth;
+            cartBadge.classList.add('show', 'bounce');
+          } else {
+            cartBadge.classList.add('show');
+          }
+        } else {
+          cartBadge.className = 'bh-badge';
+        }
+        lastCartCount = count;
+      }).catch(function() {});
+  }
+  updateCartBadge();
+  setInterval(updateCartBadge, 500);
+  document.addEventListener('visibilitychange', function() { if (!document.hidden) updateCartBadge(); });
+
+  /* Shake badge + toast when item added to cart */
+  function onItemAdded() {
+    showToast('Added to cart');
+    cachedCartData = null;
+    /* Shake the badge immediately on add */
+    cartBadge.classList.remove('shake');
+    void cartBadge.offsetWidth;
+    cartBadge.classList.add('show', 'shake');
+  }
+  document.addEventListener('added_to_cart', onItemAdded);
+  document.addEventListener('click', function(e) {
+    var btn = e.target.closest('.add_to_cart_button, .single_add_to_cart_button');
+    if (btn) setTimeout(onItemAdded, 400);
+  });
+
+  /* ============================================================
+     FAVOURITE BADGE -- counts items saved in localStorage
+     ============================================================ */
+  function getFavourites() {
+    try { return JSON.parse(localStorage.getItem(FAV_KEY)) || []; } catch(e) { return []; }
+  }
+  function updateFavBadge() {
+    var count = getFavourites().length;
+    if (count > 0) { favBadge.textContent = count > 99 ? '99+' : count; favBadge.className = 'bh-badge show'; }
+    else { favBadge.className = 'bh-badge'; }
+  }
+  updateFavBadge();
+  /* Re-check badge whenever page becomes visible */
+  document.addEventListener('visibilitychange', function() { if (!document.hidden) updateFavBadge(); });
+
+  /* ============================================================
+     CONFETTI -- fires when "Add to Cart" is clicked anywhere on page
+     ============================================================ */
+  function launchConfetti() {
+    var canvas = confettiCvs;
+    canvas.width  = window.innerWidth;
+    canvas.height = window.innerHeight;
+    canvas.classList.add('show');
+    var ctx = canvas.getContext('2d');
+
+    /* Confetti colors matching BookHaven palette */
+    var colors = ['#735C00','#D4A832','#FBF9F5','#C0392B','#a07800','#f0d080']; /* CONFETTI COLORS */
+    var pieces = [];
+    var count  = 80; /* NUMBER OF CONFETTI PIECES -- increase for more */
+
+    for (var i = 0; i < count; i++) {
+      pieces.push({
+        x: Math.random() * canvas.width,
+        y: -10,
+        r: Math.random() * 6 + 3,
+        d: Math.random() * count,
+        color: colors[Math.floor(Math.random() * colors.length)],
+        tilt: Math.floor(Math.random() * 10) - 10,
+        tiltAngle: 0,
+        tiltAngleInc: (Math.random() * 0.07) + 0.05
+      });
+    }
+
+    var angle = 0, tick = 0;
+    function draw() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      angle += 0.01;
+      tick++;
+      pieces.forEach(function(p, i) {
+        p.tiltAngle += p.tiltAngleInc;
+        p.y += (Math.cos(angle + p.d) + 2 + p.r / 2) * 1.2;
+        p.x += Math.sin(angle);
+        p.tilt = Math.sin(p.tiltAngle) * 12;
+        ctx.beginPath();
+        ctx.lineWidth = p.r;
+        ctx.strokeStyle = p.color;
+        ctx.moveTo(p.x + p.tilt + p.r / 4, p.y);
+        ctx.lineTo(p.x + p.tilt, p.y + p.tilt + p.r / 4);
+        ctx.stroke();
+      });
+      if (tick < 200) { /* CONFETTI DURATION -- higher number = longer */
+        requestAnimationFrame(draw);
+      } else {
+        canvas.classList.remove('show');
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+      }
+    }
+    draw();
+  }
+
+  /* Also fire confetti on WooCommerce AJAX add to cart event */
+  document.addEventListener('added_to_cart', launchConfetti);
+
+  /* ============================================================
+     VOICE SEARCH
+     Works on Chrome Android and Safari iOS 14.5+
+     Requires HTTPS -- your site already uses it
+     ============================================================ */
+  var SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  var activeRec = null;
+  var isIOS     = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+
+  if (SpeechRecognition) {
+
+    micBtn.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      /* Already listening -- stop */
+      if (activeRec) {
+        try { activeRec.abort(); } catch(x) {}
+        activeRec = null;
+        micBtn.classList.remove('listening');
+        return;
+      }
+
+      /* Always create a fresh instance */
+      var rec = new SpeechRecognition();
+      activeRec = rec;
+      rec.lang           = 'en-US'; /* VOICE LANGUAGE -- change to e.g. 'bn-BD' for Bengali */
+      rec.interimResults = false;
+      rec.continuous     = false;
+      rec.maxAlternatives = 1;
+
+      rec.onstart = function() {
+        micBtn.classList.add('listening');
+        if (navigator.vibrate) navigator.vibrate(15);
+      };
+
+      rec.onresult = function(ev) {
+        var text = ev.results[0][0].transcript;
+        activeRec = null;
+        micBtn.classList.remove('listening');
+        input.value = text;
+        clearBtn.className = 'show';
+        lastQ = ''; /* reset so search() doesnt skip it */
+        showResults();
+        search(text);
+      };
+
+      rec.onerror = function(ev) {
+        activeRec = null;
+        micBtn.classList.remove('listening');
+        var msg = '';
+        if (ev.error === 'not-allowed' || ev.error === 'permission-denied') {
+          msg = isIOS
+            ? 'Microphone blocked. Go to iPhone Settings -> Safari -> Microphone -> allow this site.'
+            : 'Microphone blocked. Tap the lock icon in Chrome address bar -> Site settings -> Microphone -> Allow.';
+        } else if (ev.error === 'no-speech') {
+          msg = 'No speech detected. Please try again.';
+        } else if (ev.error === 'network') {
+          msg = 'Network error. Check your connection and try again.';
+        } else if (ev.error === 'audio-capture') {
+          msg = 'No microphone found on this device.';
+        } else {
+          msg = 'Voice search unavailable. Please type your search.';
+        }
+        showResults();
+        status.textContent = msg;
+        status.className = 'show';
+      };
+
+      rec.onend = function() {
+        micBtn.classList.remove('listening');
+        activeRec = null;
+      };
+
+      /* Must be last -- synchronous call on user gesture triggers permission popup */
+      try {
+        rec.start();
+      } catch(err) {
+        activeRec = null;
+        showResults();
+        status.textContent = 'Could not start microphone. Please try again.';
+        status.className = 'show';
+      }
+    });
+
+  } else {
+    /* Hide mic button on unsupported browsers */
+    if (micBtn) micBtn.style.display = 'none';
+  }
+
+  function showMicError(msg) {
+    micBtn.classList.remove('listening');
+    showResults();
+    status.textContent = msg;
+    status.className = 'show';
+  }
+
+  /* ============================================================
+     RECENT SEARCHES
+     ============================================================ */
+  function getRecents() {
+    try { return JSON.parse(localStorage.getItem(RECENTS_KEY)) || []; } catch(e) { return []; }
+  }
   function saveRecent(q) {
     if (!q) return;
     var list = getRecents().filter(function(r) { return r !== q; });
-    list.unshift(q); /* add to top */
-    list = list.slice(0, MAX_RECENTS); /* keep only latest 5 */
+    list.unshift(q); list = list.slice(0, MAX_RECENTS);
     try { localStorage.setItem(RECENTS_KEY, JSON.stringify(list)); } catch(e) {}
   }
-
   function renderRecents() {
     var list = getRecents();
     if (!list.length) { recentsWrap.style.display = 'none'; return; }
@@ -595,316 +2274,322 @@
       var chip = document.createElement('button');
       chip.className = 'bh-recent-chip';
       chip.innerHTML = '<svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>' + q;
-      chip.addEventListener('click', function() {
-        input.value = q;
-        clearBtn.className = 'show';
-        showResults();
-        search(q);
-      });
+      chip.addEventListener('click', function() { input.value = q; clearBtn.className = 'show'; showResults(); search(q); });
       recentsEl.appendChild(chip);
     });
   }
-
-  /* ---- Clear all recent searches ---- */
   clearRecents.addEventListener('click', function() {
     try { localStorage.removeItem(RECENTS_KEY); } catch(e) {}
     recentsWrap.style.display = 'none';
   });
 
   /* ============================================================
-     TRENDING PRODUCTS — loads latest 4 products on popup open
+     TRENDING PRODUCTS
      ============================================================ */
   function loadTrending() {
-    trendingEl.innerHTML = '<div style="text-align:center;padding:16px 0;font-size:13px;color:rgba(115,92,0,0.4)">Loading\u2026</div>';
-    /* Fetches newest 4 products as "trending" */
+    trendingEl.innerHTML = '<div style="text-align:center;padding:16px 0;font-size:13px;color:var(--bh-status-text)">Loading...</div>';
     fetch(wcApi + '?per_page=4&orderby=date&order=desc')
       .then(function(r) { return r.json(); })
       .then(function(data) {
         trendingEl.innerHTML = '';
-        if (!data || !data.length) {
-          trendingEl.innerHTML = '<div style="text-align:center;padding:16px 0;font-size:13px;color:rgba(115,92,0,0.4)">Nothing to show yet</div>';
-          return;
-        }
-        data.forEach(function(item, i) {
-          trendingEl.appendChild(makeTrendingItem(item, i + 1));
-        });
+        if (!data || !data.length) return;
+        data.forEach(function(item, i) { trendingEl.appendChild(makeTrendingItem(item, i + 1)); });
       })
-      .catch(function() {
-        trendingEl.innerHTML = '';
-      });
+      .catch(function() { trendingEl.innerHTML = ''; });
   }
 
   function makeTrendingItem(item, rank) {
     var a = document.createElement('a');
-    a.className = 'bh-trending-item';
-    a.href = item.permalink || '#';
-
-    /* Rank number */
+    a.className = 'bh-trending-item'; a.href = item.permalink || '#';
     var rankEl = document.createElement('span');
-    rankEl.className = 'bh-trending-rank';
-    rankEl.textContent = rank;
-    a.appendChild(rankEl);
-
-    /* Thumbnail */
+    rankEl.className = 'bh-trending-rank'; rankEl.textContent = rank; a.appendChild(rankEl);
+    var thumbWrap = document.createElement('div'); thumbWrap.className = 'bh-thumb-wrap';
     var thumbUrl = null;
-    try {
-      if (item.images && item.images.length > 0) {
-        thumbUrl = item.images[0].thumbnail || item.images[0].src;
-      }
-    } catch(e) {}
-
+    try { if (item.images && item.images.length > 0) thumbUrl = item.images[0].thumbnail || item.images[0].src; } catch(e) {}
     if (thumbUrl) {
-      var img = document.createElement('img');
-      img.className = 'bh-trending-thumb';
-      img.src = thumbUrl; img.alt = ''; img.loading = 'lazy';
-      a.appendChild(img);
+      var img = document.createElement('img'); img.className = 'bh-trending-thumb'; img.src = thumbUrl; img.alt = ''; img.loading = 'lazy'; thumbWrap.appendChild(img);
     } else {
-      var ph = document.createElement('div');
-      ph.className = 'bh-trending-thumb-ph';
-      ph.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>';
-      a.appendChild(ph);
+      var ph = document.createElement('div'); ph.className = 'bh-trending-thumb-ph'; ph.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>'; thumbWrap.appendChild(ph);
     }
-
-    /* Info */
-    var info = document.createElement('div');
-    info.className = 'bh-trending-info';
-
-    var nameEl = document.createElement('span');
-    nameEl.className = 'bh-trending-name';
-    nameEl.textContent = decode(item.name || '');
-    info.appendChild(nameEl);
-
-    var priceText = getPrice(item);
-    if (priceText) {
-      var priceEl = document.createElement('span');
-      priceEl.className = 'bh-trending-price';
-      priceEl.textContent = priceText;
-      info.appendChild(priceEl);
+    var onSale = false;
+    try { if (item.prices && item.prices.sale_price && item.prices.sale_price !== item.prices.price) onSale = true; } catch(e) {}
+    if (onSale) {
+      var saleBadge = document.createElement('div'); saleBadge.className = 'bh-sale-badge'; saleBadge.textContent = 'SALE'; thumbWrap.appendChild(saleBadge);
     }
-
+    a.appendChild(thumbWrap);
+    var info = document.createElement('div'); info.className = 'bh-trending-info';
+    var nameEl = document.createElement('span'); nameEl.className = 'bh-trending-name'; nameEl.textContent = decode(item.name || ''); info.appendChild(nameEl);
+    var priceEl = renderPrice(getPrice(item), 'bh-trending-price');
+    if (priceEl) info.appendChild(priceEl);
     var catText = getCat(item);
-    if (catText) {
-      var catEl = document.createElement('span');
-      catEl.className = 'bh-trending-cat';
-      catEl.textContent = catText;
-      info.appendChild(catEl);
-    }
-
+    if (catText) { var catEl = document.createElement('span'); catEl.className = 'bh-trending-cat'; catEl.textContent = catText; info.appendChild(catEl); }
     a.appendChild(info);
-
-    var arr = document.createElement('span');
-    arr.style.cssText = 'color:rgba(115,92,0,0.25);font-size:14px;flex-shrink:0'; /* ARROW ICON COLOR */
-    arr.textContent = '\u2192';
-    a.appendChild(arr);
-
+    var arr = document.createElement('span'); arr.className = 'bh-chevron'; arr.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>'; a.appendChild(arr);
     return a;
   }
 
   /* ============================================================
-     SEARCH POPUP — open / close
+     SEARCH POPUP
      ============================================================ */
-  trigger.addEventListener('click', function() {
+  function openSearch(instantFocus) {
     overlay.classList.add('open');
-    renderRecents();
-    loadTrending();
-    showDefault();
-    setTimeout(function() { input.focus(); }, 280);
-  });
-
-  overlay.addEventListener('click', function(e) {
-    if (e.target === overlay) closeSearch();
-  });
-
-  document.addEventListener('keydown', function(e) {
-    if (e.key === 'Escape') closeSearch();
-  });
-
+    adjustSearchSheet();
+    renderRecents(); loadTrending(); showDefault();
+    startPlaceholderAnimation();
+    setTimeout(function() {
+      input.focus();
+      /* Re-adjust after keyboard fully appears (300ms delay) */
+      setTimeout(adjustSearchSheet, 350);
+    }, instantFocus ? 50 : 280);
+  }
+  overlay.addEventListener('click', function(e) { if (e.target === overlay) closeSearch(); });
+  document.addEventListener('keydown', function(e) { if (e.key === 'Escape') closeSearch(); });
   function closeSearch() {
     overlay.classList.remove('open');
+    /* Reset overlay positioning back to default */
+    overlay.style.top = '';
+    overlay.style.left = '';
+    overlay.style.height = '';
+    overlay.style.width = '';
+    sheet.style.height = '';
     input.value = '';
+    stopPlaceholderAnimation();
     reset();
   }
-
-  function showDefault() {
-    defaultView.classList.remove('hide');
-    resultsView.classList.remove('show');
-  }
-
-  function showResults() {
-    defaultView.classList.add('hide');
-    resultsView.classList.add('show');
-  }
-
+  function showDefault() { defaultView.classList.remove('hide'); resultsView.classList.remove('show'); }
+  function showResults() { defaultView.classList.add('hide'); resultsView.classList.add('show'); }
   function reset() {
-    sugg.innerHTML = '';
-    status.className = '';
-    suggLabel.style.display = 'none';
-    viewAll.className = '';
-    clearBtn.className = '';
-    lastQ = '';
-    showDefault();
+    sugg.innerHTML = ''; status.className = ''; suggLabel.style.display = 'none';
+    viewAll.className = ''; clearBtn.className = ''; lastQ = ''; showDefault();
   }
-
-  /* ---- Clear button ---- */
-  clearBtn.addEventListener('click', function() {
-    input.value = '';
-    reset();
-    input.focus();
-  });
-
-  /* ---- Enter key: save recent + go to shop search ---- */
+  clearBtn.addEventListener('click', function() { input.value = ''; reset(); input.focus(); });
   input.addEventListener('keydown', function(e) {
-    if (e.key === 'Enter') {
-      var q = input.value.trim();
-      if (q) {
-        saveRecent(q);
-        window.location.href = shopUrl + '?s=' + encodeURIComponent(q);
-      }
-    }
+    if (e.key === 'Enter') { var q = input.value.trim(); if (q) { saveRecent(q); window.location.href = shopUrl + '?s=' + encodeURIComponent(q); } }
   });
-
-  /* ---- Typing: debounced search ---- */
   input.addEventListener('input', function() {
-    var q = input.value.trim();
-    clearBtn.className = q ? 'show' : '';
-    clearTimeout(timer);
-    if (!q) { reset(); return; }
-    showResults();
-    timer = setTimeout(function() { search(q); }, 350);
+    var q = input.value.trim(); clearBtn.className = q ? 'show' : '';
+    clearTimeout(timer); if (!q) { reset(); return; }
+    showResults(); timer = setTimeout(function() { search(q); }, 350);
   });
 
   /* ============================================================
-     SEARCH
+     SMART SEARCH -- multi-word, fuzzy match, dedup, highlight
      ============================================================ */
   function search(q) {
     if (q === lastQ) return;
     lastQ = q;
     sugg.innerHTML = '';
+    allSuggestions = [];
     suggLabel.style.display = 'none';
     viewAll.className = '';
-    status.textContent = 'Searching\u2026';
+    status.textContent = 'Searching...';
     status.className = 'show';
 
-    fetch(wcApi + '?search=' + encodeURIComponent(q) + '&per_page=8')
-      .then(function(r) { if (!r.ok) throw new Error(r.status); return r.json(); })
-      .then(function(data) {
-        status.className = '';
-        if (!data || data.length === 0) { empty(q); return; }
-        suggLabel.style.display = 'flex';
-        data.forEach(function(item) { sugg.appendChild(makeSuggItem(item)); });
-        setViewAll(q);
-        /* Save to recent searches when results found */
-        saveRecent(q);
-      })
-      .catch(function() { empty(q); });
+    /* Split query into individual words for multi-word matching */
+    var words   = q.trim().toLowerCase().split(/\s+/).filter(Boolean);
+    var encoded = encodeURIComponent(q);
+
+    /* Fire searches for each word in parallel, then merge + deduplicate */
+    var fetches = words.map(function(word) {
+      return fetch(wcApi + '?search=' + encodeURIComponent(word) + '&per_page=12')
+        .then(function(r) { return r.ok ? r.json() : []; })
+        .catch(function() { return []; });
+    });
+
+    /* Also fire a search for the full phrase */
+    var fullFetch = fetch(wcApi + '?search=' + encoded + '&per_page=12')
+      .then(function(r) { return r.ok ? r.json() : []; })
+      .catch(function() { return []; });
+
+    fetches.push(fullFetch);
+
+    Promise.all(fetches).then(function(results) {
+      status.className = '';
+
+      /* Merge all results, deduplicate by product ID */
+      var seen = {};
+      var merged = [];
+      results.forEach(function(list) {
+        (list || []).forEach(function(item) {
+          if (!seen[item.id]) {
+            seen[item.id] = true;
+            merged.push(item);
+          }
+        });
+      });
+
+      /* Score each result -- higher score = better match */
+      merged.forEach(function(item) {
+        var name  = (item.name || '').toLowerCase();
+        var score = 0;
+        words.forEach(function(w) {
+          if (name === w)           score += 100; /* exact full match */
+          else if (name.startsWith(w)) score += 50;  /* starts with word */
+          else if (name.includes(w))   score += 20;  /* contains word */
+        });
+        /* Bonus for category match */
+        var cat = getCat(item).toLowerCase();
+        words.forEach(function(w) { if (cat.includes(w)) score += 10; });
+        item._score = score;
+      });
+
+      /* Sort by score descending */
+      merged.sort(function(a, b) { return b._score - a._score; });
+
+      if (merged.length === 0) { empty(q); return; }
+
+      allSuggestions = merged;
+      activeCategory = '';
+      catChips.querySelectorAll('.bh-cat-chip').forEach(function(c) { c.classList.remove('active'); });
+      var allChip = catChips.querySelector('.bh-cat-chip');
+      if (allChip) allChip.classList.add('active');
+
+      suggLabel.style.display = 'flex';
+      merged.slice(0, 10).forEach(function(item) { sugg.appendChild(makeSuggItem(item, q)); });
+      setViewAll(q);
+      saveRecent(q);
+    }).catch(function() { empty(q); });
   }
 
-  function empty(q) {
-    status.textContent = 'No results for \u201c' + q + '\u201d';
-    status.className = 'show';
-    setViewAll(q);
-  }
+  /* Highlight matching words in product name */
+  function highlightText(text, query) {
+    var words = query.trim().split(/\s+/).filter(Boolean);
+    var result = document.createElement('span');
+    var remaining = text;
+    var lowerText = text.toLowerCase();
 
-  function setViewAll(q) {
-    viewAll.href = shopUrl + '?s=' + encodeURIComponent(q);
-    viewAll.textContent = 'View all results for \u201c' + q + '\u201d';
-    viewAll.className = 'show';
-  }
-
-  /* ---- Build one suggestion row ---- */
-  function makeSuggItem(item) {
-    var li = document.createElement('li');
-    li.setAttribute('role', 'option');
-    var a = document.createElement('a');
-    a.href = item.permalink || '#';
-
-    var thumbUrl = null;
-    try {
-      if (item.images && item.images.length > 0) {
-        thumbUrl = item.images[0].thumbnail || item.images[0].src;
+    /* Find all match positions */
+    var matches = [];
+    words.forEach(function(word) {
+      var lw = word.toLowerCase();
+      var idx = 0;
+      while ((idx = lowerText.indexOf(lw, idx)) !== -1) {
+        matches.push({ start: idx, end: idx + lw.length });
+        idx += lw.length;
       }
-    } catch(e) {}
+    });
 
-    if (thumbUrl) {
-      var img = document.createElement('img');
-      img.className = 'bh-sug-thumb';
-      img.src = thumbUrl; img.alt = ''; img.loading = 'lazy';
-      a.appendChild(img);
-    } else {
-      var ph = document.createElement('div');
-      ph.className = 'bh-sug-thumb-placeholder';
-      ph.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>';
-      a.appendChild(ph);
+    if (!matches.length) {
+      result.textContent = text;
+      return result;
     }
 
-    var info = document.createElement('div');
-    info.className = 'bh-sug-info';
+    /* Sort and merge overlapping ranges */
+    matches.sort(function(a, b) { return a.start - b.start; });
+    var merged = [matches[0]];
+    for (var i = 1; i < matches.length; i++) {
+      var last = merged[merged.length - 1];
+      if (matches[i].start <= last.end) {
+        last.end = Math.max(last.end, matches[i].end);
+      } else {
+        merged.push(matches[i]);
+      }
+    }
 
-    var nameEl = document.createElement('span');
-    nameEl.className = 'bh-sug-name';
-    nameEl.textContent = decode(item.name || '');
+    /* Build highlighted spans */
+    var pos = 0;
+    merged.forEach(function(m) {
+      if (m.start > pos) {
+        result.appendChild(document.createTextNode(text.slice(pos, m.start)));
+      }
+      var span = document.createElement('span');
+      span.className = 'bh-highlight';
+      span.textContent = text.slice(m.start, m.end);
+      result.appendChild(span);
+      pos = m.end;
+    });
+    if (pos < text.length) {
+      result.appendChild(document.createTextNode(text.slice(pos)));
+    }
+    return result;
+  }
+
+  function empty(q) { status.textContent = 'No results for "' + q + '"'; status.className = 'show'; setViewAll(q); }
+  function setViewAll(q) { viewAll.href = shopUrl + '?s=' + encodeURIComponent(q); viewAll.textContent = 'View all results for "' + q + '"'; viewAll.className = 'show'; }
+
+  function makeSuggItem(item, query) {
+    var li = document.createElement('li'); li.setAttribute('role', 'option');
+    var a = document.createElement('a'); a.href = item.permalink || '#';
+    var thumbUrl = null;
+    try { if (item.images && item.images.length > 0) thumbUrl = item.images[0].thumbnail || item.images[0].src; } catch(e) {}
+    if (thumbUrl) {
+      var img = document.createElement('img'); img.className = 'bh-sug-thumb'; img.src = thumbUrl; img.alt = ''; img.loading = 'lazy'; a.appendChild(img);
+    } else {
+      var ph = document.createElement('div'); ph.className = 'bh-sug-thumb-placeholder'; ph.innerHTML = '<svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>'; a.appendChild(ph);
+    }
+    var info = document.createElement('div'); info.className = 'bh-sug-info';
+
+    /* Product name with highlighted matching words */
+    var nameEl = document.createElement('span'); nameEl.className = 'bh-sug-name';
+    if (query) {
+      nameEl.appendChild(highlightText(decode(item.name || ''), query));
+    } else {
+      nameEl.textContent = decode(item.name || '');
+    }
     info.appendChild(nameEl);
 
-    var priceText = getPrice(item);
-    if (priceText) {
-      var priceEl = document.createElement('span');
-      priceEl.className = 'bh-sug-price';
-      priceEl.textContent = priceText;
-      info.appendChild(priceEl);
-    }
-
+    var priceEl = renderPrice(getPrice(item), 'bh-sug-price');
+    if (priceEl) info.appendChild(priceEl);
     var catText = getCat(item);
-    if (catText) {
-      var catEl = document.createElement('span');
-      catEl.className = 'bh-sug-cat';
-      catEl.textContent = catText;
-      info.appendChild(catEl);
-    }
-
+    if (catText) { var catEl = document.createElement('span'); catEl.className = 'bh-sug-cat'; catEl.textContent = catText; info.appendChild(catEl); }
     a.appendChild(info);
-
-    var arr = document.createElement('span');
-    arr.style.cssText = 'color:rgba(115,92,0,0.25);font-size:14px;flex-shrink:0'; /* ARROW ICON COLOR */
-    arr.textContent = '\u2192';
-    a.appendChild(arr);
-
-    li.appendChild(a);
-    return li;
+    var arr = document.createElement('span'); arr.className = 'bh-chevron'; arr.innerHTML = '<svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>'; a.appendChild(arr);
+    li.appendChild(a); return li;
   }
 
-  /* ---- Helper: extract price from item ---- */
+  /* ---- Helpers ---- */
   function getPrice(item) {
     try {
-      if (item.prices) {
-        var raw = item.prices.price;
-        var saleRaw = item.prices.sale_price;
-        var curr = item.prices.currency_symbol || '';
-        var decimals = item.prices.currency_minor_unit || 2;
-        var divisor = Math.pow(10, decimals);
-        return (saleRaw && saleRaw !== raw)
-          ? curr + parseFloat(parseInt(saleRaw) / divisor).toFixed(decimals)
-          : curr + parseFloat(parseInt(raw) / divisor).toFixed(decimals);
+      if (!item.prices) return null;
+      var p       = item.prices;
+      var curr    = p.currency_symbol || '';
+      var dec     = parseInt(p.currency_minor_unit) || 2;
+      var divisor = Math.pow(10, dec);
+
+      /* WC Store API:
+         p.price         = what customer pays NOW (sale price if on sale)
+         p.regular_price = original price before any sale
+         p.sale_price    = same as p.price when on sale, empty when not */
+      var currentInt  = parseInt(p.price          || 0);
+      var regularInt  = parseInt(p.regular_price  || p.price || 0);
+
+      var currentStr  = curr + (currentInt  / divisor).toFixed(dec);
+      var regularStr  = curr + (regularInt  / divisor).toFixed(dec);
+
+      /* On sale = regular_price exists AND is greater than current price */
+      if (regularInt > 0 && currentInt > 0 && regularInt > currentInt) {
+        return { sale: currentStr, regular: regularStr };
       }
-    } catch(e) {}
-    return '';
+
+      /* Not on sale */
+      return { sale: currentStr, regular: null };
+
+    } catch(e) { return null; }
   }
 
-  /* ---- Helper: extract category from item ---- */
+  function renderPrice(priceData, className) {
+    if (!priceData) return null;
+    var el = document.createElement('span');
+    el.className = className;
+    if (priceData.regular) {
+      var reg = document.createElement('span');
+      reg.className   = 'bh-regular';
+      reg.textContent = priceData.regular;
+      el.appendChild(reg);
+      var sale = document.createElement('span');
+      sale.className   = 'bh-sale';
+      sale.textContent = priceData.sale;
+      el.appendChild(sale);
+    } else {
+      el.textContent = priceData.sale;
+    }
+    return el;
+  }
+
   function getCat(item) {
-    try {
-      if (item.categories && item.categories.length > 0) {
-        return item.categories.map(function(c) { return c.name; }).join(', ');
-      }
-    } catch(e) {}
-    return '';
+    try { if (item.categories && item.categories.length > 0) return item.categories.map(function(c){return c.name;}).join(', '); } catch(e) {} return '';
   }
-
-  /* ---- Helper: decode HTML entities ---- */
-  function decode(html) {
-    var t = document.createElement('textarea');
-    t.innerHTML = html || '';
-    return t.value;
-  }
+  function decode(html) { var t = document.createElement('textarea'); t.innerHTML = html||''; return t.value; }
 
 })();
 </script>
