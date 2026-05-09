@@ -613,6 +613,10 @@
   font-size: 14px; font-weight: 700;
   color: var(--bh-product-name);    /* QTY NUMBER COLOR */
   min-width: 20px; text-align: center;
+  transition: opacity 0.15s;
+}
+.bh-cart-qty-num.loading {
+  opacity: 0.35; /* dims the number while request is in flight */
 }
 .bh-cart-remove-btn {
   margin-left: 2px;
@@ -1355,23 +1359,21 @@
       minusBtn.addEventListener('click', function() {
         var newQty = parseInt(qtyNum.textContent) - 1;
         if (newQty < 1) return;
-        /* Show spinner and lock both buttons */
-        setQtyLoading(minusBtn, plusBtn, true);
+        setQtyLoading(minusBtn, plusBtn, true, qtyNum);
         qtyNum.textContent = newQty; /* optimistic update */
         minusBtn.disabled = newQty <= 1;
         updateCartItem(item.key, newQty, div, function() {
-          setQtyLoading(minusBtn, plusBtn, false);
+          setQtyLoading(minusBtn, plusBtn, false, qtyNum);
         });
       });
 
       plusBtn.addEventListener('click', function() {
         var newQty = parseInt(qtyNum.textContent) + 1;
-        /* Show spinner and lock both buttons */
-        setQtyLoading(minusBtn, plusBtn, true);
+        setQtyLoading(minusBtn, plusBtn, true, qtyNum);
         qtyNum.textContent = newQty; /* optimistic update */
         minusBtn.disabled = false;
         updateCartItem(item.key, newQty, div, function() {
-          setQtyLoading(minusBtn, plusBtn, false);
+          setQtyLoading(minusBtn, plusBtn, false, qtyNum);
         });
       });
 
@@ -1619,31 +1621,57 @@
   }
 
   /* ---- Show/hide spinner on qty buttons ---- */
-  function setQtyLoading(minusBtn, plusBtn, isLoading) {
+  function setQtyLoading(minusBtn, plusBtn, isLoading, qtyNum) {
     if (isLoading) {
-      /* Replace button text with spinner */
+      /* Store original text and disabled state */
+      minusBtn.dataset.label    = minusBtn.textContent;
+      plusBtn.dataset.label     = plusBtn.textContent;
+      minusBtn.dataset.disabled = minusBtn.disabled ? '1' : '0';
+
+      /* Clear disabled so loading class takes visual control */
+      minusBtn.disabled = false;
+      plusBtn.disabled  = false;
+
+      /* Add loading class -- shows spinner, blocks clicks */
       minusBtn.classList.add('loading');
       plusBtn.classList.add('loading');
-      minusBtn.dataset.label = minusBtn.textContent;
-      plusBtn.dataset.label  = plusBtn.textContent;
+
+      /* Dim qty number */
+      if (qtyNum) qtyNum.classList.add('loading');
+
+      /* Replace text with spinner */
       minusBtn.textContent = '';
       plusBtn.textContent  = '';
+
       var spinMinus = document.createElement('span');
       spinMinus.className = 'bh-qty-spinner';
       minusBtn.appendChild(spinMinus);
+
       var spinPlus = document.createElement('span');
       spinPlus.className = 'bh-qty-spinner';
       plusBtn.appendChild(spinPlus);
+
     } else {
-      /* Restore button text, remove spinner */
+      /* Remove loading state */
       minusBtn.classList.remove('loading');
       plusBtn.classList.remove('loading');
+
+      /* Restore qty number */
+      if (qtyNum) qtyNum.classList.remove('loading');
+
+      /* Remove spinners */
       var sminus = minusBtn.querySelector('.bh-qty-spinner');
       var splus  = plusBtn.querySelector('.bh-qty-spinner');
       if (sminus) sminus.remove();
       if (splus)  splus.remove();
+
+      /* Restore text */
       minusBtn.textContent = minusBtn.dataset.label || '-';
       plusBtn.textContent  = plusBtn.dataset.label  || '+';
+
+      /* Restore disabled state */
+      minusBtn.disabled = minusBtn.dataset.disabled === '1';
+      plusBtn.disabled  = false;
     }
   }
 
@@ -1663,28 +1691,25 @@
       body: JSON.stringify({ quantity: qty })
     })
     .then(function(r) {
-      /* Capture updated nonce from response */
       var newNonce = r.headers.get('X-WC-Store-API-Nonce') || r.headers.get('Nonce') || '';
       if (newNonce) cartNonce = newNonce;
       if (!r.ok) throw new Error(r.status);
       return r.json();
     })
     .then(function(updatedItem) {
-      /* Update nonce from response body if available */
       if (updatedItem && updatedItem.nonce) cartNonce = updatedItem.nonce;
       cachedCartData = null;
+      if (onDone) onDone(); /* stop spinner before re-render */
       fetchAndCacheCart(function(fresh) {
         updateCartBadgeFromData(fresh);
         if (cartOverlay.classList.contains('open')) renderCartData(fresh);
       });
     })
     .catch(function(err) {
-      /* Nonce may have expired -- try fetching fresh nonce then retry once */
+      /* Nonce may have expired -- fetch fresh nonce then retry once */
       fetchAndCacheCart(function(fresh) {
         var freshNonce = getCartNonce();
         updateCartBadgeFromData(fresh);
-        if (cartOverlay.classList.contains('open')) renderCartData(fresh);
-        /* Retry the update with fresh nonce */
         if (freshNonce && freshNonce !== nonce) {
           fetch(cartApi + '/items/' + key, {
             method: 'PUT',
@@ -1695,16 +1720,24 @@
           .then(function(r) { return r.json(); })
           .then(function() {
             cachedCartData = null;
+            if (onDone) onDone();
             fetchAndCacheCart(function(d) {
               updateCartBadgeFromData(d);
               if (cartOverlay.classList.contains('open')) renderCartData(d);
             });
           })
           .catch(function() {
+            if (onDone) onDone(); /* stop spinner on final failure */
             if (rowEl) { rowEl.style.opacity = '1'; rowEl.style.pointerEvents = ''; }
+            showToast('Could not update quantity. Please try again.');
+            /* Re-render with current data to restore correct qty */
+            if (cartOverlay.classList.contains('open')) renderCartData(fresh);
           });
         } else {
+          if (onDone) onDone();
           if (rowEl) { rowEl.style.opacity = '1'; rowEl.style.pointerEvents = ''; }
+          showToast('Could not update quantity. Please try again.');
+          if (cartOverlay.classList.contains('open')) renderCartData(fresh);
         }
       });
     });
@@ -2594,7 +2627,5 @@
   }
   function decode(html) { var t = document.createElement('textarea'); t.innerHTML = html||''; return t.value; }
 
-})();
-</script>
 })();
 </script>
