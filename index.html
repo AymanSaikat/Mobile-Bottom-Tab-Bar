@@ -14,13 +14,19 @@
  <h3 style="text-align:center;">THIS MOBILE BOTTIM TAB BAR ONLY SHOWS IN MOBILE</h3>
  <h3 style="text-align:center;">THIS MOBILE BOTTIM TAB BAR ONLY SHOWS IN MOBILE</h3>
  
+<!-- ============================================================
+   BookHaven -- Mobile Bottom Tab Bar v12
+   Delete your old code and paste this entire block
+   into: Footer via Insert Headers and Footers plugin
+   ============================================================ -->
+
 <style>
 
 /* ---- Hide on desktop, show only on mobile ---- */
 #bh-tab-bar-wrap { display: none; }
 @media (max-width: 768px) {
   #bh-tab-bar-wrap { display: block; }
-  body { padding-bottom: 90px !important; }
+  body { padding-bottom: max(90px, calc(env(safe-area-inset-bottom) + 80px)) !important; }
 }
 
 /* ============================================================
@@ -124,7 +130,8 @@
 /* ---- Floating island wrapper ---- */
 #bh-tab-bar-wrap {
   position: fixed;
-  bottom: 18px;
+  /* Safe-area: sits above iPhone home indicator and Android nav bar */
+  bottom: max(18px, calc(env(safe-area-inset-bottom) + 8px));
   left: 50%;
   transform: translateX(-50%) translateY(120%); /* starts off screen */
   z-index: 99999;
@@ -378,7 +385,8 @@
 #bh-cart-sheet {
   background: var(--bh-sheet-bg);
   border-radius: 28px 28px 0 0;
-  padding: 20px 20px 36px;
+  /* Safe-area padding: ensures content never sits under iPhone home indicator */
+  padding: 20px 20px max(36px, env(safe-area-inset-bottom));
   width: 100%; max-width: 540px;
   max-height: 80vh;
   overflow-y: auto;
@@ -486,7 +494,11 @@
   color: var(--bh-icon-active);    /* CART TOTAL PRICE COLOR */
 }
 #bh-cart-checkout-btn {
-  display: block; width: 100%; margin-top: 14px; padding: 14px;
+  display: block; width: 100%;
+  margin-top: 14px;
+  /* Safe-area: extra bottom margin on iPhones with home indicator */
+  margin-bottom: env(safe-area-inset-bottom, 0px);
+  padding: 14px;
   background: var(--bh-btn-bg);    /* CHECKOUT BUTTON BACKGROUND */
   color: var(--bh-btn-text);       /* CHECKOUT BUTTON TEXT COLOR */
   border: none; border-radius: 14px;
@@ -621,6 +633,10 @@
   font-size: 14px; font-weight: 700;
   color: var(--bh-product-name);    /* QTY NUMBER COLOR */
   min-width: 20px; text-align: center;
+  transition: opacity 0.15s;
+}
+.bh-cart-qty-num.loading {
+  opacity: 0.35; /* dims the number while request is in flight */
 }
 .bh-cart-remove-btn {
   margin-left: 2px;
@@ -701,12 +717,12 @@
 #bh-search-sheet {
   background: var(--bh-sheet-bg);
   border-radius: 28px 28px 0 0;
-  padding: 20px 20px 24px;
+  /* Safe-area padding: ensures search content never sits under iPhone home indicator */
+  padding: 20px 20px max(24px, env(safe-area-inset-bottom));
   width: 100%; max-width: 540px;
   box-shadow: 0 -8px 40px var(--bh-sheet-shadow);
   animation: bhSlideUp 0.25s cubic-bezier(0.34, 1.26, 0.64, 1);
   touch-action: pan-y;
-  /* Fixed height — JS will resize this when keyboard opens */
   height: 55vh;
   display: flex;
   flex-direction: column;
@@ -867,6 +883,11 @@
 #bh-results-view.show { display: flex; flex-direction: column; }
 
 </style>
+
+<!-- viewport-fit=cover is REQUIRED for env(safe-area-inset-bottom) to work on iPhone -->
+<!-- NOTE: If your WordPress theme already outputs a viewport meta tag,          -->
+<!-- add viewport-fit=cover to that tag instead of using this one.               -->
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 
 <!-- WC Store API nonce -- needed for cart update/remove -->
 <?php if (function_exists('wp_create_nonce')) { ?>
@@ -1363,23 +1384,21 @@
       minusBtn.addEventListener('click', function() {
         var newQty = parseInt(qtyNum.textContent) - 1;
         if (newQty < 1) return;
-        /* Show spinner and lock both buttons */
-        setQtyLoading(minusBtn, plusBtn, true);
+        setQtyLoading(minusBtn, plusBtn, true, qtyNum);
         qtyNum.textContent = newQty; /* optimistic update */
         minusBtn.disabled = newQty <= 1;
         updateCartItem(item.key, newQty, div, function() {
-          setQtyLoading(minusBtn, plusBtn, false);
+          setQtyLoading(minusBtn, plusBtn, false, qtyNum);
         });
       });
 
       plusBtn.addEventListener('click', function() {
         var newQty = parseInt(qtyNum.textContent) + 1;
-        /* Show spinner and lock both buttons */
-        setQtyLoading(minusBtn, plusBtn, true);
+        setQtyLoading(minusBtn, plusBtn, true, qtyNum);
         qtyNum.textContent = newQty; /* optimistic update */
         minusBtn.disabled = false;
         updateCartItem(item.key, newQty, div, function() {
-          setQtyLoading(minusBtn, plusBtn, false);
+          setQtyLoading(minusBtn, plusBtn, false, qtyNum);
         });
       });
 
@@ -1414,48 +1433,92 @@
 
   /* ---- Swipe left to reveal delete ---- */
   function attachSwipeToDelete(itemEl, wrapEl, key) {
-    var startX   = 0;
-    var currentX = 0;
-    var swiping  = false;
-    var THRESHOLD = 70; /* px to swipe before delete triggers -- increase for harder swipe */
+    var startX      = 0;
+    var startY      = 0;
+    var currentX    = 0;
+    var swiping     = false;  /* true only when confirmed horizontal swipe */
+    var decided     = false;  /* true once we know direction (horiz or vert) */
+    var THRESHOLD   = 70;     /* px left to trigger delete -- increase for harder */
+    var ANGLE_LIMIT = 30;     /* max degrees from horizontal -- lower = stricter */
 
     itemEl.addEventListener('touchstart', function(e) {
       startX   = e.touches[0].clientX;
+      startY   = e.touches[0].clientY;
       currentX = 0;
-      swiping  = true;
+      swiping  = false;
+      decided  = false;
     }, { passive: true });
 
     itemEl.addEventListener('touchmove', function(e) {
-      if (!swiping) return;
       var diffX = e.touches[0].clientX - startX;
+      var diffY = e.touches[0].clientY - startY;
+
+      /* On first meaningful movement, decide direction once */
+      if (!decided && (Math.abs(diffX) > 4 || Math.abs(diffY) > 4)) {
+        decided = true;
+
+        /* Calculate angle from horizontal in degrees */
+        var angle = Math.abs(Math.atan2(Math.abs(diffY), Math.abs(diffX)) * 180 / Math.PI);
+
+        if (angle < ANGLE_LIMIT && diffX < 0) {
+          /* Angle is shallow enough AND moving left -- it is a horizontal swipe */
+          swiping = true;
+        } else {
+          /* Too steep or moving right -- treat as scroll, ignore completely */
+          swiping = false;
+        }
+      }
+
+      if (!swiping) return;
+
+      /* Only translate left, cap at 90px reveal */
       if (diffX < 0) {
-        /* Swiping left -- translate the item */
-        currentX = Math.max(diffX, -90); /* max 90px reveal */
+        currentX = Math.max(diffX, -90);
         itemEl.style.transform  = 'translateX(' + currentX + 'px)';
         itemEl.style.transition = 'none';
       }
     }, { passive: true });
 
     itemEl.addEventListener('touchend', function() {
+      if (!swiping) {
+        /* Was a scroll -- make sure item is back in place */
+        itemEl.style.transition = 'transform 0.2s ease';
+        itemEl.style.transform  = 'translateX(0)';
+        decided = false;
+        return;
+      }
+
       swiping = false;
-      itemEl.style.transition = 'transform 0.2s ease';
+      decided = false;
+      itemEl.style.transition = 'transform 0.22s ease';
+
       if (currentX < -THRESHOLD) {
-        /* Swiped far enough -- delete */
-        itemEl.style.transform = 'translateX(-100%)';
-        wrapEl.style.maxHeight = wrapEl.offsetHeight + 'px';
-        wrapEl.style.overflow  = 'hidden';
-        wrapEl.style.transition = 'max-height 0.25s ease, opacity 0.2s ease';
-        wrapEl.style.opacity   = '0';
+        /* Swiped far enough -- animate out then delete */
+        itemEl.style.transform  = 'translateX(-100%)';
+        wrapEl.style.maxHeight  = wrapEl.offsetHeight + 'px';
+        wrapEl.style.overflow   = 'hidden';
+        wrapEl.style.transition = 'max-height 0.28s ease, opacity 0.2s ease';
+        wrapEl.style.opacity    = '0';
         setTimeout(function() {
           wrapEl.style.maxHeight = '0';
           setTimeout(function() {
             removeCartItem(key);
-          }, 250);
+          }, 280);
         }, 100);
       } else {
-        /* Snap back */
+        /* Did not reach threshold -- snap back */
         itemEl.style.transform = 'translateX(0)';
+        currentX = 0;
       }
+    });
+
+    /* Safety: also snap back if touch is cancelled (e.g. incoming call) */
+    itemEl.addEventListener('touchcancel', function() {
+      swiping  = false;
+      decided  = false;
+      currentX = 0;
+      itemEl.style.transition = 'transform 0.2s ease';
+      itemEl.style.transform  = 'translateX(0)';
     });
   }
 
@@ -1627,31 +1690,57 @@
   }
 
   /* ---- Show/hide spinner on qty buttons ---- */
-  function setQtyLoading(minusBtn, plusBtn, isLoading) {
+  function setQtyLoading(minusBtn, plusBtn, isLoading, qtyNum) {
     if (isLoading) {
-      /* Replace button text with spinner */
+      /* Store original text and disabled state */
+      minusBtn.dataset.label    = minusBtn.textContent;
+      plusBtn.dataset.label     = plusBtn.textContent;
+      minusBtn.dataset.disabled = minusBtn.disabled ? '1' : '0';
+
+      /* Clear disabled so loading class takes visual control */
+      minusBtn.disabled = false;
+      plusBtn.disabled  = false;
+
+      /* Add loading class -- shows spinner, blocks clicks */
       minusBtn.classList.add('loading');
       plusBtn.classList.add('loading');
-      minusBtn.dataset.label = minusBtn.textContent;
-      plusBtn.dataset.label  = plusBtn.textContent;
+
+      /* Dim qty number */
+      if (qtyNum) qtyNum.classList.add('loading');
+
+      /* Replace text with spinner */
       minusBtn.textContent = '';
       plusBtn.textContent  = '';
+
       var spinMinus = document.createElement('span');
       spinMinus.className = 'bh-qty-spinner';
       minusBtn.appendChild(spinMinus);
+
       var spinPlus = document.createElement('span');
       spinPlus.className = 'bh-qty-spinner';
       plusBtn.appendChild(spinPlus);
+
     } else {
-      /* Restore button text, remove spinner */
+      /* Remove loading state */
       minusBtn.classList.remove('loading');
       plusBtn.classList.remove('loading');
+
+      /* Restore qty number */
+      if (qtyNum) qtyNum.classList.remove('loading');
+
+      /* Remove spinners */
       var sminus = minusBtn.querySelector('.bh-qty-spinner');
       var splus  = plusBtn.querySelector('.bh-qty-spinner');
       if (sminus) sminus.remove();
       if (splus)  splus.remove();
+
+      /* Restore text */
       minusBtn.textContent = minusBtn.dataset.label || '-';
       plusBtn.textContent  = plusBtn.dataset.label  || '+';
+
+      /* Restore disabled state */
+      minusBtn.disabled = minusBtn.dataset.disabled === '1';
+      plusBtn.disabled  = false;
     }
   }
 
@@ -1671,28 +1760,25 @@
       body: JSON.stringify({ quantity: qty })
     })
     .then(function(r) {
-      /* Capture updated nonce from response */
       var newNonce = r.headers.get('X-WC-Store-API-Nonce') || r.headers.get('Nonce') || '';
       if (newNonce) cartNonce = newNonce;
       if (!r.ok) throw new Error(r.status);
       return r.json();
     })
     .then(function(updatedItem) {
-      /* Update nonce from response body if available */
       if (updatedItem && updatedItem.nonce) cartNonce = updatedItem.nonce;
       cachedCartData = null;
+      if (onDone) onDone(); /* stop spinner before re-render */
       fetchAndCacheCart(function(fresh) {
         updateCartBadgeFromData(fresh);
         if (cartOverlay.classList.contains('open')) renderCartData(fresh);
       });
     })
     .catch(function(err) {
-      /* Nonce may have expired -- try fetching fresh nonce then retry once */
+      /* Nonce may have expired -- fetch fresh nonce then retry once */
       fetchAndCacheCart(function(fresh) {
         var freshNonce = getCartNonce();
         updateCartBadgeFromData(fresh);
-        if (cartOverlay.classList.contains('open')) renderCartData(fresh);
-        /* Retry the update with fresh nonce */
         if (freshNonce && freshNonce !== nonce) {
           fetch(cartApi + '/items/' + key, {
             method: 'PUT',
@@ -1703,16 +1789,24 @@
           .then(function(r) { return r.json(); })
           .then(function() {
             cachedCartData = null;
+            if (onDone) onDone();
             fetchAndCacheCart(function(d) {
               updateCartBadgeFromData(d);
               if (cartOverlay.classList.contains('open')) renderCartData(d);
             });
           })
           .catch(function() {
+            if (onDone) onDone(); /* stop spinner on final failure */
             if (rowEl) { rowEl.style.opacity = '1'; rowEl.style.pointerEvents = ''; }
+            showToast('Could not update quantity. Please try again.');
+            /* Re-render with current data to restore correct qty */
+            if (cartOverlay.classList.contains('open')) renderCartData(fresh);
           });
         } else {
+          if (onDone) onDone();
           if (rowEl) { rowEl.style.opacity = '1'; rowEl.style.pointerEvents = ''; }
+          showToast('Could not update quantity. Please try again.');
+          if (cartOverlay.classList.contains('open')) renderCartData(fresh);
         }
       });
     });
